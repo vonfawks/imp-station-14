@@ -294,6 +294,7 @@
 
 - type: reaction
   id: DemonsBlood
+  preserveDNA: true
   requiredMixerCategories:
   - Stir
   reactants:
@@ -310,6 +311,7 @@
 
 - type: reaction
   id: DevilsKiss
+  preserveDNA: true
   requiredMixerCategories:
   - Stir
   reactants:
@@ -824,6 +826,7 @@
 
 - type: reaction
   id: RedMead
+  preserveDNA: true
   reactants:
     Mead:
       amount: 1
@@ -1227,7 +1230,7 @@
     UAP: 6
 
        # Razz whatever the fuck you did here has caused horrible things
-- type: reaction 
+- type: reaction
   id: TheeHorsepussy
   requiredMixerCategories:
     - Stir
@@ -1412,7 +1415,7 @@
       amount: 1
   products:
     TheDrink: 2
-   
+
 - type: reaction
   id: BloodierMary
   reactants:
@@ -1422,7 +1425,7 @@
       amount: 1
   products:
     BloodierMary: 3
-    
+
 - type: reaction
   id: SalvagersSoothe
   reactants:
@@ -1436,7 +1439,7 @@
       amount: 2
   products:
     SalvagersSoothe: 3
-    
+
 - type: reaction
   id: HummingBird
   requiredMixerCategories:
@@ -1448,7 +1451,7 @@
       amount: 1
   products:
     HummingBird: 5
- 
+
 - type: reaction
   id: DontTell
   requiredMixerCategories:
@@ -1460,3 +1463,27 @@
       amount: 1
   products:
     DontTell: 2
+
+- type: reaction
+  id: CottonBool
+  requiredMixerCategories:
+    - Stir
+  reactants:
+    Fiber:
+      amount: 1
+    EnergyDrink:
+      amount: 1
+  products:
+    CottonBool: 2
+
+- type: reaction
+  id: Genderfluid
+  requiredMixerCategories:
+    - Shake
+  reactants:
+    Testosterone:
+      amount: 1
+    Estradiol:
+      amount: 1
+  products:
+    Genderfluid: 2
