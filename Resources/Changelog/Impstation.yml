@@ -3205,3 +3205,79 @@
   id: 396
   time: '2024-10-18T22:46:20.0000000+00:00'
   url: https://github.com/impstation/imp-station-14/pull/519
+- author: honeyed-lemons
+  changes:
+  - message: Adds NT-Cruiser, a small security shuttle
+    type: Add
+  - message: Tweaked the reclaimer's name in the shipyard menu
+    type: Tweak
+  id: 397
+  time: '2024-10-20T06:35:55.0000000+00:00'
+  url: https://github.com/impstation/imp-station-14/pull/526
+- author: formlessnameless
+  changes:
+  - message: Added a mini gyroscope for all of your shittle needs. Pester science
+      about it today!
+    type: Add
+  id: 398
+  time: '2024-10-21T00:15:16.0000000+00:00'
+  url: https://github.com/impstation/imp-station-14/pull/528
+- author: Drags-His-Tail
+  changes:
+  - message: Added fultons and fulton beacons to the Mass Excavation research.
+    type: Tweak
+  id: 399
+  time: '2024-10-21T00:17:19.0000000+00:00'
+  url: https://github.com/impstation/imp-station-14/pull/523
+- author: ruddygreat
+  changes:
+  - message: the shining spring remil kit now costs 12 tc instead of 14
+    type: Tweak
+  - message: grenades launched by the shining spring are back to 50 foam instead of
+      25
+    type: Tweak
+  id: 400
+  time: '2024-10-21T00:16:35.0000000+00:00'
+  url: https://github.com/impstation/imp-station-14/pull/530
+- author: crekulon
+  changes:
+  - message: web mantle, craftable by arachnids for 6 silk
+    type: Add
+  id: 401
+  time: '2024-10-21T00:19:08.0000000+00:00'
+  url: https://github.com/impstation/imp-station-14/pull/531
+- author: KingMudkipIII
+  changes:
+  - message: Added a boatload of new words to the french and russian accent systems.
+    type: Add
+  id: 402
+  time: '2024-10-21T00:18:34.0000000+00:00'
+  url: https://github.com/impstation/imp-station-14/pull/522
+- author: TGRCdev
+  changes:
+  - message: Voice masks actually work again
+    type: Fix
+  id: 403
+  time: '2024-10-21T00:54:11.0000000+00:00'
+  url: https://github.com/impstation/imp-station-14/pull/533
+- author: honeyed-lemons
+  changes:
+  - message: Added Directional Fan and Air Canister to the NT-Cruiser
+    type: Tweak
+  id: 404
+  time: '2024-10-22T01:05:02.0000000+00:00'
+  url: https://github.com/impstation/imp-station-14/pull/535
+- author: Darkmajia
+  changes:
+  - message: Heretics can now correctly use appraisal tools for the Ritual of Knowledge.
+    type: Fix
+  id: 405
+  time: '2024-10-22T01:04:44.0000000+00:00'
+  url: https://github.com/impstation/imp-station-14/pull/536
+- author: Darkmajia
+  changes:
+  - message: Heretic will no longer instantly cancel lowpop rounds when it is rolled.
+    type: Fix
+  id: 406
+  time: '2024-10-22T01:05:49.0000000+00:00'
+  url: https://github.com/impstation/imp-station-14/pull/534
