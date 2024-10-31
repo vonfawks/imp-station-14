@@ -1,0 +1,19 @@
+#OC FIGURINES
+- type: entity
+  parent: BaseFigurine
+  id: BaseFigurineOC
+  name: OCfigurine
+  components:
+  - type: Sprite
+    sprite: _Impstation\OCFigurines\ocfigurines.rsi
+
+- type: entity
+  parent: BaseFigurineOC
+  id: OCFigurineMoffyDoff
+  name: Moffy Doff figurine
+  description: A figurine of Dr. Moffy Doff, MD. Its dorkiness is palpable.
+  components:
+  - type: Sprite
+    state: figurine-moffy
+  - type: SpeakOnUse
+    pack: OCFigurinesMoffy

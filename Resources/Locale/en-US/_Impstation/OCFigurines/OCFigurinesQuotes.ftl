@@ -1,0 +1,3 @@
+ocfigurines-moffy-1 = Ohhh dear...
+ocfigurines-moffy-2 = I'm normal.
+ocfigurines-moffy-3 = I have a degree in theoretical pseudo-science!... Of course it's real!
