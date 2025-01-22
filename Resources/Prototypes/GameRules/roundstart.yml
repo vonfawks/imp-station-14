@@ -22,8 +22,6 @@
     rules:
     - id: Thief
       prob: 0.5
-    - id: Heretic # goob edit
-      prob: 0.2
 
 - type: entity
   id: DeathMatch31
@@ -193,12 +191,17 @@
 
 - type: entity
   id: TraitorReinforcement
-  parent: Traitor
+  parent: BaseTraitorRule
   components:
   - type: TraitorRule
     giveUplink: false
     giveCodewords: false # It would actually give them a different set of codewords than the regular traitors, anyway
     giveBriefing: false
+  - type: AntagSelection
+    definitions:
+    - prefRoles: [ Traitor ]
+      mindRoles:
+      - MindRoleTraitor
 
 - type: entity
   id: Revolutionary
@@ -285,7 +288,6 @@
       - !type:NestedSelector
         tableId: SpicyPestEventsTable
 
-
 - type: entityTable
   id: SleeperlessGameRulesTable
   table: !type:AllSelector # we need to pass a list of rules, since rules have further restrictions to consider via StationEventComp
@@ -300,7 +302,6 @@
         tableId: CalmPestEventsTable
       - !type:NestedSelector
         tableId: SpicyPestEventsTable
-
 
 - type: entityTable
   id: SpaceTrafficControlTable

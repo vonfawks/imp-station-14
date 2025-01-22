@@ -89,6 +89,8 @@
       - id: ClothingShoesTourist
       - id: ClothingUniformJumpsuitLoungewear
       - id: ClothingHeadHatCowboyRed
+      - id: HeartLocket
+      - id: CDDogtags
     # Uncommon Group
     - !type:GroupSelector
       weight: 23
@@ -259,6 +261,7 @@
       - id: ModularReceiver
       - id: WeaponFlareGun
       - id: BarberScissors
+      - id: MagazineZipper
       - !type:GroupSelector
         children:
         - id: DrinkSpaceGlue
@@ -452,6 +455,7 @@
       - id: RifleStock
       - id: ModularReceiver
       - id: HydroponicsToolScythe
+      - id: WeaponPistolZipper
     # Rare Group
     - !type:GroupSelector
       weight: 5
