@@ -42,6 +42,7 @@
   - FolderMime #imp
   - FolderPun #imp
   - GoldPersonalAI #imp
+  - GoldRingTrinket #imp
   - Hairflower
   - HarmonicaInstrument #imp
   - Headphones
@@ -50,6 +51,7 @@
   - NewtonCradle
   - PlushieLizard
   - PlushieSpaceLizard
+  - SilverRingTrinket #imp
   - TowelColorBlack
   - TowelColorDarkBlue
   - TowelColorDarkGreen
@@ -1403,6 +1405,7 @@
   - ArmorVestSlim #imp
   - ArmorVestCompact #imp
   - WardenWinterCoatUnarmored
+  - ClothingOuterCoatFieldBomber #imp
 
 - type: loadoutGroup
   id: WardenPDA
@@ -1471,6 +1474,7 @@
   - ArmorVestSlim
   - ArmorVestCompact #imp
   - SecurityOfficerWintercoat
+  - ClothingOuterCoatFieldBomber #imp
 
 - type: loadoutGroup
   id: SecurityShoes
@@ -1530,6 +1534,10 @@
   - DetectiveArmorVest
   - DetectiveCoatGrey
   - DetectiveCoat
+  - ArmorVest #imp
+  - ArmorVestSlim #imp
+  - ArmorVestCompact #imp
+  - ClothingOuterCoatFieldJacket #imp
 
 - type: loadoutGroup
   id: DetectiveShoes
@@ -1577,6 +1585,9 @@
   loadouts:
   - BrigmedicArmoredWinterCoat
   - BrigmedicWinterCoat
+  - ArmorVest #imp
+  - ArmorVestSlim #imp
+  - ArmorVestCompact #imp
 
 - type: loadoutGroup
   id: BrigmedicShoes
