@@ -11,11 +11,11 @@ knowledge-path-ash-s2-desc =
 
     Your Mansus Grasp will burn the eyes of the victim, damaging them and blurring their vision.
 
-knowledge-path-ash-s3-name = Ashen Shift
+knowledge-path-ash-s3-name = Blazing Dash
 knowledge-path-ash-s3-desc =
-    He knew how to walk between the planes.
+    He could move like a raging wildfire.
 
-    Grants you Ashen Passage, a spell that lets you phase out of reality and traverse a short distance, passing though any walls.
+    Grants you Blazing Dash, a spell that lets you move extremely quickly for a short time. Be sure to bring a firesuit.
 
 knowledge-path-ash-s4-name = Mark of Ash
 knowledge-path-ash-s4-desc =
@@ -39,7 +39,7 @@ knowledge-path-ash-s6-desc =
 
     Allows you to transmute any mask, four candles, a stun baton, and a liver to create a Mask of Madness.
     The mask instills fear into heathens who witness it, causing stamina damage, hallucinations, and insanity.
-    It can also be forced onto a heathen, to make them unable to take it off...
+    It cannot be taken off without outside help, no matter if the wearer is a heretic or a heathen.
 
 knowledge-path-ash-s7-name = Fiery Blade
 knowledge-path-ash-s7-desc =
@@ -58,7 +58,7 @@ knowledge-path-ash-s8-desc =
 knowledge-path-ash-s9-name = Ashlord's Rite
 knowledge-path-ash-s9-desc =
     The ascension ritual of the Path of Ash.
-    Bring 3 burning or husked corpses to a transmutation rune to complete the ritual.
+    Bring 3 burning corpses to a transmutation rune to complete the ritual.
     When completed, you become a harbinger of flames, gaining two abilites.
     Cascade, which causes a massive, growing ring of fire around you,
     and Oath of Flame, causing you to passively create a ring of flames as you walk.

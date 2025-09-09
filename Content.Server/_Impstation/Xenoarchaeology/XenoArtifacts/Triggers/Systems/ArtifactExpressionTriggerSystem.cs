@@ -9,10 +9,10 @@ public sealed class ArtifacExpressionTriggerSystem : EntitySystem
     /// <inheritdoc/>
     public override void Initialize()
     {
-        SubscribeLocalEvent<TransformComponent, EmoteEvent>(OnEmote);
+        SubscribeLocalEvent<TransformComponent, EntityEmotedEvent>(OnEmote);
     }
 
-    private void OnEmote(EntityUid emoter, TransformComponent component, EmoteEvent args)
+    private void OnEmote(Entity<TransformComponent> emoter, ref EntityEmotedEvent args)
     {
         var emoterXform = Transform(emoter);
 
@@ -32,7 +32,7 @@ public sealed class ArtifacExpressionTriggerSystem : EntitySystem
 
         foreach (var a in toActivate)
         {
-            _artifact.TryActivateArtifact(a);
+            _artifact.TryActivateArtifact(a, emoter.Owner);
         }
     }
 }

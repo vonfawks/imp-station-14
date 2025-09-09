@@ -18,6 +18,10 @@
     slots:
     - Back
     - suitStorage
+  - type: UseDelay
+    delays:
+      gasTank:
+        length: 1.0
   - type: ActivatableUI
     key: enum.SharedGasTankUiKey.Key
   - type: UserInterface
@@ -32,7 +36,7 @@
       temperature: 293.15
     tankLowPressure: 30.0
   - type: Explosive
-    explosionType: Default
+    explosionType: MicroBomb
     maxIntensity: 20
   - type: MeleeWeapon
     wideAnimationRotation: 45
@@ -117,6 +121,7 @@
   - type: Tag # goob edit
     tags:
       - EmergencyOxygenTank
+      - GasTank # imp
   - type: DamageOtherOnHit # imp
     staminaCost: 3.5
 
@@ -135,6 +140,7 @@
   - type: Tag # goob edit
     tags:
       - EmergencyNitrogenTank
+      - GasTank # imp
 
 - type: entity
   parent: EmergencyOxygenTank
@@ -155,6 +161,7 @@
   - type: Tag # goob edit
     tags:
       - ExtendedEmergencyOxygenTank
+      - GasTank # imp
 
 - type: entity
   parent: ExtendedEmergencyOxygenTank
@@ -171,6 +178,7 @@
   - type: Tag # goob edit
     tags:
       - EmergencyNitrogenTank
+      - GasTank # imp
 
 - type: entity
   parent: ExtendedEmergencyOxygenTank
@@ -211,6 +219,7 @@
   - type: Tag
     tags:
       - EmergencyNitrogenTank
+      - GasTank # imp
 
 - type: entity
   parent: EmergencyOxygenTank
@@ -227,6 +236,7 @@
   - type: Tag # goob edit
     tags:
     - ClownEmergencyOxygenTank
+    - GasTank # imp
 
 - type: entity
   parent: GasTankRoundBase

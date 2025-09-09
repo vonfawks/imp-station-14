@@ -6,7 +6,7 @@
     requirement:
       !type:RoleTimeRequirement
       role: JobChiefMedicalOfficer
-      time: 72000 #20 hrs
+      time: 36000 #10 hrs, ~7 rounds #imp
 
 # Jumpsuit
 - type: loadout
@@ -69,14 +69,3 @@
   id: ChiefMedicalOfficerWintercoat
   equipment:
     outerClothing: ClothingOuterWinterCMO
-
-# Headset
-- type: loadout
-  id: ChiefMedicalOfficerHeadsetBasic
-  equipment:
-    ears: ClothingHeadsetCMO
-
-- type: loadout
-  id: ChiefMedicalOfficerHeadset
-  equipment:
-    ears: ClothingHeadsetAltMedical

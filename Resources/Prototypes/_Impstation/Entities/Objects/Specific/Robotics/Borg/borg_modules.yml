@@ -1,3 +1,4 @@
+#TckTck modules
 - type: entity
   id: BorgModuleTckTck
   parent: [ BaseBorgModule, BaseProviderBorgModule, DecapoidEmpireContraband ]
@@ -8,13 +9,13 @@
     - state: generic
     - state: icon-cables
   - type: ItemBorgModule
-    items:
-    - trayScanner
-    - Multitool
-    - RCDRechargingTckTck
-    - MicroDrill
+    hands:
+    - item: trayScanner
+    - item: Multitool
+    - item: RCDRechargingTckTck
+    - item: MicroDrill
   - type: BorgModuleIcon
-    icon: { sprite: Interface/Actions/actions_borg.rsi, state: wire-module }
+    icon: { sprite: _Impstation/Interface/Actions/actions_borg.rsi, state: tcktck-tools-module }
   - type: Tag
     tags:
       - BorgModuleTckTck
@@ -29,12 +30,12 @@
     - state: generic
     - state: icon-grappling-gun
   - type: ItemBorgModule
-    items:
-    - WeaponGrapplingGunTckTck
-    - FireExtinguisher
-    - HandHeldMassScannerBorg
+    hands:
+    - item: WeaponGrapplingGunTckTck
+    - item: FireExtinguisherTckTck
+    - item: HandHeldMassScannerBorg
   - type: BorgModuleIcon
-    icon: { sprite: Interface/Actions/actions_borg.rsi, state: grappling-module }
+    icon: { sprite: _Impstation/Interface/Actions/actions_borg.rsi, state: tcktck-eva-module }
   - type: Tag
     tags:
       - BorgModuleTckTck
@@ -43,21 +44,22 @@
   id: BorgModuleTckTckGun
   parent: [ BaseBorgModule, BaseProviderBorgModule, DecapoidEmpireContraband ]
   name: tck'tck gun module
-  suffix: DO NOT MAP
+  categories: [ DoNotMap ]
   components:
   - type: Sprite
     layers:
     - state: generic
     - state: icon-grappling-gun
   - type: ItemBorgModule
-    items:
-    - WeaponPistolTckTck
+    hands:
+    - item: WeaponPistolTckTck
   - type: BorgModuleIcon
     icon: { sprite: Interface/Actions/actions_borg.rsi, state: syndicate-weapon-module }
   - type: Tag
     tags:
       - BorgModuleTckTck
 
+#Borg modules
 - type: entity
   id: BorgModuleArtistic
   parent: [ BaseBorgModule, BaseProviderBorgModule ]
@@ -68,32 +70,12 @@
     - state: generic
     - state: icon-pen
   - type: ItemBorgModule
-    items:
-    - CrayonRainbowInfinite
-    - SprayPainter
-    - Pen
+    hands:
+    - item: CrayonRainbowInfinite
+    - item: SprayPainter
+    - item: Pen
   - type: BorgModuleIcon
     icon: { sprite: _Impstation/Interface/Actions/actions_borg.rsi, state: artistic-module }
-
-- type: entity
-  id: BorgModulePaper
-  parent: [ BaseBorgModuleService, BaseProviderBorgModule ]
-  name: bureaucracy cyborg module
-  components:
-  - type: Sprite
-    layers:
-    - state: service
-    - state: icon-pen
-  - type: ItemBorgModule
-    items:
-    - Pen
-    - BooksBag
-    - HandLabeler
-    - RubberStampApproved
-    - RubberStampDenied
-    - RubberStampBorg
-  - type: BorgModuleIcon
-    icon: { sprite: _Impstation/Interface/Actions/actions_borg.rsi, state: bureaucracy-module }
 
 - type: entity
   id: BorgModuleBartender
@@ -105,12 +87,28 @@
     - state: service
     - state: icon-beer
   - type: ItemBorgModule
-    items:
-    - Lighter
-    - DrinkShaker
-    - BarSpoon
-    - BorgIceBucket
-    - Pitcher
-    - BorgDropper
+    hands:
+    - item: Lighter
+    - item: DrinkShaker
+    - item: BarSpoon
+    - item: BorgIceBucket
+    - item: Pitcher
   - type: BorgModuleIcon
     icon: { sprite: _Impstation/Interface/Actions/actions_borg.rsi, state: bartender-module }
+
+- type: entity
+  id: BorgModuleCourier
+  parent: [ BaseBorgModuleCargo, BaseProviderBorgModule ]
+  name: courier cyborg module
+  components:
+  - type: Sprite
+    sprite: _Impstation/Objects/Specific/Robotics/borgmodules.rsi
+    layers:
+    - state: cargo
+    - state: icon-courier
+  - type: ItemBorgModule
+    hands:
+    - item: MailBag
+    - item: BorgHoloBellProjector
+  - type: BorgModuleIcon
+    icon: { sprite: _Impstation/Interface/Actions/actions_borg.rsi, state: courier-module }

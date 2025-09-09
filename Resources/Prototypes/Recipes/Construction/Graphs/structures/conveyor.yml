@@ -8,9 +8,9 @@
           steps:
             - tag: ConveyorAssembly
               icon:
-                sprite: Structures/conveyor.rsi
+                sprite: _Impstation/Structures/conveyor.rsi # imp
                 state: conveyor_loose
-              name: conveyor belt assembly
+              name: construction-graph-tag-conveyor-belt-assembly
               doAfter: 2
     - node: item
       entity: ConveyorBeltAssembly

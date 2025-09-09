@@ -7,7 +7,7 @@
   - type: Transform
     anchored: true
   - type: Sprite
-    sprite: Objects/Devices/nuke.rsi
+    sprite: _Impstation/Objects/Devices/nuke.rsi # imp
     noRot: true
     layers:
     - state: nuclearbomb_base
@@ -107,9 +107,15 @@
       Nuke: !type:ContainerSlot
   - type: StealTarget
     stealGroup: NuclearBomb
+  - type: Tag
+    tags:
+    - GhostOnlyWarp
   - type: WarpPoint
     follow: true
     location: nuclear bomb
+    blacklist:
+      tags:
+      - GhostOnlyWarp
   - type: FTLSmashImmune
 
 - type: entity
@@ -133,7 +139,7 @@
     anchored: false
   - type: NukeLabel
   - type: Sprite
-    sprite: Objects/Devices/nuke.rsi
+    sprite: _Impstation/Objects/Devices/nuke.rsi # imp
     layers:
     - state: nuclearbomb_base
     - state: nukefestive
@@ -179,3 +185,7 @@
     transferAmount: 100
   - type: StaticPrice
     price: 5000 # That's a pretty fancy keg you got there.
+  # imp edit start, allows refilling with verb or click-and-dragging
+  - type: DumpableSolution
+    solution: tank
+  # imp edit end

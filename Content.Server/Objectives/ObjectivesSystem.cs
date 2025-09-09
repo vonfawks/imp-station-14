@@ -13,10 +13,12 @@ using System.Linq;
 using System.Text;
 using Content.Server.Objectives.Commands;
 using Content.Shared.Humanoid; //imp addition
+using Content.Shared.CCVar;
 using Content.Shared.Prototypes;
-using Content.Shared.Roles; //imp addition
+using Content.Shared.Roles.Components; //imp addition
 using Content.Shared.Roles.Jobs;
 using Robust.Server.Player;
+using Robust.Shared.Configuration;
 using Robust.Shared.Utility;
 
 namespace Content.Server.Objectives;
@@ -29,14 +31,19 @@ public sealed class ObjectivesSystem : SharedObjectivesSystem
     [Dependency] private readonly IRobustRandom _random = default!;
     [Dependency] private readonly EmergencyShuttleSystem _emergencyShuttle = default!;
     [Dependency] private readonly SharedJobSystem _job = default!;
+    [Dependency] private readonly IConfigurationManager _cfg = default!;
 
     private IEnumerable<string>? _objectives;
+
+    private bool _showGreentext;
 
     public override void Initialize()
     {
         base.Initialize();
 
         SubscribeLocalEvent<RoundEndTextAppendEvent>(OnRoundEndText);
+
+        Subs.CVar(_cfg, CCVars.GameShowGreentext, value => _showGreentext = value, true);
 
         _prototypeManager.PrototypesReloaded += CreateCompletions;
     }
@@ -135,9 +142,12 @@ public sealed class ObjectivesSystem : SharedObjectivesSystem
             if (!TryComp<MindComponent>(mindId, out var mind))
                 continue;
 
+            // Imp Edit traitor flavor end screen
+            if (mind.ObjectiveIssuer is { } issuer)
+                agent = Loc.GetString($"traitor-{issuer}-roundend");
+
             var title = GetTitle((mindId, mind), name);
             var custody = IsInCustody(mindId, mind) ? Loc.GetString("objectives-in-custody") : string.Empty;
-
             var objectives = mind.Objectives;
             if (objectives.Count == 0)
             {
@@ -180,24 +190,43 @@ public sealed class ObjectivesSystem : SharedObjectivesSystem
                         totalNontrivial++;
 
                     agentSummary.Append("- ");
-                    if (progress > 0.99f)
+                    if (!_showGreentext)
+                    {
+                        agentSummary.AppendLine(objectiveTitle);
+                    }
+                    else if (progress > 0.99f)
                     {
                         agentSummary.AppendLine(Loc.GetString(
                             "objectives-objective-success",
                             ("objective", objectiveTitle),
-                            ("markupColor", "green")
+                            ("progress", progress)
                         ));
                         completedObjectives++;
                         if (!info.Value.Trivial) //imp edit
                             completedNonTrivial++;
+                    }
+                    else if (progress <= 0.99f && progress >= 0.5f)
+                    {
+                        agentSummary.AppendLine(Loc.GetString(
+                            "objectives-objective-partial-success",
+                            ("objective", objectiveTitle),
+                            ("progress", progress)
+                        ));
+                    }
+                    else if (progress < 0.5f && progress > 0f)
+                    {
+                        agentSummary.AppendLine(Loc.GetString(
+                            "objectives-objective-partial-failure",
+                            ("objective", objectiveTitle),
+                            ("progress", progress)
+                        ));
                     }
                     else
                     {
                         agentSummary.AppendLine(Loc.GetString(
                             "objectives-objective-fail",
                             ("objective", objectiveTitle),
-                            ("progress", (int)(progress * 100)),
-                            ("markupColor", "red")
+                            ("progress", (int)(progress * 100)) // imp edit
                         ));
                     }
                 }
@@ -351,8 +380,10 @@ public sealed class ObjectivesSystem : SharedObjectivesSystem
             var objectives = group.Weights.ShallowClone();
             while (_random.TryPickAndTake(objectives, out var objectiveProto))
             {
-                if (TryCreateObjective((mindId, mind), objectiveProto, out var objective)
-                    && Comp<ObjectiveComponent>(objective.Value).Difficulty <= maxDifficulty)
+                if (!_prototypeManager.Index(objectiveProto).TryGetComponent<ObjectiveComponent>(out var objectiveComp, EntityManager.ComponentFactory))
+                    continue;
+
+                if (objectiveComp.Difficulty <= maxDifficulty && TryCreateObjective((mindId, mind), objectiveProto, out var objective))
                     return objective;
             }
         }

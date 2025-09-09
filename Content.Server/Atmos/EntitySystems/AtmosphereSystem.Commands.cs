@@ -36,7 +36,7 @@ public sealed partial class AtmosphereSystem
            return;
        }
 
-       var mixtures = new GasMixture[10];
+       var mixtures = new GasMixture[11];
        for (var i = 0; i < mixtures.Length; i++)
            mixtures[i] = new GasMixture(Atmospherics.CellVolume) { Temperature = Atmospherics.T20C };
 
@@ -61,21 +61,25 @@ public sealed partial class AtmosphereSystem
        mixtures[5].Temperature = 5000f;
 
        // 6: (Walk-In) Freezer
-       mixtures[6].AdjustMoles(Gas.Oxygen, Atmospherics.OxygenMolesStandard);
-       mixtures[6].AdjustMoles(Gas.Nitrogen, Atmospherics.NitrogenMolesStandard);
-       mixtures[6].Temperature = 235f; // Little colder than an actual freezer but gives a grace period to get e.g. themomachines set up, should keep warm for a few door openings
+       mixtures[6].AdjustMoles(Gas.Oxygen, Atmospherics.OxygenMolesFreezer);
+       mixtures[6].AdjustMoles(Gas.Nitrogen, Atmospherics.NitrogenMolesFreezer);
+       mixtures[6].Temperature = Atmospherics.FreezerTemp; // Little colder than an actual freezer but gives a grace period to get e.g. themomachines set up, should keep warm for a few door openings
 
        // 7: Nitrogen (101kpa) for vox rooms
        mixtures[7].AdjustMoles(Gas.Nitrogen, Atmospherics.MolesCellStandard);
 
+       // 8: Air (GM)
+       mixtures[8].AdjustMoles(Gas.Oxygen, Atmospherics.OxygenMolesGasMiner);
+       mixtures[8].AdjustMoles(Gas.Nitrogen, Atmospherics.NitrogenMolesGasMiner);
+
         // imp specials
         // if this file ever creates a merge conflict, PLEASE change the values in Resources/Prototypes/_Impstation/Entities/Markers/atmos_blocker.yml
 
-        // 8: Water Vapor (GM)
-        mixtures[8].AdjustMoles(Gas.WaterVapor, Atmospherics.MolesCellGasMiner);
+        // 9: Water Vapor (GM)
+        mixtures[9].AdjustMoles(Gas.WaterVapor, Atmospherics.MolesCellGasMiner);
 
-       // 9: Water Vapor (101kpa) for decapoid rooms
-       mixtures[9].AdjustMoles(Gas.WaterVapor, Atmospherics.MolesCellStandard);
+       // 10: Water Vapor (101kpa) for decapoid rooms
+       mixtures[10].AdjustMoles(Gas.WaterVapor, Atmospherics.MolesCellStandard);
 
        foreach (var arg in args)
        {

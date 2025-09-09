@@ -56,7 +56,7 @@
   id: FigurinesERTSecurity
   values:
     prefix: figurines-ertsecurity-
-    count: 7
+    count: 5
 
 - type: localizedDataset
   id: FigurinesBrigmedic
@@ -141,3 +141,33 @@
   values:
     prefix: figurines-stationai-
     count: 7
+
+- type: localizedDataset
+  id: FigurinesCosmicCultist
+  values:
+    prefix: figurines-cosmiccultist-
+    count: 9
+
+- type: localizedDataset
+  id: FigurinesNukiePareidolia
+  values:
+    prefix: figurines-nukiepareidolia-
+    count: 9
+
+- type: localizedDataset
+  id: FigurinesCrewLing
+  values:
+    prefix: figurines-crewling-
+    count: 9
+
+- type: localizedDataset
+  id: GnomeChild
+  values:
+    prefix: gnome-child-
+    count: 23
+
+- type: localizedDataset
+  id: FigurinesFinfin
+  values:
+    prefix: accent-words-finfin- # hey it let me do this so
+    count: 4

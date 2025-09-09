@@ -12,6 +12,7 @@
   - MinorAntagonists
   - SpaceNinja
   - Thieves
+  - Wizard
 
 - type: guideEntry
   id: Traitors
@@ -26,7 +27,7 @@
 - type: guideEntry
   id: Zombies
   name: guide-entry-zombies
-  text: "/ServerInfo/Guidebook/Antagonist/Zombies.xml"
+  text: "/ServerInfo/_Impstation/Guidebook/Antagonist/Zombies.xml" #imp
 
 - type: guideEntry
   id: Revolutionaries
@@ -47,3 +48,8 @@
   id: Thieves
   name: guide-entry-thieves
   text: "/ServerInfo/Guidebook/Antagonist/Thieves.xml"
+
+- type: guideEntry
+  id: Wizard
+  name: guide-entry-wizard
+  text: "/ServerInfo/Guidebook/Antagonist/Wizard.xml"

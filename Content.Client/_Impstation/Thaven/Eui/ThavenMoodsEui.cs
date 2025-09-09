@@ -6,23 +6,20 @@ namespace Content.Client._Impstation.Thaven.Eui;
 
 public sealed class ThavenMoodsEui : BaseEui
 {
-    private readonly EntityManager _entityManager;
-
     private ThavenMoodUi _thavenMoodUi;
     private NetEntity _target;
 
     public ThavenMoodsEui()
     {
-        _entityManager = IoCManager.Resolve<EntityManager>();
-
         _thavenMoodUi = new ThavenMoodUi();
-        _thavenMoodUi.SaveButton.OnPressed += _ => SaveMoods();
+        _thavenMoodUi.OnSave += SaveMoods;
     }
 
     private void SaveMoods()
     {
         var newMoods = _thavenMoodUi.GetMoods();
-        SendMessage(new ThavenMoodsSaveMessage(newMoods, _target));
+        var toggle = _thavenMoodUi.ShouldFollowShared();
+        SendMessage(new ThavenMoodsSaveMessage(newMoods, toggle, _target));
         _thavenMoodUi.SetMoods(newMoods);
     }
 
@@ -37,6 +34,7 @@ public sealed class ThavenMoodsEui : BaseEui
             return;
 
         _target = s.Target;
+        _thavenMoodUi.SetFollowShared(s.FollowsShared);
         _thavenMoodUi.SetMoods(s.Moods);
     }
 }

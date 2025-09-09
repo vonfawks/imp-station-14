@@ -6,12 +6,17 @@
     - type: Sprite
       layers:
         - state: red
-        - sprite: Objects/Fun/toys.rsi
-          state: plushie_h
+        - sprite: Objects/Fun/Plushies/bee.rsi
+          state: icon
     - type: RandomSpawner
       rarePrototypes:
         - FoamBlade
         - PlushieGhost
+        #imp edits
+        - PlushieImp
+        - PlushieApid
+        - PlushieGoblin
+        #imp edits end
       rareChance: 0.03
       prototypes:
         - PlushieBee
@@ -30,10 +35,26 @@
         - PlushieSharkBlue
         - PlushieSharkPink
         - PlushieSharkGrey
+        #imp edits
+        - PlushieSnail
+        - PlushieDecapoid
+        - PlushieThaven
+        - PlushieKodepiia
+        - PlushieGray
+        #imp edits end
         - ToyAmongPequeno
         - ToyMouse
         - PlushieDiona
         - PlushieArachind
+        # DEN begin
+        - PlushieTeddyBear
+        - PlushieTeddyBearRecolorableRandom
+        - SqueakySmileyGuy
+        - SqueakySmileyGuyRandom
+        - SqueakySmileyBall
+        - PlushieAlienGerm
+        - PlushieAlienGermMini
+        # DEN end
       chance: 0.5
       offset: 0.2
 
@@ -100,7 +121,9 @@
       - ToyFigurineERTJanitor
       - ToyFigurineERTLeader
       - ToyFigurineERTMedic
-      - ToyFigurineERTSecurity #</imp>
+      - ToyFigurineERTSecurity
+      - ToyFigurineCosmicCultist #</imp>
+      - ToyFigurineCrewLing #Imp
       rareChance: 0.05
       prototypes:
       - ToyFigurinePassenger
@@ -116,7 +139,7 @@
       - ToyFigurineLawyer
       - ToyFigurineCargoTech
       - ToyFigurineSalvage
-      - ToyFigurineQuartermaster   
+      - ToyFigurineQuartermaster
       - ToyFigurineChiefEngineer
       - ToyFigurineAtmosTech
       - ToyFigurineEngineer
@@ -150,7 +173,7 @@
       - ToyFigurineHamlet
       - ToyFigurineThief
       - ToyFigurineCourier #<imp>
-      - ToyFigurineBrigmedic 
+      - ToyFigurineBrigmedic
       - ToyFigurineCyborgDefault
       - ToyFigurineCyborgEngineering
       - ToyFigurineCyborgJanitorial

@@ -9,6 +9,7 @@
   startingGear: AdminAssistantGear
   icon: "JobIconAdminAssitant"
   supervisors: job-supervisors-command
+  setPreference: false #imp
   canBeAntag: false
   access:
   - Command
@@ -23,9 +24,19 @@
 - type: startingGear
   id: AdminAssistantGear
   equipment:
-    belt: BoxFolderClipboard
+    belt: ClothingBeltPaperworkFilled
     id: AdminAssistantPDA
     pocket1: RubberStampAdminAssistant
   storage:
     back:
     - Flash
+
+- type: chameleonOutfit
+  id: AdministrativeAssistantChameleonOutfit
+  job: AdministrativeAssistant
+  hasMindShield: true
+  equipment:
+    eyes: ClothingEyesGlassesCheapSunglasses
+    mask: ClothingMaskBreath
+    outerClothing: ClothingOuterWinterColorBlack
+    gloves: ClothingHandsGlovesColorBlack

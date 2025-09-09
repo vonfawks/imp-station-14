@@ -30,6 +30,8 @@
     - map: [ "enum.DamageStateVisualLayers.BaseUnshaded" ]
       state: eyes
       shader: unshaded
+  - type: TypingIndicator
+    proto: regal
   - type: Physics
     bodyType: KinematicController
   - type: Fixtures
@@ -54,10 +56,11 @@
         path: /Audio/Weapons/Xeno/alien_claw_flesh1.ogg
     angle: 0
     animation: WeaponArcClaw
-    damage: # IMP: Significant nerf to this damage. Formerly 12 slash 8 pierce
+    damage: # IMP: Significant nerf to this damage, but added structural. Formerly 12 slash 8 pierce 0 structural
       types:
         Slash: 4
         Piercing: 2
+        Structural: 2
   - type: Body
     prototype: Rat
     requiredLegs: 1 # TODO: More than 1 leg
@@ -78,7 +81,6 @@
       Dead: 0
     baseDecayRate: 0.1
   - type: DamageStateVisuals
-    rotate: true
     states:
       Alive:
         Base: regalrat
@@ -91,7 +93,7 @@
     makeSentient: true
     name: ghost-role-information-rat-king-name
     description: ghost-role-information-rat-king-description
-    rules: ghost-role-information-freeagent-rat-king-rules
+    rules: ghost-role-information-antagonist-rat-king-rules # IMP
     mindRoles:
     - MindRoleGhostRoleSoloAntagonist
     raffle:
@@ -101,6 +103,7 @@
     tags:
       - CannotSuicide
       - FootstepSound
+      - Meat #imp
   - type: NoSlip
   - type: RatKing
     hungerPerArmyUse: 25
@@ -111,6 +114,8 @@
   - type: MobsterAccent
   - type: Speech
     speechVerb: SmallMob
+  - type: GoobAbsorbable # imp edit - big rat
+    biomassRestored: 0.6
   - type: Butcherable
     spawned:
     - id: ClothingHeadHatFancyCrown #how did that get there?
@@ -119,8 +124,9 @@
     price: 2500 # rat wealth
   - type: RandomMetadata
     nameSegments:
-    - RegalRatNameKingdom
-    - RegalRatNameTitle
+    - NamesRegalratKingdom
+    - NamesRegalratTitle
+    nameFormat: name-format-regal-rat
   - type: GuideHelp
     guides:
     - MinorAntagonists
@@ -130,6 +136,27 @@
   - type: Sharp
   - type: Puller
     needsHands: false
+  - type: Food #imp start
+    delay: 16
+    transferAmount: 50
+    trash:
+    - ClothingHeadHatFancyCrown
+  - type: FlavorProfile
+    flavors:
+    - meaty
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        reagents:
+        - ReagentId: UncookedAnimalProteins
+          Quantity: 50
+  - type: BadFood #imp end
+  - type: NightVision # EE edit
+    isActive: true
+    toggleAction: null
+    color: "#50595C"
+    activateSound: null
+    deactivateSound: null
 
 - type: entity
   id: MobRatKingBuff
@@ -235,6 +262,15 @@
       0: Alive
       15: Critical
       30: Dead
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTypeTrigger
+        damageType: Blunt
+        damage: 60
+      behaviors:
+      - !type:GibBehavior
+        recursive: false
   - type: Stamina
     critThreshold: 60
   - type: MeleeWeapon
@@ -274,6 +310,8 @@
         Base: dead
       Dead:
         Base: splat
+  - type: GoobAbsorbable # imp edit
+    biomassRestored: 0.1
   - type: Butcherable
     spawned:
     - id: FoodMeatRat
@@ -289,6 +327,7 @@
       - CannotSuicide
       - FootstepSound
       - MultitoolDefibrillatorTarget
+      - Meat #imp
   - type: NoSlip
   - type: MobPrice
     price: 500 # rat wealth
@@ -302,6 +341,23 @@
   - type: FireVisuals
     sprite: Mobs/Effects/onfire.rsi
     normalState: Mouse_burning
+  - type: Food #imp start
+  - type: FlavorProfile
+    flavors:
+    - meaty
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        reagents:
+        - ReagentId: UncookedAnimalProteins
+          Quantity: 5
+  - type: BadFood #imp end
+  - type: NightVision # EE edit
+    isActive: true
+    toggleAction: null
+    color: "#50595C"
+    activateSound: null
+    deactivateSound: null
 
 - type: entityTable
   id: RatKingLoot
@@ -315,35 +371,40 @@
       weight: 5
 
 - type: entity
+  parent: BaseAction
   id: ActionRatKingRaiseArmy
   name: Raise Army
   description: Spend some hunger to summon an allied rat to help defend you.
   components:
-  - type: InstantAction
+  - type: Action
     useDelay: 4
     icon:
       sprite: Interface/Actions/actions_rat_king.rsi
       state: ratKingArmy
+  - type: InstantAction
     event: !type:RatKingRaiseArmyActionEvent
 
 - type: entity
+  parent: BaseAction
   id: ActionRatKingDomain
   name: Rat King's Domain
   description: Spend some hunger to release a cloud of ammonia into the air.
   components:
-  - type: InstantAction
+  - type: Action
     useDelay: 6
     icon:
       sprite: Interface/Actions/actions_rat_king.rsi
       state: ratKingDomain
+  - type: InstantAction
     event: !type:RatKingDomainActionEvent
 
 - type: entity
+  parent: BaseAction
   id: ActionRatKingOrderStay
   name: Stay
   description: Command your army to stand in place.
   components:
-  - type: InstantAction
+  - type: Action
     useDelay: 1
     icon:
       sprite: Interface/Actions/actions_rat_king.rsi
@@ -351,17 +412,18 @@
     iconOn:
       sprite: Interface/Actions/actions_rat_king.rsi
       state: stay
-    event:
-      !type:RatKingOrderActionEvent
-        type: Stay
     priority: 5
+  - type: InstantAction
+    event: !type:RatKingOrderActionEvent
+      type: Stay
 
 - type: entity
+  parent: BaseAction
   id: ActionRatKingOrderFollow
   name: Follow
   description: Command your army to follow you around.
   components:
-  - type: InstantAction
+  - type: Action
     useDelay: 1
     icon:
       sprite: Interface/Actions/actions_rat_king.rsi
@@ -369,17 +431,18 @@
     iconOn:
       sprite: Interface/Actions/actions_rat_king.rsi
       state: follow
-    event:
-      !type:RatKingOrderActionEvent
-      type: Follow
     priority: 6
+  - type: InstantAction
+    event: !type:RatKingOrderActionEvent
+      type: Follow
 
 - type: entity
+  parent: BaseAction
   id: ActionRatKingOrderCheeseEm
   name: Cheese 'Em
   description: Command your army to attack whoever you point at.
   components:
-  - type: InstantAction
+  - type: Action
     useDelay: 1
     icon:
       sprite: Interface/Actions/actions_rat_king.rsi
@@ -387,17 +450,18 @@
     iconOn:
       sprite: Interface/Actions/actions_rat_king.rsi
       state: attack
-    event:
-      !type:RatKingOrderActionEvent
-      type: CheeseEm
     priority: 7
+  - type: InstantAction
+    event: !type:RatKingOrderActionEvent
+      type: CheeseEm
 
 - type: entity
+  parent: BaseAction
   id: ActionRatKingOrderLoose
   name: Loose
   description: Command your army to act at their own will.
   components:
-  - type: InstantAction
+  - type: Action
     useDelay: 1
     icon:
       sprite: Interface/Actions/actions_rat_king.rsi
@@ -405,7 +469,8 @@
     iconOn:
       sprite: Interface/Actions/actions_rat_king.rsi
       state: loose
+    priority: 8
+  - type: InstantAction
     event:
       !type:RatKingOrderActionEvent
       type: Loose
-    priority: 8

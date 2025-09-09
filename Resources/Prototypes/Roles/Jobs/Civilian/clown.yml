@@ -5,10 +5,14 @@
   playTimeTracker: JobClown
   startingGear: ClownGear
   icon: "JobIconClown"
-  supervisors: job-supervisors-hop
+  supervisors: job-supervisors-hd
   access:
   - Theatre
   - Maintenance
+  # imp edit start
+  - Clown
+  - Service
+  #imp edit end
   special:
   - !type:AddComponentSpecial
     components:
@@ -19,6 +23,9 @@
           Piercing: 4
         groups:
           Burn: 3
+      catchingFailDamage:
+        types:
+          Blunt: 1
     - type: SleepEmitSound
       snore: /Audio/Voice/Misc/silly_snore.ogg
       interval: 10
@@ -36,3 +43,13 @@
     back:
     - RubberStampClown
     - CrayonRainbow
+
+- type: chameleonOutfit
+  id: ClownChameleonOutfit
+  job: Clown
+  equipment:
+    head: ClothingHeadHatXmasCrown
+    eyes: ClothingEyesGlassesCheapSunglasses
+    neck: ClothingHeadHatFlowerWreath
+    outerClothing: ClothingOuterClownPriest
+    gloves: ClothingHandsGlovesColorYellowBudget

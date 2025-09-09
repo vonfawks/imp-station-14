@@ -5,13 +5,14 @@
   id: BaseMobThaven
   abstract: true
   components:
-  - type: Absorbable
+  - type: GoobAbsorbable
   - type: Hunger
   - type: Thirst
   - type: Icon
     sprite: _Impstation/Mobs/Species/Thaven/parts.rsi # Unlike dwarves elves are NOT made of slime
     state: full
   - type: ThavenMoods
+  - type: IonStormTarget
   - type: Respirator
     damage:
       types:
@@ -30,6 +31,11 @@
   - type: Damageable
     damageContainer: Biological
     damageModifierSet: Thaven
+  - type: DamageVisuals
+    damageOverlayGroups:
+      Brute:
+        sprite: Mobs/Effects/brute_damage.rsi
+        color: "#ff624a"
   - type: MeleeWeapon
     attackRate: 0.55
     soundHit:
@@ -59,11 +65,11 @@
         layer:
         - MobLayer
   - type: TypingIndicator
-    proto: guardian
+    proto: thaven # DeltaV unique typing indicator
   - type: Vocal
     sounds:
-      Male: UnisexThaven
-      Female: UnisexThaven
+      Male: MaleThaven
+      Female: FemaleThaven
       Unsexed: UnisexThaven
   - type: Speech
     speechSounds: Alto
@@ -72,7 +78,11 @@
     hideLayersOnEquip:
     - Hair
     - Snout
+    - Tail
+  - type: Bloodstream
+    bloodReagent: ShimmeringBlood
   - type: Inventory
+    speciesId: thaven
     templateId: thaven
     displacements:
       jumpsuit:
@@ -85,26 +95,6 @@
           32:
             sprite: _Impstation/Mobs/Species/Thaven/displacement.rsi
             state: head
-      eyes:
-        sizeMaps:
-          32:
-            sprite: _Impstation/Mobs/Species/Thaven/displacement.rsi
-            state: eyes
-      ears:
-        sizeMaps:
-          32:
-            sprite: _Impstation/Mobs/Species/Thaven/displacement.rsi
-            state: head
-      mask:
-        sizeMaps:
-          32:
-            sprite: _Impstation/Mobs/Species/Thaven/displacement.rsi
-            state: mask
-      neck:
-        sizeMaps:
-          32:
-            sprite: _Impstation/Mobs/Species/Thaven/displacement.rsi
-            state: neck
       outerClothing:
         sizeMaps:
           32:
@@ -115,7 +105,7 @@
           32:
             sprite: _Impstation/Mobs/Species/Thaven/displacement.rsi
             state: hands
-
+  - type: Carriable # Carrying system from nyanotrasen.
 
 - type: entity
   parent: BaseSpeciesDummy
@@ -125,6 +115,7 @@
   - type: Sprite
     scale: 1, 1
   - type: Inventory
+    speciesId: thaven
     templateId: thaven
     displacements:
       jumpsuit:
@@ -137,26 +128,6 @@
           32:
             sprite: _Impstation/Mobs/Species/Thaven/displacement.rsi
             state: head
-      eyes:
-        sizeMaps:
-          32:
-            sprite: _Impstation/Mobs/Species/Thaven/displacement.rsi
-            state: eyes
-      ears:
-        sizeMaps:
-          32:
-            sprite: _Impstation/Mobs/Species/Thaven/displacement.rsi
-            state: head
-      mask:
-        sizeMaps:
-          32:
-            sprite: _Impstation/Mobs/Species/Thaven/displacement.rsi
-            state: mask
-      neck:
-        sizeMaps:
-          32:
-            sprite: _Impstation/Mobs/Species/Thaven/displacement.rsi
-            state: neck
       outerClothing:
         sizeMaps:
           32:

@@ -1,0 +1,12 @@
+﻿# Static
+
+- type: latheRecipePack
+  id: FloorTilesStaticImp
+  recipes:
+  - FloorTileItemTechmaintDark
+  - FloorTileItemApid
+  - FloorTileItemChapelNE
+  - FloorTileItemChapelNW
+  - FloorTileItemChapelSE
+  - FloorTileItemChapelSW
+  - FloorTileItemCraftedAsphalt

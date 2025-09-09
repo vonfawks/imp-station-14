@@ -4,11 +4,11 @@ using Robust.Shared.Audio;
 using Robust.Shared.GameStates;
 using Robust.Shared.Prototypes;
 
-namespace Content.Shared.Changeling;
+namespace Content.Shared._Goobstation.Changeling;
 
 [RegisterComponent, NetworkedComponent]
 [AutoGenerateComponentState]
-public sealed partial class ChangelingComponent : Component
+public sealed partial class GoobChangelingComponent : Component
 {
     #region Prototypes
 
@@ -26,13 +26,13 @@ public sealed partial class ChangelingComponent : Component
     [DataField("shriekPower")]
     public float ShriekPower = 2.5f;
 
-    public readonly List<ProtoId<EntityPrototype>> BaseChangelingActions = new()
+    public readonly List<EntProtoId> BaseChangelingActions = new()
     {
         "ActionEvolutionMenu",
         "ActionAbsorbDNA",
         "ActionStingExtractDNA",
         "ActionChangelingTransformCycle",
-        "ActionChangelingTransform",
+        "ActionChangelingTransformGoob",
         "ActionEnterStasis",
         "ActionExitStasis"
     };
@@ -42,7 +42,7 @@ public sealed partial class ChangelingComponent : Component
     /// </summary>
 
     [DataField, ViewVariables(VVAccess.ReadOnly)]
-    public ProtoId<FactionIconPrototype> StatusIcon { get; set; } = "HivemindFaction";
+    public ProtoId<FactionIconPrototype> StatusIcon { get; set; } = "GoobHivemindFaction";
 
     #endregion
 
@@ -105,6 +105,12 @@ public sealed partial class ChangelingComponent : Component
 
     [DataField, AutoNetworkedField]
     public int MaxEvolutionPoints = 10;
+
+    /// <summary>
+    /// Number of "lesser" entities absorbed.
+    /// </summary>
+    [DataField, AutoNetworkedField]
+    public int MinorAbsorbs = 0;
 
     [ViewVariables(VVAccess.ReadOnly)]
     public List<TransformData> AbsorbedDNA = new();

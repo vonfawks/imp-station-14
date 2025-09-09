@@ -1,10 +1,10 @@
 using Content.Shared.Actions;
 using Robust.Shared.GameStates;
 
-namespace Content.Shared.Changeling;
+namespace Content.Shared._Goobstation.Changeling;
 
 [RegisterComponent, NetworkedComponent]
-public sealed partial class ChangelingActionComponent : Component
+public sealed partial class GoobChangelingActionComponent : Component
 {
     [DataField] public bool RequireBiomass = true;
 
@@ -67,6 +67,7 @@ public sealed partial class ActionLastResortEvent : InstantActionEvent { }
 public sealed partial class ActionLesserFormEvent : InstantActionEvent { }
 public sealed partial class ActionMindshieldFakeEvent : InstantActionEvent { }
 public sealed partial class ActionSpacesuitEvent : InstantActionEvent { }
+public sealed partial class ToggleTentacleEvent : InstantActionEvent { } // imp edit
 public sealed partial class ActionHivemindAccessEvent : InstantActionEvent { }
 public sealed partial class ActionContortBodyEvent : InstantActionEvent { }
 

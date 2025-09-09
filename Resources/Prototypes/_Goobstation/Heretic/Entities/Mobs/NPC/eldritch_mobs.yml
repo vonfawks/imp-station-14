@@ -90,7 +90,7 @@
     - ActionHereticJaunt
   # basically an EMP implant. don't feel like making 1 more emp action
     - ActionActivateEmpImplant
-  - type: TriggerImplantAction
+  - type: TriggerOnActivateImplant
   - type: EmpOnTrigger
     range: 5
     energyConsumption: 50000
@@ -132,7 +132,7 @@
   id: MobGhoulRustWalker
   name: rust walker
   description: A grinding, clanking construct which leaches life from its surroundings with every armoured step.
-  suffix: DO NOT MAP
+  categories: [ DoNotMap ] # imp
   components:
   - type: Ghoul
     totalHealth: 100

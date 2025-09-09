@@ -6,13 +6,13 @@
   requirements:
     - !type:DepartmentTimeRequirement
       department: Engineering
-      time: 36000 # 10 hours
+      time: 36000 # 10 hours, imp
     - !type:DepartmentTimeRequirement
       department: Medical
-      time: 36000 # 10 hours
+      time: 36000 # 10 hours, imp
     - !type:DepartmentTimeRequirement
       department: Security
-      time: 36000 # 10 hrs
+      time: 36000 # 10 hrs, imp
     - !type:DepartmentTimeRequirement #imp
       department: Cargo
       time: 36000 # 10 hrs
@@ -21,11 +21,11 @@
       time: 36000 # 10 hrs
     - !type:DepartmentTimeRequirement
       department: Command
-      time: 36000 # 10 hours
+      time: 36000 # 10 hours, imp
   weight: 20
   startingGear: HoPGear
   icon: "JobIconHeadOfPersonnel"
-  supervisors: job-supervisors-captain
+  supervisors: job-supervisors-captain #imp
   canBeAntag: false
   access:
   - Command
@@ -51,11 +51,18 @@
   - Security
   - Brig
   - Lawyer
-  - Logistics #Imp
   - Cargo
-  - Courier # Imp
   - Atmospherics
   - Medical
+  #imp edit start
+  - Courier
+  - Logistics
+  - Clown
+  - Librarian
+  - Mime
+  - Musician
+  - Reporter
+  #imp edit end
   special:
   - !type:AddImplantSpecial
     implants: [ MindShieldImplant ]
@@ -66,9 +73,25 @@
 - type: startingGear
   id: HoPGear
   equipment:
+    #shoes: ClothingShoesColorBrown #imp
     id: HoPPDA
     gloves: ClothingHandsGlovesHop
-    belt: BoxFolderClipboard
+    #ears: ClothingHeadsetAltCommand #imp
+    #belt: BoxFolderClipboard #imp
+    #eyes: ClothingEyesHudCommand #imp
+    belt: ClothingBeltPaperworkFilled # imp edit
   storage:
     back:
     - Flash
+
+- type: chameleonOutfit
+  id: HeadOfPersonnelChameleonOutfit
+  job: HeadOfPersonnel
+  hasMindShield: true
+  equipment:
+    head: ClothingHeadHatHopcap
+    eyes: ClothingEyesHudCommand
+    mask: ClothingMaskNeckGaiterRed
+    neck: ClothingNeckCloakHop
+    outerClothing: ClothingOuterWinterHoP
+

@@ -1,31 +1,30 @@
-using System.Collections.Immutable;
+using System.Collections.Immutable; // imp
 using System.Globalization;
 using System.Linq;
 using System.Text;
-using Content.Server.Abilities.Mime;
 using Content.Server.Administration.Logs;
 using Content.Server.Administration.Managers;
 using Content.Server.Chat.Managers;
 using Content.Server.GameTicking;
-using Content.Server.Players.RateLimiting;
-using Content.Server.Speech.Components;
 using Content.Server.Speech.EntitySystems;
-using Content.Server.Station.Components;
+using Content.Server.Speech.Prototypes;
 using Content.Server.Station.Systems;
+using Content.Server._Wizden.Chat.Systems; // Imp edit for Last Message Before Death Webhook
+using Content.Shared.Abilities.Mime; // imp
 using Content.Shared.ActionBlocker;
 using Content.Shared.Administration;
 using Content.Shared.CCVar;
 using Content.Shared.Chat;
-using Content.Shared.CollectiveMind;
+using Content.Shared.CollectiveMind; // imp
 using Content.Shared.Database;
 using Content.Shared.Examine;
 using Content.Shared.Ghost;
-using Content.Shared._Impstation.Ghost;
 using Content.Shared.IdentityManagement;
 using Content.Shared.Mobs.Systems;
 using Content.Shared.Players;
 using Content.Shared.Players.RateLimiting;
 using Content.Shared.Radio;
+using Content.Shared.Station.Components;
 using Content.Shared.Whitelist;
 using Robust.Server.Player;
 using Robust.Shared.Audio;
@@ -65,11 +64,7 @@ public sealed partial class ChatSystem : SharedChatSystem
     [Dependency] private readonly EntityWhitelistSystem _whitelistSystem = default!;
     [Dependency] private readonly ExamineSystemShared _examineSystem = default!;
     [Dependency] private readonly CollectiveMindUpdateSystem _collectiveMind = default!;
-
-    public const int VoiceRange = 10; // how far voice goes in world units
-    public const int WhisperClearRange = 2; // how far whisper goes while still being understandable, in world units
-    public const int WhisperMuffledRange = 5; // how far whisper goes at all, in world units
-    public const string DefaultAnnouncementSound = "/Audio/Announcements/announce.ogg";
+    [Dependency] private readonly LastMessageBeforeDeathSystem _lastMessageBeforeDeathSystem = default!; // Imp Edit LastMessageBeforeDeath Webhook
 
     private bool _loocEnabled = true;
     private bool _deadLoocEnabled;
@@ -186,6 +181,7 @@ public sealed partial class ChatSystem : SharedChatSystem
             return;
         }
 
+        // imp edit, collective mind
         if (TryComp<CollectiveMindComponent>(source, out var collective))
             _collectiveMind.UpdateCollectiveMind(source, collective);
 
@@ -241,6 +237,11 @@ public sealed partial class ChatSystem : SharedChatSystem
         if (string.IsNullOrEmpty(message))
             return;
 
+        if (player != null) // Imp Edit: Last Message Before Death System
+        {
+            HandleLastMessageBeforeDeath(source, player, message, desiredType);
+        }
+
         // This message may have a radio prefix, and should then be whispered to the resolved radio channel
         if (checkRadioPrefix)
         {
@@ -251,6 +252,7 @@ public sealed partial class ChatSystem : SharedChatSystem
             }
         }
 
+        // imp edit start
         if (desiredType == InGameICChatType.CollectiveMind)
         {
             if (TryProccessCollectiveMindMessage(source, message, out var modMessage, out var channel))
@@ -259,6 +261,7 @@ public sealed partial class ChatSystem : SharedChatSystem
                 return;
             }
         }
+        // imp edit end
 
         // Otherwise, send whatever type.
         switch (desiredType)
@@ -300,7 +303,6 @@ public sealed partial class ChatSystem : SharedChatSystem
         var sendType = type;
         // If dead player LOOC is disabled, unless you are an admin with Moderator perms, send dead messages to dead chat
         if ((_adminManager.IsAdmin(player) && _adminManager.HasAdminFlag(player, AdminFlags.Moderator)) // Override if admin
-            || !HasComp<GhostBarPatronComponent>(source) // I'm part of the problem!
             || _deadLoocEnabled
             || (!HasComp<GhostComponent>(source) && !_mobStateSystem.IsDead(source))) // Check that player is not dead
         {
@@ -331,6 +333,7 @@ public sealed partial class ChatSystem : SharedChatSystem
     /// <param name="message">The contents of the message</param>
     /// <param name="sender">The sender (Communications Console in Communications Console Announcement)</param>
     /// <param name="playSound">Play the announcement sound</param>
+    /// <param name="announcementSound">Imp. Sound to play</param>
     /// <param name="colorOverride">Optional color for the announcement message</param>
     public void DispatchGlobalAnnouncement(
         string message,
@@ -344,9 +347,9 @@ public sealed partial class ChatSystem : SharedChatSystem
 
         var wrappedMessage = Loc.GetString("chat-manager-sender-announcement-wrap-message", ("sender", sender), ("message", FormattedMessage.EscapeText(message)));
         _chatManager.ChatMessageToAll(ChatChannel.Radio, message, wrappedMessage, default, false, true, colorOverride);
-        if (playSound)
+        if (announcementSound != null && playSound) //imp. gutted default announcement sounds, announcersystem handles them now.
         {
-            _audio.PlayGlobal(announcementSound == null ? DefaultAnnouncementSound : _audio.GetSound(announcementSound), Filter.Broadcast(), true, AudioParams.Default.WithVolume(-2f));
+            _audio.PlayGlobal(_audio.ResolveSound(announcementSound), Filter.Broadcast(), true, AudioParams.Default.WithVolume(-2f));
         }
         _adminLogger.Add(LogType.Chat, LogImpact.Low, $"Global station announcement from {sender}: {message}");
     }
@@ -358,7 +361,6 @@ public sealed partial class ChatSystem : SharedChatSystem
     /// <param name="message">The contents of the message</param>
     /// <param name="source">The entity making the announcement (used to determine the station)</param>
     /// <param name="sender">The sender (Communications Console in Communications Console Announcement)</param>
-    /// <param name="playDefaultSound">Play the announcement sound</param>
     /// <param name="announcementSound">Sound to play</param>
     /// <param name="colorOverride">Optional color for the announcement message</param>
     public void DispatchFilteredAnnouncement(
@@ -374,9 +376,9 @@ public sealed partial class ChatSystem : SharedChatSystem
 
         var wrappedMessage = Loc.GetString("chat-manager-sender-announcement-wrap-message", ("sender", sender), ("message", FormattedMessage.EscapeText(message)));
         _chatManager.ChatMessageToManyFiltered(filter, ChatChannel.Radio, message, wrappedMessage, source ?? default, false, true, colorOverride);
-        if (playSound)
+        if (announcementSound != null && playSound) //imp. gutted default announcement sounds, announcersystem handles them now.
         {
-            _audio.PlayGlobal(announcementSound?.ToString() ?? DefaultAnnouncementSound, filter, true, AudioParams.Default.WithVolume(-2f));
+            _audio.PlayGlobal(_audio.ResolveSound(announcementSound), filter, true, AudioParams.Default.WithVolume(-2f));//imp change- announcementSound?.ToString() ?? DefaultAnnouncementSound to _audio.PlayGlobal(announcementSound == null ? DefaultAnnouncementSound : _audio.ResolveSound(announcementSound),
         }
         _adminLogger.Add(LogType.Chat, LogImpact.Low, $"Station Announcement from {sender}: {message}");
     }
@@ -387,13 +389,11 @@ public sealed partial class ChatSystem : SharedChatSystem
     /// <param name="source">The entity making the announcement (used to determine the station)</param>
     /// <param name="message">The contents of the message</param>
     /// <param name="sender">The sender (Communications Console in Communications Console Announcement)</param>
-    /// <param name="playDefaultSound">Play the announcement sound</param>
     /// <param name="colorOverride">Optional color for the announcement message</param>
     public void DispatchStationAnnouncement(
         EntityUid source,
         string message,
         string? sender = null,
-        bool playDefaultSound = true,
         SoundSpecifier? announcementSound = null,
         Color? colorOverride = null)
     {
@@ -408,16 +408,13 @@ public sealed partial class ChatSystem : SharedChatSystem
             return;
         }
 
-        if (!EntityManager.TryGetComponent<StationDataComponent>(station, out var stationDataComp)) return;
+        if (!TryComp<StationDataComponent>(station, out var stationDataComp)) return;
 
         var filter = _stationSystem.GetInStation(stationDataComp);
 
         _chatManager.ChatMessageToManyFiltered(filter, ChatChannel.Radio, message, wrappedMessage, source, false, true, colorOverride);
 
-        if (playDefaultSound)
-        {
-            _audio.PlayGlobal(announcementSound?.ToString() ?? DefaultAnnouncementSound, filter, true, AudioParams.Default.WithVolume(-2f));
-        }
+        //imp. gutted default announcement sounds, announcersystem handles them now.
 
         _adminLogger.Add(LogType.Chat, LogImpact.Low, $"Station Announcement on {station} from {sender}: {message}");
     }
@@ -426,6 +423,7 @@ public sealed partial class ChatSystem : SharedChatSystem
 
     #region Private API
 
+    // imp edit, collective mind
     private void SendCollectiveMindChat(EntityUid source, string message, CollectiveMindPrototype? collectiveMind)
     {
         if (_mobStateSystem.IsDead(source) || collectiveMind == null || message == "" || !TryComp<CollectiveMindComponent>(source, out var sourseCollectiveMindComp) || !sourseCollectiveMindComp.Minds.ContainsKey(collectiveMind.ID))
@@ -615,7 +613,7 @@ public sealed partial class ChatSystem : SharedChatSystem
             if (MessageRangeCheck(session, data, range) != MessageRangeCheckResult.Full)
                 continue; // Won't get logged to chat, and ghosts are too far away to see the pop-up, so we just won't send it to them.
 
-            if (data.Range <= WhisperClearRange)
+            if (data.Range <= WhisperClearRange || data.Observer)
                 _chatManager.ChatMessageToOne(ChatChannel.Whisper, message, wrappedMessage, source, false, session.Channel);
             //If listener is too far, they only hear fragments of the message
             else if (_examineSystem.InRangeUnOccluded(source, listener, WhisperMuffledRange))
@@ -672,9 +670,16 @@ public sealed partial class ChatSystem : SharedChatSystem
             ("entity", ent),
             ("message", FormattedMessage.RemoveMarkupOrThrow(action)));
 
-        if (checkEmote)
-            TryEmoteChatInput(source, action);
+        if (checkEmote &&
+            !TryEmoteChatInput(source, action))
+            return;
+
         SendInVoiceRange(ChatChannel.Emotes, action, wrappedMessage, source, range, author);
+
+        // #IMP Send event to alert that generic emote has happened
+        var ev = new EntityEmotedEvent(source, wrappedMessage);
+        RaiseLocalEvent(source, ev);
+
         if (!hideLog)
             if (name != Name(source))
                 _adminLogger.Add(LogType.Chat, LogImpact.Low, $"Emote from {ToPrettyString(source):user} as {name}: {action}");
@@ -822,6 +827,23 @@ public sealed partial class ChatSystem : SharedChatSystem
         return !_chatManager.MessageCharacterLimit(player, message);
     }
 
+    /// <summary>
+    ///     Imp Edit: First modify message to respect entity accent, then send it to LastMessage system to record last message info for player
+    /// </summary>
+    public void HandleLastMessageBeforeDeath(EntityUid source, ICommonSession player, string message, InGameICChatType desiredType)
+    {
+        if (desiredType == InGameICChatType.Emote)
+        {
+            var newMessage = "*" + message.Replace("*", "") + "*";
+            _lastMessageBeforeDeathSystem.AddMessage(source, player, newMessage);
+        }
+        else
+        {
+            var newMessage = TransformSpeech(source, message.Replace("*", ""));
+            _lastMessageBeforeDeathSystem.AddMessage(source, player, newMessage);
+        }
+    }
+
     // ReSharper disable once InconsistentNaming
     private string SanitizeInGameICMessage(EntityUid source, string message, out string? emoteStr, bool capitalize = true, bool punctuate = false, bool capitalizeTheWordI = true)
     {
@@ -873,7 +895,6 @@ public sealed partial class ChatSystem : SharedChatSystem
     {
         return Filter.Empty()
             .AddWhereAttachedEntity(HasComp<GhostComponent>)
-            .AddWhereAttachedEntity(HasComp<GhostBarPatronComponent>)
             .Recipients
             .Union(_adminManager.ActiveAdmins)
             .Select(p => p.Channel);
@@ -889,8 +910,7 @@ public sealed partial class ChatSystem : SharedChatSystem
         return message;
     }
 
-    [ValidatePrototypeId<ReplacementAccentPrototype>]
-    public const string ChatSanitize_Accent = "chatsanitize";
+    public static readonly ProtoId<ReplacementAccentPrototype> ChatSanitize_Accent = "chatsanitize";
 
     public string SanitizeMessageReplaceWords(string message)
     {
@@ -1042,6 +1062,22 @@ public sealed class EntitySpokeEvent : EntityEventArgs
 }
 
 /// <summary>
+///     #IMP
+///     Raised on an entity when it emotes, whether through emote wheel, hotkeys, /me, @ or * in textbox, etc.
+/// </summary>
+public sealed class EntityEmotedEvent : EntityEventArgs
+{
+    public readonly EntityUid Source;
+    public readonly string Message;
+
+    public EntityEmotedEvent(EntityUid source, string message)
+    {
+        Source = source;
+        Message = message;
+    }
+}
+
+/// <summary>
 ///     InGame IC chat is for chat that is specifically ingame (not lobby) but is also in character, i.e. speaking.
 /// </summary>
 // ReSharper disable once InconsistentNaming
@@ -1050,7 +1086,7 @@ public enum InGameICChatType : byte
     Speak,
     Emote,
     Whisper,
-    CollectiveMind
+    CollectiveMind // imp
 }
 
 /// <summary>

@@ -15,3 +15,57 @@
     proto: Medical10hr
   equipment:
     jumpsuit: ClothingUniformSpaceJumpsuitMedical
+
+- type: loadout
+  id: VirologyJumpsuit
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitVirology
+
+- type: loadout
+  id: VirologyJumpskirt
+  equipment:
+    jumpsuit: ClothingUniformJumpskirtVirology
+
+- type: loadout
+  id: GeneticsJumpsuit
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitGenetics
+
+- type: loadout
+  id: GeneticsJumpskirt
+  equipment:
+    jumpsuit: ClothingUniformJumpskirtGenetics
+
+- type: loadout
+  id: MedicalNurseJumpskirt
+  equipment:
+    jumpsuit: ClothingUniformJumpskirtNurse
+
+# Outer Clothing
+- type: loadout
+  id: BomberMedical
+  equipment:
+    outerClothing: ClothingOuterCoatBomberMedical
+
+- type: loadout
+  id: GeneticsWinterCoat
+  equipment:
+    outerClothing: ClothingOuterWinterGen
+
+- type: loadout
+  id: VirologyWinterCoat
+  equipment:
+    outerClothing: ClothingOuterWinterViro
+
+- type: loadout
+  id: MedicalNurseApron
+  equipment:
+    outerClothing: ClothingOuterApronNurse
+
+# Eyewear
+
+- type: loadout
+  id: MedicalGlassesHud
+  equipment:
+    eyes: ClothingEyesGlassesHudMedical
+  groupBy: "job"

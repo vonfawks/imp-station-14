@@ -5,7 +5,7 @@
   playTimeTracker: JobJanitor
   startingGear: JanitorGear
   icon: "JobIconJanitor"
-  supervisors: job-supervisors-hop
+  supervisors: job-supervisors-hd
   access:
   - Service
   - Janitor
@@ -34,3 +34,14 @@
     head: ClothingHeadHatCatEars
     ears: ClothingHeadsetService
     belt: ClothingBeltJanitorFilled
+
+- type: chameleonOutfit
+  id: JanitorChameleonOutfit
+  job: Janitor
+  equipment:
+    head: ClothingHeadHatPurplesoft
+    eyes: ClothingEyesGlassesCheapSunglasses
+    mask: ClothingMaskGas
+    neck: ClothingNeckScarfStripedPurple
+    outerClothing: ClothingOuterWinterJani
+    gloves: ClothingHandsGlovesJanitor

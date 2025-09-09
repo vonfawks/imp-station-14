@@ -10,6 +10,7 @@ using Robust.Client.Graphics;
 using Robust.Client.State;
 using Robust.Client.UserInterface;
 using Robust.Shared.Prototypes;
+using Robust.Shared.Audio;
 
 namespace Content.Client.GameTicking.Managers
 {
@@ -21,17 +22,22 @@ namespace Content.Client.GameTicking.Managers
         [Dependency] private readonly IClyde _clyde = default!;
         [Dependency] private readonly IUserInterfaceManager _userInterfaceManager = default!;
 
-        private Dictionary<NetEntity, Dictionary<ProtoId<JobPrototype>, int?>>  _jobsAvailable = new();
+        private Dictionary<NetEntity, Dictionary<ProtoId<JobPrototype>, int?>> _jobsAvailable = new();
         private Dictionary<NetEntity, string> _stationNames = new();
 
         [ViewVariables] public bool AreWeReady { get; private set; }
         [ViewVariables] public bool IsGameStarted { get; private set; }
-        [ViewVariables] public string? RestartSound { get; private set; }
-        [ViewVariables] public string? LobbyBackground { get; private set; }
+        [ViewVariables] public ResolvedSoundSpecifier? RestartSound { get; private set; }
+        [ViewVariables] public string? LobbyBackgroundImage { get; private set; } // imp edit
+        [ViewVariables] public string? LobbyBackgroundName { get; private set; } // imp edit
+        [ViewVariables] public string? LobbyBackgroundArtist { get; private set; } // imp edit
+
         [ViewVariables] public bool DisallowedLateJoin { get; private set; }
         [ViewVariables] public string? ServerInfoBlob { get; private set; }
         [ViewVariables] public TimeSpan StartTime { get; private set; }
         [ViewVariables] public new bool Paused { get; private set; }
+
+        public override IReadOnlyList<(TimeSpan, string)> AllPreviousGameRules => new List<(TimeSpan, string)>();
 
         [ViewVariables] public IReadOnlyDictionary<NetEntity, Dictionary<ProtoId<JobPrototype>, int?>> JobsAvailable => _jobsAvailable;
         [ViewVariables] public IReadOnlyDictionary<NetEntity, string> StationNames => _stationNames;
@@ -43,6 +49,8 @@ namespace Content.Client.GameTicking.Managers
 
         public override void Initialize()
         {
+            base.Initialize();
+
             SubscribeNetworkEvent<TickerJoinLobbyEvent>(JoinLobby);
             SubscribeNetworkEvent<TickerJoinGameEvent>(JoinGame);
             SubscribeNetworkEvent<TickerConnectionStatusEvent>(ConnectionStatus);
@@ -119,7 +127,9 @@ namespace Content.Client.GameTicking.Managers
             RoundStartTimeSpan = message.RoundStartTimeSpan;
             IsGameStarted = message.IsRoundStarted;
             AreWeReady = message.YouAreReady;
-            LobbyBackground = message.LobbyBackground;
+            LobbyBackgroundImage = message.LobbyBackgroundImage;
+            LobbyBackgroundName = message.LobbyBackgroundName;
+            LobbyBackgroundArtist = message.LobbyBackgroundArtist;
             Paused = message.Paused;
 
             LobbyStatusUpdated?.Invoke();

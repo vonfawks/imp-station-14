@@ -5,6 +5,7 @@
   description: A square piece of metal standing on four metal legs.
   abstract: true
   components:
+  - type: Animateable
   - type: Damageable
     damageContainer: StructuralInorganic
     damageModifierSet: Metallic
@@ -39,7 +40,6 @@
   - type: Tag
     tags:
     - ForceFixRotations
-  - type: RequireProjectileTarget # Goobstation - Crawling
   - type: ThrownItemImmune # imp
 
 - type: entity

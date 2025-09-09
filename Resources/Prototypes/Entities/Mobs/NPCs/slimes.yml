@@ -13,6 +13,7 @@
     layers:
     - map: [ "enum.DamageStateVisualLayers.Base" ]
       state: blue_adult_slime
+  - type: Carriable #DeltaV
   - type: Fixtures
     fixtures:
       fix1:
@@ -33,9 +34,7 @@
     baseSprintSpeed: 4
   - type: FootstepModifier
     footstepSoundCollection:
-      path: /Audio/Effects/Footsteps/slime1.ogg
-      params:
-        volume: 3
+      collection: FootstepSlime
   - type: Tag
     tags:
     - FootstepSound
@@ -45,6 +44,8 @@
     spawned:
     - id: FoodMeatSlime
       amount: 2
+  - type: GoobAbsorbable # imp - im just going off vibes here
+    biomassRestored: 0.6
   - type: Respirator
     damage:
       types:
@@ -114,6 +115,12 @@
     speechSounds: Slime
   - type: TypingIndicator
     proto: slime
+  - type: NightVision # EE edit
+    isActive: true
+    toggleAction: null
+    color: "#50595C"
+    activateSound: null
+    deactivateSound: null
 
 - type: entity
   name: basic slime

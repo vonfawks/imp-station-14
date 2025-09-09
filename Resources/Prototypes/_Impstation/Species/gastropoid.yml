@@ -8,15 +8,17 @@
   markingLimits: MobGastropoidMarkingLimits
   dollPrototype: MobGastropoidDummy
   skinColoration: Hues
-  maleFirstNames: names_snail_first
-  femaleFirstNames: names_snail_first
-  lastNames: names_snail_last
+  maleFirstNames: NamesGastropoidFirst
+  femaleFirstNames: NamesGastropoidFirst
+  lastNames: NamesGastropoidLast
   sexes:
   - Unsexed
 
 - type: speciesBaseSprites
   id: MobGastropoidSprites
   sprites:
+    TailBehind: MobHumanoidAnyMarking # floof
+    TailOversuit: MobHumanoidAnyMarking # floof
     Eyes: MobGastropoidEyes
     Head: MobGastropoidHead
     HeadTop: MobHumanoidAnyMarking
@@ -35,6 +37,10 @@
   id: MobGastropoidMarkingLimits
   onlyWhitelisted: true
   points:
+    Eyes:
+      points: 1
+      required: true
+      defaultMarkings: [ GastropoidFaceEyes1 ]
     Head:
       points: 6
       required: false
@@ -44,18 +50,18 @@
     Chest:
       points: 4
       required: false
-    Undershirt:
+    UndergarmentTop:
       points: 1
       required: false
     Arms:
-      points: 2
+      points: 4
       required: false
     Tail:
       points: 1
       required: true
       defaultMarkings: [ GastropoidShellSmall ]
     Overlay:
-      points: 1
+      points: 4
       required: false
 
 - type: humanoidBaseSprite

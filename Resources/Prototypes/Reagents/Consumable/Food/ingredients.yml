@@ -78,6 +78,12 @@
       - !type:AdjustReagent
         reagent: UncookedAnimalProteins
         amount: 0.5
+      - !type:AdjustReagent # imp
+        conditions:
+          - !type:OrganType
+            type: Kodepiia
+        reagent: UncookedAnimalProteins
+        amount: 1
 
 - type: reagent
   id: EggCooked
@@ -92,6 +98,10 @@
     Food:
       effects:
       - !type:AdjustReagent
+        conditions: # imp - this is for you selene
+        - !type:OrganType
+          type: Kodepiia
+          shouldHave: false
         reagent: Protein
         amount: 1
 
@@ -109,14 +119,20 @@
       effects:
       - !type:Emote
         emote: Cough
-        probability: 0.7
+        showInChat: true
+        showInGuidebook: true
+        probability: 0.05
   reactiveEffects:
     Acidic:
       methods: [ Touch ]
       effects:
       - !type:Emote
         emote: Cough
-        force: true
+        showInGuidebook: true
+        conditions:
+        - !type:Breathing
+        - !type:Internals
+          usingInternals: false
 
 - type: reagent
   id: Vinegar
@@ -241,6 +257,9 @@
       effects:
       - !type:SatiateHunger
         conditions:
+        - !type:OrganType # imp
+          type: Kodepiia
+          shouldHave: false
         - !type:ReagentThreshold #Only satiates when eaten with nutriment
           reagent: Nutriment
           min: 0.1
@@ -287,3 +306,33 @@
       - !type:AdjustReagent
         reagent: Nutriment
         amount: 0.1
+
+- type: reagent
+  id: FrostOil
+  name: reagent-name-frost-oil
+  group: Foods
+  desc: reagent-desc-frost-oil
+  physicalDesc: reagent-physical-desc-oily
+  flavor: cold
+  color: skyblue
+  metabolisms:
+    Food:
+      effects:
+      - !type:AdjustReagent
+        reagent: Nutriment #Oils enhance nutrition
+        amount: 0.75
+    Poison:
+      effects:
+      - !type:AdjustTemperature
+        amount: -250 # thermal energy, not temp
+      - !type:HealthChange
+        conditions:
+        - !type:ReagentThreshold
+          min: 5
+        damage:
+          types:
+            Cold: 1
+      - !type:PopupMessage
+        type: Local
+        messages: [ "frost-oil-effect-light-cold" ]
+        probability: 0.2

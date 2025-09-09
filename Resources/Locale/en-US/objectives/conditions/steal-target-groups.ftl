@@ -5,6 +5,7 @@ steal-target-groups-clothing-outer-hardsuit-rd = experimental research hardsuit
 steal-target-groups-hand-teleporter = hand teleporter
 steal-target-groups-clothing-shoes-boots-mag-adv = advanced magboots
 steal-target-groups-box-folder-qm-clipboard = requisition digi-board
+steal-target-groups-clothing-hands-knuckledusters-qm = golden knuckledusters
 steal-target-groups-food-meat-corgi = prime-cut corgi meat
 steal-target-groups-captain-id-card = captain ID card
 steal-target-groups-jetpack-captain-filled = captain's jetpack
@@ -20,6 +21,7 @@ steal-target-groups-stamps = stamp
 steal-target-groups-door-remotes = door remote
 steal-target-groups-encryption-keys = encryption key
 steal-target-groups-technology-disks = technology disk
+steal-target-groups-mail = mail
 steal-target-groups-id-cards = ID Card
 steal-target-groups-lamps = LAMP
 
@@ -45,7 +47,8 @@ steal-target-groups-wanted-list-cartridge = wanted list cartridge
 # Thief structures
 steal-target-groups-teg = teg generator part
 steal-target-groups-freezer-heater = freezer or heater
-steal-target-groups-altar-nanotrasen = nanotrasen altar (any)
+steal-target-groups-altar-nanotrasen = altar of prayer (any will do)
+# imp edit; what the hell is a "nanotrasen altar (any)"
 
 steal-target-groups-nuclear-bomb = nuclear fission explosive
 steal-target-groups-fax-machine-captain = captain long range fax machine
@@ -60,7 +63,7 @@ steal-target-groups-animal-named-cat = CMO's pet
 
 steal-target-groups-animal-ian = Ian
 steal-target-groups-animal-mc-griff = McGriff
-steal-target-groups-animal-walter = Walter
+steal-target-groups-animal-walter = Chemist's dog
 steal-target-groups-animal-morty = Morty
 steal-target-groups-animal-renault = Renault
 steal-target-groups-animal-shiva = Shiva

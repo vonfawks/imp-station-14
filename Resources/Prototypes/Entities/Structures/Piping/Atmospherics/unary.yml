@@ -26,7 +26,7 @@
   name: air vent
   description: Has a valve and a pump attached to it.
   placement:
-    mode: SnapgridCenter
+    mode: AlignAtmosPipeLayers #imp edit
   components:
     - type: ApcPowerReceiver
     - type: ExtensionCableReceiver
@@ -36,12 +36,15 @@
       tags:
         - GasVent
         - Unstackable
+    - type: SubFloorHide
+      visibleLayers:
+      - enum.SubfloorLayers.FirstLayer
     - type: Sprite
       drawdepth: FloorObjects
       sprite: Structures/Piping/Atmospherics/vent.rsi
       layers:
         - sprite: Structures/Piping/Atmospherics/pipe.rsi
-          state: pipeHalf
+          state: pipeUnaryConnectors
           map: [ "enum.PipeVisualLayers.Pipe" ]
         - state: vent_off
           map: [ "enabled", "enum.SubfloorLayers.FirstLayer" ]
@@ -74,9 +77,16 @@
       guides:
       - AirVent
       - DeviceMonitoringAndControl
+    # imp edit start
     - type: VentCrawTube
       containerId: VentCrawTube
     - type: VentCrawEntry
+    - type: AtmosPipeLayers
+      alternativePrototypes:
+        Primary: GasVentPump
+        Secondary: GasVentPumpAlt1
+        Tertiary: GasVentPumpAlt2
+    # imp edit end
 
 - type: entity
   parent: GasUnaryBase
@@ -84,14 +94,17 @@
   name: passive vent
   description: It's an open vent.
   placement:
-    mode: SnapgridCenter
+    mode: AlignAtmosPipeLayers #imp edit
   components:
+    - type: SubFloorHide
+      visibleLayers:
+      - enum.SubfloorLayers.FirstLayer
     - type: Sprite
       drawdepth: FloorObjects
       sprite: Structures/Piping/Atmospherics/vent.rsi
       layers:
         - sprite: Structures/Piping/Atmospherics/pipe.rsi
-          state: pipeHalf
+          state: pipeUnaryConnectors
           map: [ "enum.PipeVisualLayers.Pipe" ]
         - state: vent_passive
           map: [ "enum.SubfloorLayers.FirstLayer" ]
@@ -106,9 +119,16 @@
     - type: GuideHelp
       guides:
       - PassiveVent
+  # imp edit start
     - type: VentCrawTube
       containerId: VentCrawTube
     - type: VentCrawEntry
+    - type: AtmosPipeLayers
+      alternativePrototypes:
+        Primary: GasPassiveVent
+        Secondary: GasPassiveVentAlt1
+        Tertiary: GasPassiveVentAlt2
+  # imp edit end
 
 - type: entity
   parent: [GasUnaryBase, AirSensorBase]
@@ -116,7 +136,7 @@
   name: air scrubber
   description: Has a valve and pump attached to it.
   placement:
-    mode: SnapgridCenter
+    mode: AlignAtmosPipeLayers #imp edit
   components:
     - type: ApcPowerReceiver
     - type: ExtensionCableReceiver
@@ -126,12 +146,15 @@
       tags:
         - GasScrubber
         - Unstackable
+    - type: SubFloorHide
+      visibleLayers:
+      - enum.SubfloorLayers.FirstLayer
     - type: Sprite
       drawdepth: FloorObjects
       sprite: Structures/Piping/Atmospherics/scrubber.rsi
       layers:
         - sprite: Structures/Piping/Atmospherics/pipe.rsi
-          state: pipeHalf
+          state: pipeUnaryConnectors
           map: [ "enum.PipeVisualLayers.Pipe" ]
         - state: scrub_off
           map: [ "enabled", "enum.SubfloorLayers.FirstLayer" ]
@@ -164,9 +187,16 @@
       guides:
       - AirScrubber
       - DeviceMonitoringAndControl
+  # imp edit start
     - type: VentCrawTube
       containerId: VentCrawTube
     - type: VentCrawEntry
+    - type: AtmosPipeLayers
+      alternativePrototypes:
+        Primary: GasVentScrubber
+        Secondary: GasVentScrubberAlt1
+        Tertiary: GasVentScrubberAlt2
+  # imp edit end
 
 - type: entity
   parent: GasUnaryBase
@@ -174,13 +204,13 @@
   name: air injector
   description: Has a valve and pump attached to it.
   placement:
-    mode: SnapgridCenter
+    mode: AlignAtmosPipeLayers #imp edit
   components:
     - type: Sprite
       drawdepth: FloorObjects
       sprite: Structures/Piping/Atmospherics/outletinjector.rsi
       layers:
-        - state: pipeHalf
+        - state: pipeUnaryConnectors
           sprite: Structures/Piping/Atmospherics/pipe.rsi
           map: [ "enum.PipeVisualLayers.Pipe" ]
         - state: injector
@@ -189,6 +219,7 @@
           shader: unshaded
           map: [ "enum.LightLayers.Unshaded" ]
           color: "#990000"
+    - type: Appearance
     - type: GenericVisualizer
       visuals:
        # toggle color of the unshaded light:
@@ -196,7 +227,6 @@
          enum.LightLayers.Unshaded:
            True: { color: "#5eff5e" }
            False: { color: "#990000" }
-    - type: Appearance
     - type: PipeColorVisuals
     - type: GasOutletInjector
     - type: Construction
@@ -211,9 +241,16 @@
     - type: GuideHelp
       guides:
       - AirInjector
+  # imp edit start
     - type: VentCrawTube
       containerId: VentCrawTube
     - type: VentCrawEntry
+    - type: AtmosPipeLayers
+      alternativePrototypes:
+        Primary: GasOutletInjector
+        Secondary: GasOutletInjectorAlt1
+        Tertiary: GasOutletInjectorAlt2
+  # imp edit end
 
 - type: entity
   parent: [ BaseMachinePowered, ConstructibleMachine ]
@@ -224,13 +261,19 @@
     mode: SnapgridCenter
   components:
     - type: Sprite
-      sprite: _Impstation/Structures/Piping/Atmospherics/thermomachine.rsi
+      sprite: _Impstation/Structures/Piping/Atmospherics/thermomachine.rsi # imp
       snapCardinals: true
     - type: Appearance
     - type: PipeColorVisuals
     - type: Rotatable
     - type: GasThermoMachine
     - type: AtmosPipeColor
+    - type: AtmosPipeLayers
+      spriteLayersRsiPaths:
+        enum.PipeVisualLayers.Pipe:
+          Primary: Structures/Piping/Atmospherics/thermomachine.rsi
+          Secondary: Structures/Piping/Atmospherics/thermomachine_alt1.rsi
+          Tertiary: Structures/Piping/Atmospherics/thermomachine_alt2.rsi
     - type: AtmosDevice
     - type: UserInterface
       interfaces:
@@ -277,13 +320,13 @@
     granularLayersRendering: true
     layers:
       - state: freezerOff
-      - state: freezerOn
+      - state: freezerOn # imp
         map: ["enum.PowerDeviceVisualLayers.Powered"]
         visible: false #imp edit
-      - state: freezer-Unshaded
+      - state: freezer-Unshaded # imp
         shader: unshaded
         map: ["freezing"]
-        visible: false #imp edit
+        visible: false
       - state: freezerPanelOpen
         map: [ "enum.WiresVisualLayers.MaintenancePanel" ]
       - state: pipe
@@ -293,9 +336,9 @@
     visuals:
       enum.PowerDeviceVisuals.Powered:
         enum.PowerDeviceVisualLayers.Powered:
-          True: { visible: true }
-          False: { visible: false }
-        freezing:
+          True: { visible: true } # imp
+          False: { visible: false } # imp
+        freezing: # imp
           True: { visible: true }
           False: { visible: false }
   - type: GasThermoMachine
@@ -331,13 +374,13 @@
     granularLayersRendering : true
     layers:
       - state: heaterOff
-      - state: heaterOn
+      - state: heaterOn # imp
         map: ["enum.PowerDeviceVisualLayers.Powered"]
         visible: false #imp edit
-      - state: heater-Unshaded
+      - state: heater-Unshaded # imp
         shader: unshaded
         map: ["heating"]
-        visible: false #imp edit
+        visible: false
       - state: heaterPanelOpen
         map: [ "enum.WiresVisualLayers.MaintenancePanel" ]
       - state: pipe
@@ -347,9 +390,9 @@
     visuals:
       enum.PowerDeviceVisuals.Powered:
         enum.PowerDeviceVisualLayers.Powered:
-          True: { visible: true }
-          False: { visible: false }
-        heating:
+          True: { visible: true } # imp
+          False: { visible: false } # imp
+        heating: # imp
           True: { visible: true }
           False: { visible: false }
   - type: GasThermoMachine
@@ -379,7 +422,7 @@
   description: An advanced machine that cools gas in connected pipes. Has the side effect of chilling the surrounding area. Cold as Hell!
   components:
   - type: Sprite
-    sprite: _Impstation/Structures/Piping/Atmospherics/hellfirethermomachine.rsi
+    sprite: _Impstation/Structures/Piping/Atmospherics/hellfirethermomachine.rsi # imp
   - type: GasThermoMachine
     minTemperature: 23.15
     heatCapacity: 40000
@@ -394,7 +437,7 @@
   description: An advanced machine that heats gas in connected pipes. Has the side effect of leaking heat into the surrounding area. Hot as Hell!
   components:
   - type: Sprite
-    sprite: _Impstation/Structures/Piping/Atmospherics/hellfirethermomachine.rsi
+    sprite: _Impstation/Structures/Piping/Atmospherics/hellfirethermomachine.rsi # imp
   - type: GasThermoMachine
     maxTemperature: 1193.15
     heatCapacity: 40000
@@ -426,6 +469,7 @@
       map: ["enum.SolutionContainerLayers.Fill"]
       visible: false
     - state: trans
+  - type: Appearance
   - type: GenericVisualizer
     visuals:
       enum.PowerDeviceVisuals.Powered:
@@ -435,11 +479,16 @@
   - type: SolutionContainerVisuals
     maxFillLevels: 7
     fillBaseName: fill-
-  - type: Appearance
   - type: PipeColorVisuals
   - type: Rotatable
   - type: GasCondenser
   - type: AtmosPipeColor
+  - type: AtmosPipeLayers
+    spriteLayersRsiPaths:
+      enum.PipeVisualLayers.Pipe:
+        Primary: Structures/Piping/Atmospherics/condenser.rsi
+        Secondary: Structures/Piping/Atmospherics/condenser_alt1.rsi
+        Tertiary: Structures/Piping/Atmospherics/condenser_alt2.rsi
   - type: AtmosDevice
   - type: PipeRestrictOverlap
   - type: ApcPowerReceiver
@@ -491,3 +540,4 @@
   - type: GuideHelp
     guides:
     - GasCondensing
+

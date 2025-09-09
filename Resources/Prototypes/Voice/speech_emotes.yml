@@ -7,9 +7,6 @@
   whitelist:
     components:
     - Vocal
-  blacklist:
-    components:
-    - BorgChassis
   chatMessages: ["chat-emote-msg-scream"]
   chatTriggers:
     - scream
@@ -37,9 +34,9 @@
   whitelist:
     components:
     - Vocal
-  blacklist:
-    components:
-    - BorgChassis
+  #blacklist: # imp - borgs can laugh
+  #  tags:
+  #  - SiliconEmotes
   chatMessages: ["chat-emote-msg-laugh"]
   chatTriggers:
     - laugh
@@ -57,6 +54,7 @@
     - chortle
     - chortles
     - chortling
+    - chortled # Frontier
 
 - type: emote
   id: Honk
@@ -67,7 +65,8 @@
     requireAll: true
     components:
     - Vocal
-    - BorgChassis
+    tags:
+    - SiliconEmotes
   chatMessages: ["chat-emote-msg-honk"]
   chatTriggers:
     - honk
@@ -84,13 +83,14 @@
     components:
     - Vocal
   blacklist:
-    components:
-    - BorgChassis
+    tags:
+    - SiliconEmotes
   chatMessages: ["chat-emote-msg-sigh"]
   chatTriggers:
     - sigh
     - sighs
     - sighed
+    - sighing # Frontier
 
 - type: emote
   id: Whistle
@@ -101,13 +101,14 @@
     components:
     - Vocal
   blacklist:
-    components:
-    - BorgChassis
+    tags:
+    - SiliconEmotes
   chatMessages: ["chat-emote-msg-whistle"]
   chatTriggers:
     - whistle
     - whistles
     - whistleblowing
+    - whistled # Frontier
 
 - type: emote
   id: Crying
@@ -118,8 +119,8 @@
     components:
     - Vocal
   blacklist:
-    components:
-    - BorgChassis
+    tags:
+    - SiliconEmotes
   chatMessages: ["chat-emote-msg-crying"]
   chatTriggers:
     - cry
@@ -128,6 +129,8 @@
     - sob
     - sobs
     - sobbing
+    - sobbed # Frontier
+    - cried # Frontier
 
 - type: emote
   id: Squish
@@ -139,13 +142,14 @@
     components:
     - Vocal
   blacklist:
-    components:
-    - BorgChassis
+    tags:
+    - SiliconEmotes
   chatMessages: ["chat-emote-msg-squish"]
   chatTriggers:
     - squish
     - squishing
     - squishes
+    - squished # Frontier
 
 - type: emote
   id: Chitter
@@ -157,31 +161,13 @@
     components:
     - Vocal
   blacklist:
-    components:
-    - BorgChassis
+    tags:
+    - SiliconEmotes
   chatMessages: ["chat-emote-msg-chitter"]
   chatTriggers:
    - chitter
    - chitters
    - chittered
-
-- type: emote #imp
-  id: Coo
-  name: chat-emote-name-coo
-  category: Vocal
-  available: false
-  icon: _Impstation/Interface/Emotes/chirp.png #placeholder
-  whitelist:
-    components:
-    - Vocal
-  blacklist:
-    components:
-    - BorgChassis
-  chatMessages: ["chat-emote-msg-coo"]
-  chatTriggers:
-   - coo
-   - coos
-   - cooed
 
 - type: emote
   id: Squeak
@@ -193,13 +179,14 @@
     components:
       - Vocal
   blacklist:
-    components:
-    - BorgChassis
+    tags:
+    - SiliconEmotes
   chatMessages: ["chat-emote-msg-squeak"]
   chatTriggers:
    - squeak
    - squeaks
    - squeaked
+   - squeaking # Frontier
 
 - type: emote
   id: Click
@@ -211,12 +198,14 @@
     components:
     - Vocal
   blacklist:
-    components:
-    - BorgChassis
+    tags:
+    - SiliconEmotes
   chatMessages: ["chat-emote-msg-click"]
   chatTriggers:
    - click
    - clicks
+   - clicked # Frontier
+   - clicking # Frontier
 
 # hand emotes
 - type: emote
@@ -228,14 +217,32 @@
     components:
     - Hands
   blacklist:
-    components:
-    - BorgChassis
+    tags:
+    - SiliconEmotes
   chatMessages: ["chat-emote-msg-clap"]
   chatTriggers:
-    - clap
     - claps
     - clapping
     - clapped
+
+- type: emote
+  id: ClapSingle
+  name: chat-emote-name-clap-single
+  category: Hands
+  icon: Interface/Emotes/clap.png #TODO: Needs a sprite that distinguishes it better from clap
+  whitelist:
+    components:
+    - Hands
+  blacklist:
+    tags:
+    - SiliconEmotes
+  chatMessages: [ "chat-emote-msg-clap-single" ]
+  chatTriggers:
+    - clap
+    - claps their hands together
+    - claps her hands together
+    - claps his hands together
+    - claps its hands together
 
 - type: emote
   id: Snap
@@ -246,9 +253,9 @@
     components:
     - Hands
   blacklist:
-    components:
-    - BorgChassis
-  chatMessages: ["chat-emote-msg-snap"] # snaps <{THEIR($ent)}> fingers?
+    tags:
+    - SiliconEmotes
+  chatMessages: ["chat-emote-msg-snap"]
   chatTriggers:
     - snap
     - snaps
@@ -257,6 +264,9 @@
     - snap fingers
     - snaps fingers
     - snaps their fingers
+    - snaps her fingers
+    - snaps his fingers
+    - snaps its fingers
     - snapping fingers
     - snapped fingers
 
@@ -270,8 +280,8 @@
     components:
     - Hands
   blacklist:
-    components:
-    - BorgChassis
+    tags:
+    - SiliconEmotes
   chatMessages: ["chat-emote-msg-thump"]
   chatTriggers:
     - thump
@@ -294,34 +304,14 @@
     components:
     - Hands
   blacklist:
-    components:
-    - BorgChassis
+    tags:
+    - SiliconEmotes
   chatMessages: ["chat-emote-msg-salute"]
   chatTriggers:
     - salute
     - salutes
-
-- type: emote
-  id: Crack
-  name: chat-emote-name-crack
-  category: Hands
-  icon: _Impstation/Interface/Emotes/knucklecrack.png #imp
-  whitelist:
-    components:
-    - Hands
-  blacklist:
-    components:
-    - BorgChassis
-  chatMessages: ["chat-emote-msg-crack"]
-  chatTriggers:
-    - crack knuckles
-    - cracks knuckles
-    - cracking knuckles
-    - cracked knuckles
-    - cracks their knuckles
-    - cracks her knuckles
-    - cracks his knuckles
-    - cracks its knuckles
+    - saluted # Frontier
+    - saluting # Frontier
 
 - type: emote
   id: Gasp
@@ -334,6 +324,7 @@
    - gasp
    - gasps
    - gasped
+   - gasping # Frontier
 
 - type: emote
   id: DefaultDeathgasp
@@ -353,6 +344,12 @@
   chatMessages: ["chat-emote-msg-deathgasp-monkey"]
 
 - type: emote
+  id: ScurretDeathgasp
+  name: chat-emote-name-deathgasp
+  icon: Interface/Emotes/deathgasp.png
+  chatMessages: ["chat-emote-msg-deathgasp-scurret"]
+
+- type: emote
   id: Buzz
   name: chat-emote-name-buzz
   category: Vocal
@@ -360,8 +357,9 @@
   whitelist:
     requireAll: true
     components:
-    - BorgChassis
     - Vocal
+    tags:
+    - SiliconEmotes
   chatMessages: ["chat-emote-msg-buzz"]
   chatTriggers:
     - buzzing
@@ -394,8 +392,8 @@
     - Nymph
     - Vocal
   blacklist:
-    components:
-    - BorgChassis
+    tags:
+    - SiliconEmotes
   chatMessages: ["chat-emote-msg-chirp"]
   chatTriggers:
     - chirp
@@ -412,8 +410,9 @@
   whitelist:
     requireAll: true
     components:
-    - BorgChassis
     - Vocal
+    tags:
+    - SiliconEmotes
   chatMessages: ["chat-emote-msg-beep"]
   chatTriggers:
     - beep
@@ -429,8 +428,9 @@
   whitelist:
     requireAll: true
     components:
-    - BorgChassis
     - Vocal
+    tags:
+    - SiliconEmotes
   chatMessages: ["chat-emote-msg-chime"]
   chatTriggers:
     - chime
@@ -446,8 +446,9 @@
   whitelist:
     requireAll: true
     components:
-    - BorgChassis
     - Vocal
+    tags:
+    - SiliconEmotes
   chatMessages: ["chat-emote-msg-buzzestwo"]
   chatTriggers:
     - buzztwice
@@ -460,6 +461,7 @@
     - buzzes twice
     - buzzing twice
     - buzzed twice
+    - buzzedtwice # Frontier
 
 - type: emote
   id: Ping
@@ -469,8 +471,9 @@
   whitelist:
     requireAll: true
     components:
-    - BorgChassis
     - Vocal
+    tags:
+    - SiliconEmotes
   chatMessages: ["chat-emote-msg-ping"]
   chatTriggers:
     - ping

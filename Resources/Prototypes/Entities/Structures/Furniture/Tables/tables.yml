@@ -110,7 +110,6 @@
   - type: Construction
     graph: Table
     node: CounterWoodFrame
-  - type: RequireProjectileTarget # Goobstation - Crawling
 
 - type: entity
   id: CounterMetalFrame
@@ -250,6 +249,9 @@
       types:
         Blunt: 8
     bonkTime: 3
+  - type: Tag # imp edit
+    tags:
+    - Table
 
 - type: entity
   id: TableGlass
@@ -301,6 +303,64 @@
   - type: Construction
     graph: Table
     node: TableGlass
+  - type: FootstepModifier
+    footstepSoundCollection:
+      collection: FootstepTile
+  - type: Tag # imp edit
+    tags:
+    - Table
+
+- type: entity
+  id: TableCard
+  parent: TableBase
+  name: cardboard table
+  description: Cardboard sheets wrapped around a metal table frame.
+  components:
+  - type: Sprite
+    sprite: Structures/Furniture/Tables/card.rsi
+  - type: Icon
+    sprite: Structures/Furniture/Tables/card.rsi
+  - type: GlassTable #they named it that cause 'it would never be used elsewhere' or something, smh
+    climberDamage:
+      types:
+        Blunt: 6
+    tableDamage:
+      types:
+        Blunt: 15
+    tableMassLimit: 40
+  - type: Damageable
+    damageContainer: Inorganic
+    damageModifierSet: Card
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 45 #excess damage (nuke?). avoid computational cost of spawning entities.
+      behaviors:
+        - !type:DoActsBehavior
+          acts: [ "Destruction" ]
+        - !type:PlaySoundBehavior
+          sound: /Audio//Weapons/pierce.ogg
+    - trigger:
+        !type:DamageTrigger
+        damage: 15
+      behaviors:
+      - !type:PlaySoundBehavior
+        sound: /Audio//Weapons/pierce.ogg
+      - !type:SpawnEntitiesBehavior
+        spawn:
+          MaterialCardboard:
+            min: 1
+            max: 2
+      - !type:ChangeConstructionNodeBehavior
+        node: TableFrame
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+  - type: IconSmooth
+    key: cardtable
+  - type: Construction
+    graph: Table
+    node: TableCard
   - type: FootstepModifier
     footstepSoundCollection:
       collection: FootstepTile
@@ -361,6 +421,9 @@
   - type: FootstepModifier
     footstepSoundCollection:
       collection: FootstepTile
+  - type: Tag # imp edit
+    tags:
+    - Table
 
 - type: entity
   id: TablePlasmaGlass
@@ -418,6 +481,9 @@
   - type: FootstepModifier
     footstepSoundCollection:
       collection: FootstepTile
+  - type: Tag # imp edit
+    tags:
+    - Table
 
 - type: entity
   id: TableBrass
@@ -461,6 +527,9 @@
   - type: Construction
     graph: Table
     node: TableBrass
+  - type: Tag # imp edit
+    tags:
+    - Table
 
 - type: entity
   id: TableWood
@@ -506,6 +575,7 @@
     node: TableWood
   - type: Tag
     tags:
+    - Table # imp edit
     - Wooden
   - type: FootstepModifier
     footstepSoundCollection:
@@ -525,6 +595,15 @@
     damageModifierSet: Wood
   - type: Destructible
     thresholds:
+    - trigger: # Excess damage, don't spawn entities
+        !type:DamageTrigger
+        damage: 100
+      behaviors:
+      - !type:PlaySoundBehavior
+        sound:
+          collection: WoodDestroy
+      - !type:DoActsBehavior
+        acts: ["Destruction"]
     - trigger:
         !type:DamageTrigger
         damage: 15
@@ -549,6 +628,7 @@
     node: TableCarpet
   - type: Tag
     tags:
+    - Table # imp edit
     - Wooden
   - type: FootstepModifier
     footstepSoundCollection:
@@ -580,6 +660,9 @@
   - type: FootstepModifier
     footstepSoundCollection:
       collection: FootstepFloor
+  - type: Tag # imp edit
+    tags:
+    - Table
 
 - type: entity
   id: TableWeb
@@ -614,6 +697,37 @@
   - type: FootstepModifier
     footstepSoundCollection:
       collection: FootstepCarpet
+  - type: Tag # imp edit
+    tags:
+    - Table
+
+- type: entity
+  parent: TableBase
+  id: TableXeno
+  name: xeno table
+  description: I wouldn't put the silverware on it.
+  components:
+  - type: Sprite
+    sprite: Structures/Furniture/Tables/xeno.rsi
+  - type: Icon
+    sprite: Structures/Furniture/Tables/xeno.rsi
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 50
+      behaviors:
+      - !type:PlaySoundBehavior
+        sound:
+          collection: gib
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+  - type: FootstepModifier
+    footstepSoundCollection:
+      collection: FootstepFloor
+  - type: Construction
+    graph: Table
+    node: TableXeno
 
 # Fancy tables
 
@@ -649,6 +763,7 @@
     key: fancytable
   - type: Tag
     tags:
+    - Table # imp edit
     - Wooden
   - type: FootstepModifier
     footstepSoundCollection:
@@ -668,6 +783,9 @@
     node: TableFancyBlue
   - type: IconSmooth
     key: fancytableblue
+  - type: Tag # imp edit
+    tags:
+    - Table
 
 - type: entity
   id: TableFancyCyan
@@ -683,6 +801,9 @@
     node: TableFancyCyan
   - type: IconSmooth
     key: fancytablecyan
+  - type: Tag # imp edit
+    tags:
+    - Table
 
 - type: entity
   id: TableFancyBlack
@@ -698,6 +819,9 @@
     node: TableFancyBlack
   - type: IconSmooth
     key: fancytableblack
+  - type: Tag # imp edit
+    tags:
+    - Table
 
 - type: entity
   id: TableFancyRed
@@ -713,6 +837,9 @@
     node: TableFancyRed
   - type: IconSmooth
     key: fancytablered
+  - type: Tag # imp edit
+    tags:
+    - Table
 
 - type: entity
   id: TableFancyPurple
@@ -728,6 +855,9 @@
     node: TableFancyPurple
   - type: IconSmooth
     key: fancytablepurple
+  - type: Tag # imp edit
+    tags:
+    - Table
 
 - type: entity
   id: TableFancyPink
@@ -743,6 +873,9 @@
     node: TableFancyPink
   - type: IconSmooth
     key: fancytablepink
+  - type: Tag # imp edit
+    tags:
+    - Table
 
 - type: entity
   id: TableFancyGreen
@@ -758,6 +891,9 @@
     node: TableFancyGreen
   - type: IconSmooth
     key: fancytablegreen
+  - type: Tag # imp edit
+    tags:
+    - Table
 
 - type: entity
   id: TableFancyOrange
@@ -773,6 +909,9 @@
     node: TableFancyOrange
   - type: IconSmooth
     key: fancytableorange
+  - type: Tag # imp edit
+    tags:
+    - Table
 
 - type: entity
   id: TableFancyWhite
@@ -788,6 +927,9 @@
     node: TableFancyWhite
   - type: IconSmooth
     key: fancytablewhite
+  - type: Tag # imp edit
+    tags:
+    - Table
 
 #Debug
 
@@ -800,6 +942,7 @@
   components:
   - type: Tag
     tags:
+      - Table # imp edit
       - Debug
   - type: Sprite
     sprite: Structures/Furniture/Tables/debug.rsi

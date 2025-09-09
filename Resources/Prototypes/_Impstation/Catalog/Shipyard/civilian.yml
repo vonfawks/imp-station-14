@@ -2,12 +2,25 @@
   id: Botany
   name: Botany Ship
   description: A small botanic vessel.
-  price: 15000
+  price: 34000 # I'm sorry :(
   path:
   - /Maps/_Impstation/Shuttles/Shipyard/botany.yml
   categories:
   - Small
   - Service
+
+- type: vessel
+  id: Barge
+  name: The Barge
+  description: A large shipping vessel repurposed into a salvage bar.
+  price: 54000
+  path: 
+  - /Maps/_Impstation/Shuttles/Shipyard/barge.yml
+  categories:
+  - Civilian
+  - Large
+  - Shipping
+  - Mining
 
 - type: vessel
   id: Medical
@@ -30,9 +43,9 @@
   categories:
   - Large
   - Experimental
-  
+
 - type: vessel
-  id: Racing Pill
+  id: RacingPill
   name: NT-Initializer
   description: A sleek racing shuttle with the barest essentials. EVA required.
   price: 7000
@@ -41,7 +54,7 @@
   categories:
   - Small
   - Transport
-  
+
 - type: vessel
   id: RV
   name: NT-Grinnebago
@@ -52,12 +65,12 @@
   categories:
   - Small
   - Transport
-  
+
 - type: vessel
-  id: Flying Bridge
+  id: FlyingBridge
   name: NT-Outreach
   description: A small shuttle that can serve as a docking arm.
-  price: 10000
+  price: 18000
   path:
   - /Maps/_Impstation/Shuttles/Shipyard/dokururin-flying-bridge.yml
   categories:
@@ -65,16 +78,16 @@
   - Transport
 
 - type: vessel
-  id: Shooting Star
+  id: ShootingStar
   name: NT-Shooting Star
   description: An eccentric shuttle that nonetheless proves its worth. Has a bay door for an easy EVA jumping point.
-  price: 25000
+  price: 26000
   path:
   - /Maps/_Impstation/Shuttles/Shipyard/shooting-star.yml
   categories:
   - Small
   - Transport
-  
+
 - type: vessel
   id: Beetle
   name: NT-Beetle
@@ -85,20 +98,20 @@
   categories:
   - Small
   - Mining
-  
+
 - type: vessel
   id: Peregrine
   name: NT-Peregrine
   description: A decommissioned fighter shuttle, retrofitted for civilian use. Still has the mounts for ship-based weaponry...
-  price: 22000
+  price: 25000
   path:
   - /Maps/_Impstation/Shuttles/Shipyard/peregrine.yml
   categories:
   - Small
   - Transport
-  
+
 - type: vessel
-  id: Bargain Bin
+  id: BargainBin
   name: Bargain Bin
   description: Need a shuttle fast and cheap? We have something for you! All sales final.
   price: 7000
@@ -131,7 +144,7 @@
   id: Strugglebug
   name: NT-Strugglebug
   description: A small, bare-bones three-seater mining shuttle. EVA required.
-  price: 6000
+  price: 6825
   path:
   - /Maps/_Impstation/Shuttles/Shipyard/strugglebug.yml
   categories:

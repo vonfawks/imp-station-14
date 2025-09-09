@@ -16,6 +16,7 @@ using Robust.Shared.Audio.Systems;
 using Robust.Shared.Containers;
 using Robust.Shared.GameStates;
 using Robust.Shared.Utility;
+using Content.Shared.IdentityManagement; //imp
 
 namespace Content.Server.Light.EntitySystems
 {
@@ -142,9 +143,9 @@ namespace Content.Server.Light.EntitySystems
 
         private void OnExamine(EntityUid uid, HandheldLightComponent component, ExaminedEvent args)
         {
-            args.PushMarkup(component.Activated
-                ? Loc.GetString("handheld-light-component-on-examine-is-on-message")
-                : Loc.GetString("handheld-light-component-on-examine-is-off-message"));
+            args.PushMarkup(Loc.GetString((component.Activated
+                ? "handheld-light-component-on-examine-is-on-message"
+                : "handheld-light-component-on-examine-is-off-message"), ("target", Identity.Entity(uid, EntityManager)))); //imp; gendered light sources
         }
 
         public override void Shutdown()
@@ -202,7 +203,7 @@ namespace Content.Server.Light.EntitySystems
             if (!_powerCell.TryGetBatteryFromSlot(uid, out var battery) &&
                 !TryComp(uid, out battery))
             {
-                _audio.PlayPvs(_audio.GetSound(component.TurnOnFailSound), uid);
+                _audio.PlayPvs(_audio.ResolveSound(component.TurnOnFailSound), uid);
                 _popup.PopupEntity(Loc.GetString("handheld-light-component-cell-missing-message"), uid, user);
                 return false;
             }
@@ -212,7 +213,7 @@ namespace Content.Server.Light.EntitySystems
             // Simple enough.
             if (component.Wattage > battery.CurrentCharge)
             {
-                _audio.PlayPvs(_audio.GetSound(component.TurnOnFailSound), uid);
+                _audio.PlayPvs(_audio.ResolveSound(component.TurnOnFailSound), uid);
                 _popup.PopupEntity(Loc.GetString("handheld-light-component-cell-dead-message"), uid, user);
                 return false;
             }

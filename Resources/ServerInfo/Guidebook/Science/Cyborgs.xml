@@ -1,6 +1,6 @@
 <Document>
   # Cyborgs
-  Cyborgs are man-machine hybrids, purpose-built by the [textlink="robotics"  link="Robotics"] division of science for various duties across the station. Bound by strictly-followed [color=cyan]silicon laws[/color], they serve the crew unconditionally. [italic](Most of the time.)[italic]
+  Cyborgs are organic-synthetic hybrids, purpose-built by the [textlink="robotics"  link="Robotics"] division of science for various duties across the station. Bound by strictly-followed [color=cyan]silicon laws[/color], they serve the crew unconditionally. [italic](Most of the time.)[italic]
 
   ## Basic Components
   <Box>
@@ -42,7 +42,6 @@
   [color=#a4885c]Generic[/color] modules add versatility. They can be fitted into any chassis, granting useful tools such as crowbars, GPS, and the ability to interact with cables. [bold]The generic cyborg chassis can fit up to five additional modules.[/bold]
   <Box>
     <GuideEntityEmbed Entity="BorgModuleCable" Caption="Cable"/>
-    <GuideEntityEmbed Entity="BorgModuleGPS" Caption="GPS"/>
     <GuideEntityEmbed Entity="BorgModuleFireExtinguisher" Caption="Fire Extinguisher"/>
   </Box>
   <Box>
@@ -55,8 +54,8 @@
     <GuideEntityEmbed Entity="BorgModuleRCD" Caption="RCD"/>
     <GuideEntityEmbed Entity="BorgModuleMining" Caption="Mining"/>
     <GuideEntityEmbed Entity="BorgModuleCleaning" Caption="Cleaning"/>
-    <GuideEntityEmbed Entity="BorgModulePaper" Caption="Service"/>
-    <GuideEntityEmbed Entity="BorgModuleTreatment" Caption="Treatment"/>
+    <GuideEntityEmbed Entity="BorgModuleService" Caption="Service"/>
+    <GuideEntityEmbed Entity="BorgModuleChemical" Caption="Chemical"/>
   </Box>
   <Box>
     [italic]Examples of specialized modules. Note the housing and circuit board colors.

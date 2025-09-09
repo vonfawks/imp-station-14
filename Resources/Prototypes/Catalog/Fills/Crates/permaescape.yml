@@ -74,7 +74,7 @@
         prob: 0.10
       - id: ClothingOuterSanta
         prob: 0.10
-      - id: ClothingOuterHardsuitSyndicate
+      - id: ClothingOuterEVASuitSyndicate
         prob: 0.20
       - id: EmergencyOxygenTankFilled
         prob: 0.25
@@ -82,7 +82,7 @@
         prob: 0.25
       - id: OxygenTankFilled
         prob: 0.05
-        
+
 - type: entity
   id: CratePermaEscapeGun
   parent: CrateGenericSteel
@@ -166,6 +166,11 @@
       - id: ClearPDA # change to visitor one day.
         prob: 0.10
       - id: PersonalAI
+        orGroup: pAI
+        prob: 0.99
+      - id: GoldenPersonalAI #imp
+        orGroup: pAI
+        prob: 0.01
 
 - type: entity
   id: CratePermaEscapeLights

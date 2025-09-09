@@ -105,6 +105,7 @@
           tags:
           - PowerCell
           - PowerCellSmall
+          - BlasterCell #imp
 
 - type: entity
   parent: [ BaseItemRecharger, ConstructibleMachine ]
@@ -193,21 +194,28 @@
           - PotatoBattery
 
 - type: entity
-  parent: BaseItemRecharger
+  parent: [ BaseItemRecharger, BaseWallmount ]
   id: WallWeaponCapacitorRecharger
   name: wall recharger
+  #imp edit start
+  description: A wall-mounted recharger for battery-based weaponry.
+  placement:
+    mode: SnapgridCenter
+    snap:
+    - Wallmount
+  #imp edit end
   components:
   - type: Sprite
-    sprite: Structures/Power/wall_recharger.rsi
+    snapCardinals: false #imp edit
+    sprite: _Impstation/Structures/Power/wall_recharger.rsi #imp edit
     layers:
     - map: ["enum.PowerChargerVisualLayers.Base"]
       state: "empty"
     - map: ["enum.PowerChargerVisualLayers.Light"]
       state: "light-off"
       shader: "unshaded"
-  - type: WallMount
   - type: Charger
-    chargeRate: 25
+    #chargeRate: 25 #imp edit, sets it to base chargeRate, same as normal recharger
   - type: ItemSlots
     slots:
       charger_slot:
@@ -217,6 +225,18 @@
           - HitscanBatteryAmmoProvider
           - ProjectileBatteryAmmoProvider
           - Stunbaton
+  # imp start
+  - type: Machine
+    board: WeaponCapacitorRechargerCircuitboard
+  - type: Construction
+    graph: WallWeaponCapacitorRecharger
+    node: wall_recharger
+  - type: Physics
+    bodyType: Static
+    canCollide: false
+  - type: Fixtures
+    fixtures: {} #kills the fixtures to make directionality work
+  # imp end
 
 - type: entity
   parent: BaseRecharger
@@ -225,6 +245,7 @@
   description: A stationary charger for various robotic and cyborg entities. Surprisingly spacious.
   components:
   - type: Sprite
+    drawdepth: HighFloorObjects #imp edit
     sprite: Structures/Power/borg_charger.rsi
     layers:
       - state: borgcharger-u1
@@ -245,6 +266,7 @@
     whitelist:
       components:
       - BorgChassis
+      - Drone #imp
   - type: Construction
     containers:
     - machine_parts
@@ -288,6 +310,7 @@
     whitelist:
       components:
       - BorgChassis
+      - Drone #imp
   - type: ContainerContainer
     containers:
       entity_storage: !type:Container

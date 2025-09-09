@@ -1,16 +1,28 @@
 using Content.Shared.Guidebook;
+using Content.Shared.Players.PlayTimeTracking; // imp
 using Robust.Shared.Prototypes;
 using Robust.Shared.Serialization;
+using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom.Prototype; // imp. iirc this is outdated but i dont care
 
 namespace Content.Shared.Roles;
 
 /// <summary>
 ///     Describes information for a single antag.
 /// </summary>
-[Prototype("antag")]
-[Serializable, NetSerializable]
+[Prototype]
 public sealed partial class AntagPrototype : IPrototype
 {
+    // Imp edit start
+    [DataField("playTimeTracker", required: true, customTypeSerializer: typeof(PrototypeIdSerializer<PlayTimeTrackerPrototype>))]
+    public string PlayTimeTracker { get; private set; } = string.Empty;
+
+    /// <summary>
+    /// A color representing this antag to use for text. Defaults to syndie blood red.
+    /// </summary>
+    [DataField]
+    public Color Color { get; private set; } = Color.Red;
+    // Imp edit end
+
     [ViewVariables]
     [IdDataField]
     public string ID { get; private set; } = default!;

@@ -16,7 +16,6 @@ using Content.Client.Stylesheets;
 using Content.Client.UserInterface.Screens;
 using Content.Client.UserInterface.Systems.Chat.Widgets;
 using Content.Client.UserInterface.Systems.Gameplay;
-using Content.Client._Impstation.LeaderHighlight; // imp
 using Content.Shared.CollectiveMind;
 using Content.Shared.Administration;
 using Content.Shared.CCVar;
@@ -26,8 +25,6 @@ using Content.Shared.Decals;
 using Content.Shared.Input;
 using Content.Shared.Radio;
 using Content.Shared.Roles.RoleCodeword;
-using Content.Shared.Whitelist; // imp. actually not sure this is used
-using Content.Shared._Impstation.LeaderHighlight; // imp
 using Robust.Client.GameObjects;
 using Robust.Client.Graphics;
 using Robust.Client.Input;
@@ -50,9 +47,10 @@ using static Content.Client.CharacterInfo.CharacterInfoSystem;
 using Content.Shared._Impstation.CCVar;
 
 
+
 namespace Content.Client.UserInterface.Systems.Chat;
 
-public sealed class ChatUIController : UIController, IOnSystemChanged<CharacterInfoSystem>
+public sealed partial class ChatUIController : UIController, IOnSystemChanged<CharacterInfoSystem>
 {
     [Dependency] private readonly IClientAdminManager _admin = default!;
     [Dependency] private readonly IChatManager _manager = default!;
@@ -75,12 +73,8 @@ public sealed class ChatUIController : UIController, IOnSystemChanged<CharacterI
     [UISystemDependency] private readonly TransformSystem? _transform = default;
     [UISystemDependency] private readonly MindSystem? _mindSystem = default!;
     [UISystemDependency] private readonly RoleCodewordSystem? _roleCodewordSystem = default!;
-    [UISystemDependency] private readonly CharacterInfoSystem _characterInfo = default!;
-    [UISystemDependency] private readonly LeaderHighlightSystem? _leaderHighlightSystem = default!; // imp
-    [UISystemDependency] private readonly EntityWhitelistSystem _whitelist = default!; // imp
 
-    [ValidatePrototypeId<ColorPalettePrototype>]
-    private const string ChatNamePalette = "ChatNames";
+    private static readonly ProtoId<ColorPalettePrototype> ChatNamePalette = "ChatNames";
     private string[] _chatNameColors = default!;
     private bool _chatNameColorsEnabled;
 
@@ -164,23 +158,6 @@ public sealed class ChatUIController : UIController, IOnSystemChanged<CharacterI
     /// </summary>
     private readonly Dictionary<ChatChannel, int> _unreadMessages = new();
 
-    /// <summary>
-    ///     A list of words to be highlighted in the chatbox.
-    /// </summary>
-    private List<string> _highlights = [];
-
-    /// <summary>
-    ///     The color (hex) in witch the words will be highlighted as.
-    /// </summary>
-    private string? _highlightsColor;
-
-    private bool _autoFillHighlightsEnabled;
-
-    /// <summary>
-    ///     A bool to keep track if the 'CharacterUpdated' event is a new player attaching or the opening of the character info panel.
-    /// </summary>
-    private bool _charInfoIsAttach = false;
-
     // TODO add a cap for this for non-replays
     public readonly List<(GameTick Tick, ChatMessage Msg)> History = new();
 
@@ -204,7 +181,6 @@ public sealed class ChatUIController : UIController, IOnSystemChanged<CharacterI
     public event Action<ChatSelectChannel>? SelectableChannelsChanged;
     public event Action<ChatChannel, int?>? UnreadMessageCountsUpdated;
     public event Action<ChatMessage>? MessageAdded;
-    public event Action<string>? HighlightsUpdated;
 
     public override void Initialize()
     {
@@ -267,7 +243,7 @@ public sealed class ChatUIController : UIController, IOnSystemChanged<CharacterI
         gameplayStateLoad.OnScreenLoad += OnScreenLoad;
         gameplayStateLoad.OnScreenUnload += OnScreenUnload;
 
-        var nameColors = _prototypeManager.Index<ColorPalettePrototype>(ChatNamePalette).Colors.Values.ToArray();
+        var nameColors = _prototypeManager.Index(ChatNamePalette).Colors.Values.ToArray();
         _chatNameColors = new string[nameColors.Length];
         for (var i = 0; i < nameColors.Length; i++)
         {
@@ -276,19 +252,7 @@ public sealed class ChatUIController : UIController, IOnSystemChanged<CharacterI
 
         _config.OnValueChanged(CCVars.ChatWindowOpacity, OnChatWindowOpacityChanged);
 
-        _config.OnValueChanged(ImpCCVars.ChatAutoFillHighlights, (value) => { _autoFillHighlightsEnabled = value; });
-        _autoFillHighlightsEnabled = _config.GetCVar(ImpCCVars.ChatAutoFillHighlights);
-
-        _config.OnValueChanged(ImpCCVars.ChatHighlightsColor, (value) => { _highlightsColor = value; });
-        _highlightsColor = _config.GetCVar(ImpCCVars.ChatHighlightsColor);
-
-        // Load highlights if any were saved.
-        string highlights = _config.GetCVar(ImpCCVars.ChatHighlights);
-
-        if (!string.IsNullOrEmpty(highlights))
-        {
-            UpdateHighlights(highlights);
-        }
+        InitializeHighlights();
     }
 
     public void OnScreenLoad()
@@ -304,16 +268,6 @@ public sealed class ChatUIController : UIController, IOnSystemChanged<CharacterI
     public void OnScreenUnload()
     {
         SetMainChat(false);
-    }
-
-    public void OnSystemLoaded(CharacterInfoSystem system)
-    {
-        system.OnCharacterUpdate += CharacterUpdated;
-    }
-
-    public void OnSystemUnloaded(CharacterInfoSystem system)
-    {
-        system.OnCharacterUpdate -= CharacterUpdated;
     }
 
     private void OnChatWindowOpacityChanged(float opacity)
@@ -512,11 +466,7 @@ public sealed class ChatUIController : UIController, IOnSystemChanged<CharacterI
     {
         UpdateChannelPermissions();
 
-        if (_autoFillHighlightsEnabled)
-        {
-            _charInfoIsAttach = true;
-            _characterInfo.RequestCharacterInfo();
-        }
+        UpdateAutoFillHighlights();
     }
 
     private void AddSpeechBubble(ChatMessage msg, SpeechBubble.SpeechType speechType)
@@ -558,8 +508,9 @@ public sealed class ChatUIController : UIController, IOnSystemChanged<CharacterI
 
         if (existing.Count > SpeechBubbleCap)
         {
-            // Get the oldest to start fading fast.
-            var last = existing[0];
+            // Get the next speech bubble to fade
+            // Any speech bubbles before it are already fading
+            var last = existing[^(SpeechBubbleCap + 1)];
             last.FadeNow();
         }
     }
@@ -572,7 +523,7 @@ public sealed class ChatUIController : UIController, IOnSystemChanged<CharacterI
     private void EnqueueSpeechBubble(EntityUid entity, ChatMessage message, SpeechBubble.SpeechType speechType)
     {
         // Don't enqueue speech bubbles for other maps. TODO: Support multiple viewports/maps?
-        if (EntityManager.GetComponent<TransformComponent>(entity).MapID != _eye.CurrentMap)
+        if (EntityManager.GetComponent<TransformComponent>(entity).MapID != _eye.CurrentEye.Position.MapId)
             return;
 
         if (!_queuedSpeechBubbles.TryGetValue(entity, out var queueData))
@@ -635,7 +586,7 @@ public sealed class ChatUIController : UIController, IOnSystemChanged<CharacterI
         }
 
         // Only ghosts and admins can send / see deadchat.
-        if (_admin.HasFlag(AdminFlags.Admin) || _ghost is {IsGhost: true} || _ghost is {IsGhostBarPatron: true})
+        if (_admin.HasFlag(AdminFlags.Admin) || _ghost is {IsGhost: true})
         {
             FilterableChannels |= ChatChannel.Dead;
             CanSendChannels |= ChatSelectChannel.Dead;
@@ -681,31 +632,6 @@ public sealed class ChatUIController : UIController, IOnSystemChanged<CharacterI
             _unreadMessages[channel] = 0;
             UnreadMessageCountsUpdated?.Invoke(channel, 0);
         }
-    }
-
-    public void UpdateHighlights(string highlights)
-    {
-        // Save the newly provided list of highlighs if different.
-        if (!_config.GetCVar(ImpCCVars.ChatHighlights).Equals(highlights, StringComparison.CurrentCultureIgnoreCase))
-        {
-            _config.SetCVar(ImpCCVars.ChatHighlights, highlights);
-            _config.SaveToFile();
-        }
-
-        // If the word is surrounded by "" we replace them with a whole-word regex tag.
-        highlights = highlights.Replace("\"", "\\b");
-
-        // Fill the array with the highlights separated by newlines, disregarding empty entries.
-        string[] arrHighlights = highlights.Split('\n', StringSplitOptions.RemoveEmptyEntries | StringSplitOptions.TrimEntries);
-        _highlights.Clear();
-        foreach (var keyword in arrHighlights)
-        {
-            _highlights.Add(keyword);
-        }
-
-        // Arrange the list in descending order so that when highlighting,
-        // the full word (eg. "Security") appears before the abbreviation (eg. "Sec").
-        _highlights.Sort((x, y) => y.Length.CompareTo(x.Length));
     }
 
     public override void FrameUpdate(FrameEventArgs delta)
@@ -967,7 +893,7 @@ public sealed class ChatUIController : UIController, IOnSystemChanged<CharacterI
                 msg.WrappedMessage = SharedChatSystem.InjectTagInsideTag(msg, "Name", "color", GetNameColor(SharedChatSystem.GetStringInsideTag(msg, "Name")));
         }
 
-        // Color any words choosen by the client.
+        // Color any words chosen by the client.
         foreach (var highlight in _highlights)
         {
             msg.WrappedMessage = SharedChatSystem.InjectTagAroundString(msg, highlight, "color", _highlightsColor);
@@ -982,18 +908,6 @@ public sealed class ChatUIController : UIController, IOnSystemChanged<CharacterI
                 {
                     foreach (string codeword in codewordData.Codewords)
                         msg.WrappedMessage = SharedChatSystem.InjectTagAroundString(msg, codeword, "color", codewordData.Color.ToHex());
-                }
-            }
-        }
-
-        // imp special. Color *all* text sent by your leader. Currently only works for Revolutionaries.
-        if (_player.LocalUser != null && _mindSystem != null && _leaderHighlightSystem != null)
-        {
-            if (_mindSystem.TryGetMind(_player.LocalUser.Value, out var mindId) && _ent.TryGetComponent(mindId, out LeaderHighlightComponent? leaderHighlight))
-            {
-                if (_mindSystem.GetMind(_ent.GetEntity(msg.SenderEntity)) == leaderHighlight.Leader)
-                {
-                    msg.MessageColorOverride = leaderHighlight.HighlightColor;
                 }
             }
         }
@@ -1031,7 +945,7 @@ public sealed class ChatUIController : UIController, IOnSystemChanged<CharacterI
                 break;
 
             case ChatChannel.Dead:
-                if (_ghost is not {IsGhost: true } && _ghost is not {IsGhostBarPatron: true })
+                if (_ghost is not {IsGhost: true })
                     break;
 
                 AddSpeechBubble(msg, SpeechBubble.SpeechType.Say);
@@ -1076,6 +990,11 @@ public sealed class ChatUIController : UIController, IOnSystemChanged<CharacterI
     public void NotifyChatTextChange()
     {
         _typingIndicator?.ClientChangedChatText();
+    }
+
+    public void NotifyChatFocus(bool isFocused)
+    {
+        _typingIndicator?.ClientChangedChatFocus(isFocused);
     }
 
     public void Repopulate()

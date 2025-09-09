@@ -3,14 +3,14 @@
   id: WeaponMeleeToolboxRobust
   name: robust toolbox
   description: A tider's weapon.
-  suffix: DO NOT MAP
+  categories: [ DoNotMap ]
   components:
   - type: Sprite
-    sprite: Objects/Tools/Toolboxes/toolbox_red.rsi
+    sprite: _Impstation/Objects/Tools/Toolboxes/toolbox_red.rsi #imp edit
     state: icon
   - type: Item
     size: Ginormous
-    sprite: Objects/Tools/Toolboxes/toolbox_red.rsi
+    sprite: _Impstation/Objects/Tools/Toolboxes/toolbox_red.rsi #imp edit
   - type: MeleeWeapon
     wideAnimationRotation: -135
     attackRate: 1.5

@@ -150,3 +150,138 @@
     sprite: _Impstation/Clothing/Uniforms/Jumpskirt/courier.rsi
   - type: Clothing
     sprite: _Impstation/Clothing/Uniforms/Jumpskirt/courier.rsi
+
+- type: entity
+  parent: [ClothingUniformBase, BaseCommandContraband]
+  id: ClothingUniformJumpskirtHD
+  name: hospitality director's jumpskirt
+  description: A uniform of splendid sartorial make, fit for the lead of the service department.
+  components:
+    - type: Sprite
+      sprite: _Impstation/Clothing/Uniforms/Jumpskirt/hd_uniform.rsi
+    - type: Clothing
+      sprite: _Impstation/Clothing/Uniforms/Jumpskirt/hd_uniform.rsi
+
+- type: entity
+  parent: [ClothingUniformBase, BaseCommandContraband]
+  id: ClothingUniformJumpskirtHDTurtle
+  name: hospitality director's turtleneck
+  description: This turtleneck gives you an air of class and authority over the service department while still being pretty dang comfy.
+  components:
+    - type: Sprite
+      sprite: _Impstation/Clothing/Uniforms/Jumpskirt/hd_turtle.rsi
+    - type: Clothing
+      sprite: _Impstation/Clothing/Uniforms/Jumpskirt/hd_turtle.rsi
+
+- type: entity
+  parent: [ClothingUniformBase, BaseCommandContraband]
+  id: ClothingUniformJumpskirtHospitalityDirectorBartender
+  name: lead bartending uniform
+  description: This uniform lets the people know you can make a really mean raktaccino.
+  components:
+  - type: Sprite
+    sprite: _Impstation/Clothing/Uniforms/Jumpskirt/hd_bartender.rsi
+  - type: Clothing
+    sprite: _Impstation/Clothing/Uniforms/Jumpskirt/hd_bartender.rsi
+
+- type: entity
+  parent: [ClothingUniformBase, BaseCommandContraband]
+  id: ClothingUniformJumpskirtHospitalityDirectorJanitor
+  name: lead custodial jumpskirt
+  description: This uniform shows that if anyone should get the janitor trolley, it's you.
+  components:
+  - type: Sprite
+    sprite: _Impstation/Clothing/Uniforms/Jumpskirt/hd_janitor.rsi
+  - type: Clothing
+    sprite: _Impstation/Clothing/Uniforms/Jumpskirt/hd_janitor.rsi
+
+- type: entity
+  parent: ClothingUniformSkirtBase
+  id: ClothingUniformJumpskirtMimeCropped
+  name: cropped mime jumpskirt
+  description: ...?
+  components:
+  - type: Sprite
+    sprite: _Impstation/Clothing/Uniforms/Jumpskirt/mimecropped.rsi
+  - type: Clothing
+    sprite: _Impstation/Clothing/Uniforms/Jumpskirt/mimecropped.rsi
+
+- type: entity
+  parent: ClothingUniformSkirtBase
+  id: ClothingUniformJumpskirtAngelDress
+  name: angel dress
+  description: Could you stop sabotaging my business?!
+  components:
+  - type: Sprite
+    sprite: _Impstation/Clothing/Uniforms/Jumpskirt/angeldress.rsi
+  - type: Clothing
+    sprite: _Impstation/Clothing/Uniforms/Jumpskirt/angeldress.rsi
+  - type: Tag
+    tags:
+    - WhitelistChameleon
+
+- type: entity
+  parent: [ClothingUniformSkirtBase, BaseCommandContraband]
+  id: ClothingUniformJumpskirtHopPowerSuit
+  name: head of personnel's power suit
+  description: Rather bold and imposing. Perfect for establishing authority in the workplace.
+  components:
+  - type: Sprite
+    sprite: _Impstation/Clothing/Uniforms/Jumpskirt/hop_powersuit.rsi
+  - type: Clothing
+    sprite: _Impstation/Clothing/Uniforms/Jumpskirt/hop_powersuit.rsi
+
+- type: entity
+  parent: [ClothingUniformSkirtBase, BaseCommandContraband]
+  id: ClothingUniformJumpskirtCMOCasual
+  name: chief medical officer's casual skirt
+  description: A comfy casual outfit for the CMO.
+  components:
+  - type: Sprite
+    sprite: _Impstation/Clothing/Uniforms/Jumpskirt/cmo_casual.rsi
+  - type: Clothing
+    sprite: _Impstation/Clothing/Uniforms/Jumpskirt/cmo_casual.rsi
+
+- type: entity
+  parent: [ClothingUniformSkirtBase, BaseCommandContraband]
+  id: ClothingUniformJumpskirtCMOFormal
+  name: chief medical officer's formal dress
+  description: The CMO's formal attire, perfect for meetings and hands-off work.
+  components:
+  - type: Sprite
+    sprite: _Impstation/Clothing/Uniforms/Jumpskirt/cmo_formal.rsi
+  - type: Clothing
+    sprite: _Impstation/Clothing/Uniforms/Jumpskirt/cmo_formal.rsi
+
+- type: entity
+  parent: ClothingUniformSkirtBase
+  id: ClothingUniformJumpskirtSpaceDress
+  name: librarian's space dress
+  description: The perfect dress for a normal spacetrip.
+  components:
+  - type: Sprite
+    sprite: _Impstation/Clothing/Uniforms/Jumpskirt/spacedress.rsi
+  - type: Clothing
+    sprite: _Impstation/Clothing/Uniforms/Jumpskirt/spacedress.rsi
+
+- type: entity
+  parent: ClothingUniformSkirtBase
+  id: ClothingUniformMusicianSingerDress
+  name: lounge singer's dress
+  description: A form-fitting silk dress, perfect for preforming at fancy nightclubs. Or at dive bars on backwater space stations.
+  components:
+  - type: Sprite
+    sprite: _Impstation/Clothing/Uniforms/Jumpskirt/mus_singerdress.rsi
+  - type: Clothing
+    sprite: _Impstation/Clothing/Uniforms/Jumpskirt/mus_singerdress.rsi
+
+- type: entity
+  parent: ClothingUniformSkirtBase
+  id: ClothingUniformJumpskirtNurse
+  name: nurse uniform
+  description: An old nursing uniform. It's probably been through the wash thousands of times, yet you can still faintly make out stains from nightmarish shifts of yore.
+  components:
+  - type: Sprite
+    sprite: _Impstation/Clothing/Uniforms/Jumpskirt/nurse.rsi
+  - type: Clothing
+    sprite: _Impstation/Clothing/Uniforms/Jumpskirt/nurse.rsi

@@ -23,8 +23,7 @@ public sealed class NetworkConfiguratorSystem : SharedNetworkConfiguratorSystem
     [Dependency] private readonly ActionsSystem _actions = default!;
     [Dependency] private readonly IInputManager _inputManager = default!;
 
-    [ValidatePrototypeId<EntityPrototype>]
-    private const string Action = "ActionClearNetworkLinkOverlays";
+    private static readonly EntProtoId Action = "ActionClearNetworkLinkOverlays";
 
     public override void Initialize()
     {
@@ -126,26 +125,31 @@ public sealed class NetworkConfiguratorSystem : SharedNetworkConfiguratorSystem
 
             _linkModeActive = _configurator.LinkModeActive;
 
-            var modeLocString = _linkModeActive??false
+            var modeLocString = _linkModeActive ?? false // imp - fix formatting
                 ? "network-configurator-examine-mode-link"
                 : "network-configurator-examine-mode-list";
 
-            _label.SetMarkup(Robust.Shared.Localization.Loc.GetString("network-configurator-item-status-label",
-                ("mode", Robust.Shared.Localization.Loc.GetString(modeLocString)),
-                ("keybinding", _keyBindingName)));
+            if (!_configurator.SwitchDisabled) // imp start
+            {
+                _label.SetMarkup(Robust.Shared.Localization.Loc.GetString("network-configurator-item-status-label",
+                    ("mode", Robust.Shared.Localization.Loc.GetString(modeLocString)),
+                    ("keybinding", _keyBindingName)));
+            }
+            else
+                _label.SetMarkup(Robust.Shared.Localization.Loc.GetString("network-configurator-item-status-label-noswitch",
+                    ("mode", Robust.Shared.Localization.Loc.GetString(modeLocString)))); // end imp
         }
     }
 }
 
-public sealed class ClearAllNetworkLinkOverlays : IConsoleCommand
+public sealed class ClearAllNetworkLinkOverlays : LocalizedEntityCommands
 {
-    [Dependency] private readonly IEntityManager _e = default!;
+    [Dependency] private readonly NetworkConfiguratorSystem _network = default!;
 
-    public string Command => "clearnetworklinkoverlays";
-    public string Description => "Clear all network link overlays.";
-    public string Help => Command;
-    public void Execute(IConsoleShell shell, string argStr, string[] args)
+    public override string Command => "clearnetworklinkoverlays";
+
+    public override void Execute(IConsoleShell shell, string argStr, string[] args)
     {
-        _e.System<NetworkConfiguratorSystem>().ClearAllOverlays();
+        _network.ClearAllOverlays();
     }
 }

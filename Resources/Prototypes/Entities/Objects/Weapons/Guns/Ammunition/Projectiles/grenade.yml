@@ -6,7 +6,8 @@
   components:
   - type: Sprite
     sprite: Objects/Weapons/Guns/Projectiles/projectiles2.rsi
-    state: buckshot
+    layers:
+    - state: rubber #imp
   - type: Projectile
     deleteOnCollide: false
     damage:
@@ -24,8 +25,9 @@
   parent: BaseBullet
   components:
   - type: Sprite
-    sprite: Objects/Weapons/Guns/Projectiles/projectiles2.rsi
-    state: buckshot
+    sprite: /Textures/_Impstation/Objects/Weapons/Guns/Projectiles/kineticprojectiles.rsi #imp
+    layers:
+    - state: shard #imp
   - type: Projectile
     deleteOnCollide: false
     damage:
@@ -42,7 +44,8 @@
   components:
   - type: Sprite
     sprite: Objects/Weapons/Guns/Projectiles/projectiles2.rsi
-    state: buckshot-flare
+    layers:
+    - state: buckshot-flare #imp
   - type: Projectile
     deleteOnCollide: false
     damage:
@@ -52,5 +55,22 @@
   - type: IgniteOnCollide
     fireStacks: 1
     count: 10
+  - type: TimedDespawn
+    lifetime: 0.25
+
+- type: entity
+  id: PelletClusterLessLethal
+  name: pellet (ball, less lethal)
+  categories: [ HideSpawnMenu ]
+  parent: BaseBullet
+  components:
+  - type: Sprite
+    sprite: Objects/Weapons/Guns/Projectiles/projectiles2.rsi
+    state: buckshot
+  - type: Projectile
+    deleteOnCollide: false
+    damage:
+      types:
+        Piercing: 5
   - type: TimedDespawn
     lifetime: 0.25

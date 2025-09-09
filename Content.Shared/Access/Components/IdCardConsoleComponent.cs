@@ -10,9 +10,6 @@ namespace Content.Shared.Access.Components;
 [Access(typeof(SharedIdCardConsoleSystem))]
 public sealed partial class IdCardConsoleComponent : Component
 {
-    public const int MaxFullNameLength = 30;
-    public const int MaxJobTitleLength = 30;
-
     public static string PrivilegedIdCardSlotId = "IdCardConsole-privilegedId";
     public static string TargetIdCardSlotId = "IdCardConsole-targetId";
 
@@ -48,28 +45,34 @@ public sealed partial class IdCardConsoleComponent : Component
         "Atmospherics",
         "Bar",
         "Brig",
-        "Detective",
         "Captain",
         "Cargo",
         "Chapel",
         "Chemistry",
         "ChiefEngineer",
         "ChiefMedicalOfficer",
+        "Clown", // Imp
         "Command",
         "Courier", // Imp
         "Cryogenics",
+        "Detective",
         "Engineering",
         "External",
         "HeadOfPersonnel",
         "HeadOfSecurity",
+        "HospitalityDirector", // Imp
         "Hydroponics",
         "Janitor",
         "Kitchen",
         "Lawyer",
+        "Librarian", // Imp
         "Logistics", //Imp
         "Maintenance",
         "Medical",
+        "Mime", // Imp
+        "Musician", // Imp
         "Quartermaster",
+        "Reporter", // Imp
         "Research",
         "ResearchDirector",
         "Salvage",

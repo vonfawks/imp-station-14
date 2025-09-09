@@ -66,9 +66,9 @@
   - type: Armor
     modifiers:
       coefficients:
-        Blunt: 0.7
-        Slash: 0.7
-        Piercing: 0.7
+        Blunt: 0.65
+        Slash: 0.65
+        Piercing: 0.6
         Heat: 0.7
         Caustic: 0.75 # not the full 90% from ss13 because of the head
   - type: ExplosionResistance
@@ -82,10 +82,11 @@
   - type: Armor
     modifiers:
       coefficients:
-        Blunt: 0.7
-        Slash: 0.7
+        Blunt: 0.65
+        Slash: 0.65
         Piercing: 0.7
         Heat: 0.7
+        Caustic: 0.9
   - type: ExplosionResistance
     damageCoefficient: 0.9
 
@@ -315,15 +316,15 @@
     sprite: Clothing/OuterClothing/Coats/pirate.rsi
 
 - type: entity
-  parent: [ClothingOuterArmorWarden, ClothingOuterStorageBase, BaseRestrictedContraband]
+  parent: [ClothingOuterArmorWarden, ClothingOuterStorageBase, BaseSecurityContraband]
   id: ClothingOuterCoatWarden
   name: warden's armored jacket
   description: A sturdy, utilitarian jacket designed to protect a warden from any brig-bound threats.
   components:
   - type: Sprite
-    sprite: Clothing/OuterClothing/Coats/warden.rsi
+    sprite: _Impstation/Clothing/OuterClothing/Coats/warden.rsi #imp
   - type: Clothing
-    sprite: Clothing/OuterClothing/Coats/warden.rsi
+    sprite: _Impstation/Clothing/OuterClothing/Coats/warden.rsi #imp
 
 - type: entity
   parent: ClothingOuterStorageBase
@@ -343,9 +344,9 @@
   description: Meant for a clown of the cloth.
   components:
   - type: Sprite
-    sprite: Clothing/OuterClothing/Coats/clownpriest.rsi
+    sprite: _Impstation/Clothing/OuterClothing/Coats/clownpriest.rsi #imp
   - type: Clothing
-    sprite: Clothing/OuterClothing/Coats/clownpriest.rsi
+    sprite: _Impstation/Clothing/OuterClothing/Coats/clownpriest.rsi #imp
 
 - type: entity
   parent: [ClothingOuterStorageBase, BaseMajorContraband]
@@ -405,9 +406,9 @@
   components:
   - type: AllowSuitStorage
   - type: Sprite
-    sprite: Clothing/OuterClothing/Coats/brigmedic.rsi
+    sprite: _Impstation/Clothing/OuterClothing/Coats/brigmedic.rsi #imp
   - type: Clothing
-    sprite: Clothing/OuterClothing/Coats/brigmedic.rsi
+    sprite: _Impstation/Clothing/OuterClothing/Coats/brigmedic.rsi #imp
   - type: Armor
     modifiers:
       coefficients:
@@ -418,7 +419,7 @@
         Caustic: 0.75
 
 - type: entity
-  parent: ClothingOuterStorageBase
+  parent: ClothingOuterStorageFoldableBase
   id: ClothingOuterCoatLabSeniorResearcher
   name: senior researcher lab coat
   description: A suit that protects against minor chemical spills. Has a purple collar and wrist trims.
@@ -433,7 +434,12 @@
         Caustic: 0.75
 
 - type: entity
-  parent: ClothingOuterStorageBase
+  parent: [ClothingOuterStorageFoldableBaseOpened, ClothingOuterCoatLabSeniorResearcher]
+  id: ClothingOuterCoatLabSeniorResearcherOpened
+  name: senior researcher lab coat
+
+- type: entity
+  parent: ClothingOuterStorageFoldableBase
   id: ClothingOuterCoatLabSeniorPhysician
   name: senior physician lab coat
   description: A suit that protects against minor chemical spills. Has light blue sleeves and an orange waist trim.
@@ -448,6 +454,11 @@
         Caustic: 0.75
 
 - type: entity
+  parent: [ClothingOuterStorageFoldableBaseOpened, ClothingOuterCoatLabSeniorPhysician]
+  id: ClothingOuterCoatLabSeniorPhysicianOpened
+  name: senior physician lab coat
+
+- type: entity
   parent: ClothingOuterStorageBase
   id: ClothingOuterCoatSpaceAsshole
   name: the coat of space asshole
@@ -459,7 +470,7 @@
     sprite: Clothing/OuterClothing/Coats/space_asshole.rsi
 
 - type: entity
-  parent: ClothingOuterStorageBase
+  parent: ClothingOuterStorageFoldableBase
   id: ClothingOuterCoatExpensive
   name: expensive coat
   description: Very fluffy pink coat, made out of very expensive fur (clearly).
@@ -470,23 +481,6 @@
     sprite: Clothing/OuterClothing/Coats/expensive_coat.rsi
 
 - type: entity
-  parent: ClothingOuterArmorBasic
-  id: ClothingOuterCoatFieldBomber
-  name: field bomber
-  description: A red bomber jacket, worn open with the sleeves pushed up. The Nanotrasen logo on the front and the shield on the back are sewn with special high-vis thread.
-  components:
-  - type: Sprite
-    sprite: _NF/Clothing/OuterClothing/Coats/field_bomber.rsi
-  - type: Clothing
-    sprite: _NF/Clothing/OuterClothing/Coats/field_bomber.rsi #imp
-
-- type: entity
-  parent: ClothingOuterCoatDetective
-  id: ClothingOuterCoatFieldJacket
-  name: field jacket
-  description: A soft black suit jacket with loose cuffs. The white logos mark the wearer as Nanotrasen security.
-  components:
-  - type: Sprite
-    sprite: _NF/Clothing/OuterClothing/Coats/field_jacket.rsi
-  - type: Clothing
-    sprite: _NF/Clothing/OuterClothing/Coats/field_jacket.rsi #imp
+  parent: [ClothingOuterStorageFoldableBaseOpened, ClothingOuterCoatExpensive]
+  id: ClothingOuterCoatExpensiveOpened
+  name: expensive coat

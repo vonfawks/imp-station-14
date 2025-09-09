@@ -31,7 +31,7 @@ entities:
       name: Unknown
     - type: Transform
       pos: 22.326925,-7.8882475
-      parent: 966
+      parent: invalid
     - type: MapGrid
       chunks:
         0,0:
@@ -530,19 +530,6 @@ entities:
     - type: RadiationGridResistance
     - type: Shuttle
     - type: NavMap
-  - uid: 966
-    components:
-    - type: MetaData
-      name: Map Entity
-    - type: Transform
-    - type: Map
-      mapPaused: True
-    - type: PhysicsMap
-    - type: GridTree
-    - type: MovedGrids
-    - type: Broadphase
-    - type: OccluderTree
-    - type: LoadedMap
 - proto: AcousticGuitarInstrument
   entities:
   - uid: 17
@@ -550,39 +537,6 @@ entities:
     - type: Transform
       pos: 8.439119,-5.359098
       parent: 1
-- proto: ActionChangeVoiceMask
-  entities:
-  - uid: 77
-    components:
-    - type: Transform
-      parent: 540
-    - type: InstantAction
-      originalIconColor: '#FFFFFFFF'
-      container: 540
-  - uid: 279
-    components:
-    - type: Transform
-      parent: 278
-    - type: InstantAction
-      originalIconColor: '#FFFFFFFF'
-      container: 278
-      attachedEntity: 275
-- proto: ActionToggleLight
-  entities:
-  - uid: 138
-    components:
-    - type: Transform
-      parent: 137
-    - type: InstantAction
-      originalIconColor: '#FFFFFFFF'
-      container: 137
-  - uid: 176
-    components:
-    - type: Transform
-      parent: 175
-    - type: InstantAction
-      originalIconColor: '#FFFFFFFF'
-      container: 175
 - proto: AgentIDCard
   entities:
   - uid: 345
@@ -1382,6 +1336,8 @@ entities:
           - 553
           - 561
           - 557
+    - type: StorageFill
+      contents: [] # This is illegal lmao
     - type: Physics
       canCollide: False
     - type: InsideEntityStorage
@@ -2125,29 +2081,11 @@ entities:
     components:
     - type: Transform
       parent: 275
-    - type: VoiceMask
-      actionEntity: 279
-    - type: Physics
-      canCollide: False
-    - type: ActionsContainer
-    - type: ContainerContainer
-      containers:
-        actions: !type:Container
-          ents:
-          - 279
   - uid: 540
     components:
     - type: Transform
       pos: 11.413226,2.469913
       parent: 1
-    - type: VoiceMask
-      actionEntity: 77
-    - type: ActionsContainer
-    - type: ContainerContainer
-      containers:
-        actions: !type:Container
-          ents:
-          - 77
   - uid: 541
     components:
     - type: Transform
@@ -3659,43 +3597,15 @@ entities:
     - type: Transform
       pos: -3.4828708,3.8651552
       parent: 1
-    - type: HandheldLight
-      toggleActionEntity: 138
-    - type: ContainerContainer
-      containers:
-        cell_slot: !type:ContainerSlot
-          showEnts: False
-          occludes: True
-          ent: null
-        actions: !type:Container
-          showEnts: False
-          occludes: True
-          ents:
-          - 138
     - type: Physics
       canCollide: True
-    - type: ActionsContainer
   - uid: 175
     components:
     - type: Transform
       pos: -3.4516208,-3.1192198
       parent: 1
-    - type: HandheldLight
-      toggleActionEntity: 176
-    - type: ContainerContainer
-      containers:
-        cell_slot: !type:ContainerSlot
-          showEnts: False
-          occludes: True
-          ent: null
-        actions: !type:Container
-          showEnts: False
-          occludes: True
-          ents:
-          - 176
     - type: Physics
       canCollide: True
-    - type: ActionsContainer
 - proto: LandMineExplosive
   entities:
   - uid: 151
@@ -3812,10 +3722,6 @@ entities:
           showEnts: False
           occludes: False
           ent: null
-    - type: ActiveUserInterface
-    - type: Actions
-      actions:
-      - 279
 - proto: MedkitCombatFilled
   entities:
   - uid: 758

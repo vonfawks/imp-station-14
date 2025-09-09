@@ -10,11 +10,13 @@ using Content.Shared.Random;
 using Content.Shared.Random.Helpers;
 using Robust.Server.GameObjects;
 using Robust.Shared.Map;
-using Robust.Shared.Physics.Systems;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
+using Content.Shared.Administration.Logs;
+using Content.Shared.Database;
+using System.Text.RegularExpressions; // imp
 
 namespace Content.Server.Botany.Systems;
 
@@ -25,17 +27,16 @@ public sealed partial class BotanySystem : EntitySystem
     [Dependency] private readonly AppearanceSystem _appearance = default!;
     [Dependency] private readonly PopupSystem _popupSystem = default!;
     [Dependency] private readonly SharedHandsSystem _hands = default!;
-    [Dependency] private readonly SharedPointLightSystem _light = default!;
     [Dependency] private readonly SharedSolutionContainerSystem _solutionContainerSystem = default!;
     [Dependency] private readonly MetaDataSystem _metaData = default!;
-    [Dependency] private readonly FixtureSystem _fixtureSystem = default!;
     [Dependency] private readonly RandomHelperSystem _randomHelper = default!;
-
+    [Dependency] private readonly ISharedAdminLogManager _adminLogger = default!;
     public override void Initialize()
     {
         base.Initialize();
 
         SubscribeLocalEvent<SeedComponent, ExaminedEvent>(OnExamined);
+        SubscribeLocalEvent<ProduceComponent, ExaminedEvent>(OnProduceExamined);
     }
 
     public bool TryGetSeed(SeedComponent comp, [NotNullWhen(true)] out SeedData? seed)
@@ -84,10 +85,19 @@ public sealed partial class BotanySystem : EntitySystem
         if (!TryGetSeed(component, out var seed))
             return;
 
-        using (args.PushGroup(nameof(SeedComponent)))
+        using (args.PushGroup(nameof(SeedComponent), 1))
         {
             var name = Loc.GetString(seed.DisplayName);
-            args.PushMarkup(Loc.GetString($"seed-component-description", ("seedName", name)));
+
+            //IMP EDIT: support good grammar
+            //supports plural crop descriptions (i.e. "some ears of corn", "an apple tree", "some cannabis"... etc.)
+            var getsArticle = "y";
+            if (seed.IsSingularPluralName)
+                getsArticle = "splur";
+            else if (seed.IsPluralName)
+                getsArticle = "plur";
+            args.PushMarkup(Loc.GetString($"seed-component-description", ("seedName", name), ("getsArticle", getsArticle), ("empty", "")));
+            //end imp edits
             args.PushMarkup(Loc.GetString($"seed-component-plant-yield-text", ("seedYield", seed.Yield)));
             args.PushMarkup(Loc.GetString($"seed-component-plant-potency-text", ("seedPotency", seed.Potency)));
         }
@@ -107,7 +117,7 @@ public sealed partial class BotanySystem : EntitySystem
 
         var name = Loc.GetString(proto.Name);
         var noun = Loc.GetString(proto.Noun);
-        var val = Loc.GetString("botany-seed-packet-name", ("seedName", name), ("seedNoun", noun));
+        var val = Loc.GetString(proto.PacketName, ("seedName", name), ("seedNoun", noun)); // Frontier: "botany-seed-packet-name"<proto.PacketName
         _metaData.SetEntityName(seed, val);
 
         // try to automatically place in user's other hand
@@ -119,7 +129,12 @@ public sealed partial class BotanySystem : EntitySystem
     {
         if (position.IsValid(EntityManager) &&
             proto.ProductPrototypes.Count > 0)
+        {
+            if (proto.HarvestLogImpact != null)
+                _adminLogger.Add(LogType.Botany, proto.HarvestLogImpact.Value, $"Auto-harvested {Loc.GetString(proto.Name):seed} at Pos:{position}.");
+
             return GenerateProduct(proto, position, yieldMod);
+        }
 
         return Enumerable.Empty<EntityUid>();
     }
@@ -134,6 +149,10 @@ public sealed partial class BotanySystem : EntitySystem
 
         var name = Loc.GetString(proto.DisplayName);
         _popupSystem.PopupCursor(Loc.GetString("botany-harvest-success-message", ("name", name)), user, PopupType.Medium);
+
+        if (proto.HarvestLogImpact != null)
+            _adminLogger.Add(LogType.Botany, proto.HarvestLogImpact.Value, $"{ToPrettyString(user):player} harvested {Loc.GetString(proto.Name):seed} at Pos:{Transform(user).Coordinates}.");
+
         return GenerateProduct(proto, Transform(user).Coordinates, yieldMod);
     }
 

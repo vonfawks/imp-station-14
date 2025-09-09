@@ -10,27 +10,6 @@
     layers:
     - map: ["enum.DamageStateVisualLayers.Base"]
       state: pipi
-  - type: Physics
-  - type: Fixtures
-    fixtures:
-      fix1:
-        shape:
-          !type:PhysShapeCircle
-          radius: 0.35
-        density: 12
-        mask:
-        - MobMask
-        layer:
-        - MobLayer
-  - type: Inventory
-    speciesId: cat
-    templateId: pet
-  - type: InventorySlots
-  - type: Strippable
-  - type: UserInterface
-    interfaces:
-      enum.StrippingUiKey.Key:
-        type: StrippableBoundUserInterface
   - type: DamageStateVisuals
     states:
       Alive:
@@ -39,7 +18,7 @@
         Base: pipi_dead
       Dead:
         Base: pipi_dead
-  - type: Butcherable
+  - type: Butcherable # pipi gives 1 less meat than a normal cat, for some reason?
     spawned:
     - id: FoodMeat
       amount: 2
@@ -56,14 +35,15 @@
       gender: female
   - type: Tag
     tags:
-    - CannotSuicide
+    - CannotSuicide # dunno why this is here but sure. NEVER kill yourself
     - VimPilot
   - type: StealTarget
     stealGroup: AnimalNamedCat
+  - type: PleebnarGibbable
 
 - type: entity
   name: Fin Fin
-  parent: MobBat
+  parent: [ MobBat, StripableInventoryBase ]
   id: MobFinfin
   description: Your best friend.
   components:
@@ -73,7 +53,6 @@
     layers:
     - map: ["enum.DamageStateVisualLayers.Base"]
       state: finfin
-  - type: Physics
   - type: Fixtures
     fixtures:
       fix1:
@@ -105,12 +84,16 @@
   - type: Inventory
     speciesId: finfin
     templateId: pet
-  - type: InventorySlots
-  - type: Strippable
-  - type: UserInterface
-    interfaces:
-      enum.StrippingUiKey.Key:
-        type: StrippableBoundUserInterface
+  - type: ContainerContainer
+    containers:
+      mask: !type:ContainerSlot
+        showEnts: False
+        occludes: False
+        ent: null
+      suitstorage: !type:ContainerSlot
+        showEnts: False
+        occludes: False
+        ent: null
   - type: DamageStateVisuals
     states:
       Alive:
@@ -132,8 +115,6 @@
     interactSuccessSpawn: EffectHearts
     interactSuccessSound:
       path: /Audio/_Impstation/Animals/finfin3.ogg
-  - type: SentienceTarget
-    flavorKind: station-event-random-sentience-flavor-organic
   - type: Grammar
     attributes:
       proper: true
@@ -177,17 +158,6 @@
         180: Dead
     - type: Stamina
       critThreshold: 150
-    - type: DamageStateVisuals
-      states:
-        Alive:
-          Base: alive
-          BaseUnshaded: mouth
-        Dead:
-          Base: dead
-          BaseUnshaded: dead_mouth
-    - type: Body
-      prototype: Bloodsucker
-      requiredLegs: 1
     - type: Butcherable
       spawned:
         - id: FoodMeatFish
@@ -206,7 +176,7 @@
   components:
   - type: Sprite
     drawdepth: Mobs
-    sprite: Mobs/Animals/major.rsi
+    sprite: _Impstation/Mobs/Animals/major.rsi
     layers:
     - map: [ "enum.DamageStateVisualLayers.Base" ]
       state: major
@@ -217,7 +187,7 @@
     states:
       Alive:
         Base: major
-        BaseUnshaded: glow_major
+        BaseUnshaded: major_glow
       Critical:
         Base: major_dead
       Dead:
@@ -241,3 +211,135 @@
     interactFailureString: petting-failure-bear
     interactSuccessSound:
       path: /Audio/Animals/sloth_squeak.ogg
+
+- type: entity
+  name: Dolby
+  parent: MobCorgiBase
+  id: MobDolby
+  description: Dobie Digital. Now with Frost Shield!
+  components:
+  - type: Sprite
+    drawdepth: Mobs
+    sprite: _Impstation/Mobs/Pets/dolby.rsi
+    layers:
+    - map: ["enum.DamageStateVisualLayers.Base"]
+      state: dolby
+  - type: Physics
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeCircle
+          radius: 0.35
+        density: 12
+        mask:
+        - MobMask
+        layer:
+        - MobLayer
+  - type: DamageStateVisuals
+    states:
+      Alive:
+        Base: dolby
+      Critical:
+        Base: dolby_dead
+      Dead:
+        Base: dolby_dead
+  - type: Butcherable
+    spawned:
+    - id: FoodMeat
+      amount: 2
+  - type: InteractionPopup
+    successChance: 0.9
+    interactSuccessString: petting-success-dolby
+    interactFailureString: petting-failure-generic
+    interactSuccessSpawn: EffectHearts
+    interactSuccessSound:
+      path: /Audio/Animals/small_dog_bark_happy.ogg
+  - type: Grammar
+    attributes:
+      proper: true
+      gender: male
+  - type: Tag
+    tags:
+    - CannotSuicide
+    - VimPilot
+  - type: StealTarget
+    stealGroup: AnimalWalter
+  - type: Reflect
+    reflectProb: 1
+    spread: 75
+  - type: VentCrawler
+    enterDelay: 3
+
+- type: entity
+  name: Oswald
+  parent: [ MobPenguin, MobCombat, StripableInventoryBase ]
+  id: MobPenguinOswald
+  description: The Hospitality Director's waddling companion. She loves fish.
+  components:
+  - type: Sprite
+    drawdepth: Mobs
+    layers:
+    - map: ["enum.DamageStateVisualLayers.Base"]
+      state: oswald
+      sprite: _Impstation/Mobs/Pets/oswald.rsi
+  - type: DamageStateVisuals
+    states:
+      Alive:
+        Base: oswald
+      Critical:
+        Base: oswald_dead
+      Dead:
+        Base: oswald_dead
+  - type: ReplacementAccent
+    accent: chicken # this is basically the same thing as a penguin probably
+  - type: Speech
+    speechVerb: Vox
+    speechSounds: Penguin
+  - type: Inventory
+    speciesId: penguin
+    templateId: oswald
+  - type: HTN
+    rootTask:
+      task: SimpleHostileCompound
+  - type: MeleeWeapon
+    altDisarm: false
+    angle: 0
+    animation: WeaponArcBite
+    soundHit:
+      path: /Audio/Effects/bite.ogg
+    damage:
+      types:
+        Piercing: 15 # turn this down if her soloing carp turns into a problem
+  - type: NpcFactionMember
+    factions:
+    - Penguin # she loves fish!
+  - type: Grammar
+    attributes:
+      proper: true
+      gender: female
+  - type: StealTarget
+    stealGroup: AnimalOswald
+  - type: SentienceTarget
+    flavorKind: station-event-random-sentience-flavor-avian
+
+- type: entity
+  id: MobMascotGriffy
+  parent: MobMcGriff
+  components:
+  - type: Sprite
+    drawdepth: Mobs
+    sprite: _Impstation/Mobs/Pets/mascotgriffy.rsi
+    layers:
+    - map: ["enum.DamageStateVisualLayers.Base"]
+      state: mascotgriffy
+  - type: DamageStateVisuals
+    states:
+      Alive:
+        Base: mascotgriffy
+      Critical:
+        Base: mascotgriffy
+      Dead:
+        Base: mascotgriffy
+  - type: StealTarget
+    stealGroup: AnimalMcGriff

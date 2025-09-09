@@ -1,13 +1,14 @@
 // Initial version of file ported from the Starlight project repo, located at https://github.com/ss14Starlight/space-station-14
+// why is this called 'ventcraw' and why is it not in our directory
 
 using Content.Server.Ghost;
 using Content.Server.Atmos.EntitySystems;
 using Content.Server.Body.Systems;
-using Content.Server.NodeContainer;
 using Content.Server.NodeContainer.EntitySystems;
 using Content.Server.NodeContainer.Nodes;
 using Content.Shared.Mind;
 using Content.Shared.Mobs;
+using Content.Shared.NodeContainer;
 using Content.Shared.VentCraw.Components;
 using Robust.Shared.Player;
 
@@ -44,7 +45,7 @@ public sealed class BeingVentCrawSystem : EntitySystem
                 mind = _entities.GetComponent<MindComponent>(mindId);
             }
 
-            _entities.System<GhostSystem>().OnGhostAttempt(mindId, true, true, mind);
+            _entities.System<GhostSystem>().OnGhostAttempt(mindId, true, true, false, mind);
         }
     }
 

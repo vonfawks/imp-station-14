@@ -218,3 +218,324 @@
     sprite: _Impstation/Clothing/Uniforms/Jumpsuit/courier.rsi
   - type: Clothing
     sprite: _Impstation/Clothing/Uniforms/Jumpsuit/courier.rsi
+
+
+- type: entity
+  parent: [ClothingUniformBase, BaseCommandContraband]
+  id: ClothingUniformJumpsuitHD
+  name: hospitality director's jumpsuit
+  description: A uniform of splendid sartorial make, fit for the lead of the service department.
+  components:
+    - type: Sprite
+      sprite: _Impstation/Clothing/Uniforms/Jumpsuit/hd_uniform.rsi
+    - type: Clothing
+      sprite: _Impstation/Clothing/Uniforms/Jumpsuit/hd_uniform.rsi
+
+- type: entity
+  parent: [ClothingUniformBase, BaseCommandContraband]
+  id: ClothingUniformJumpsuitHDTurtle
+  name: hospitality director's turtleneck
+  description: This turtleneck gives you an air of class and authority over the service department while still being pretty dang comfy.
+  components:
+    - type: Sprite
+      sprite: _Impstation/Clothing/Uniforms/Jumpsuit/hd_turtle.rsi
+    - type: Clothing
+      sprite: _Impstation/Clothing/Uniforms/Jumpsuit/hd_turtle.rsi
+
+- type: entity
+  parent: [ClothingUniformBase, ClothingUniformFoldableBase, BaseCommandContraband]
+  id: ClothingUniformJumpsuitHospitalityDirectorBartender
+  name: lead bartending uniform
+  description: This uniform lets the people know you can make a really mean raktaccino.
+  components:
+  - type: Sprite
+    sprite: _Impstation/Clothing/Uniforms/Jumpsuit/hd_bartender.rsi
+  - type: Clothing
+    sprite: _Impstation/Clothing/Uniforms/Jumpsuit/hd_bartender.rsi
+
+- type: entity
+  parent: [ClothingUniformBase, BaseCommandContraband]
+  id: ClothingUniformJumpsuitHospitalityDirectorBotany
+  name: lead botanical overalls
+  description: Nice sturdy overalls, great for working in the dirt and cultivating tritium-producing cocoa.
+  components:
+  - type: Sprite
+    sprite: _Impstation/Clothing/Uniforms/Jumpsuit/hd_botany.rsi
+  - type: Clothing
+    sprite: _Impstation/Clothing/Uniforms/Jumpsuit/hd_botany.rsi
+
+- type: entity
+  parent: [ClothingUniformBase, ClothingUniformFoldableBase, BaseCommandContraband]
+  id: ClothingUniformJumpsuitHospitalityDirectorJanitor
+  name: lead custodial jumpsuit
+  description: This uniform shows that if anyone should get the janitor trolley, it's you.
+  components:
+  - type: Sprite
+    sprite: _Impstation/Clothing/Uniforms/Jumpsuit/hd_janitor.rsi
+  - type: Clothing
+    sprite: _Impstation/Clothing/Uniforms/Jumpsuit/hd_janitor.rsi
+
+- type: entity
+  parent: [ClothingUniformBase]
+  id: ClothingUniformPositivityForce
+  name: positivity force jumpsuit
+  description: An outfit that signals to the world you're like the death squads but for being nice.
+  components:
+  - type: Sprite
+    sprite: _Impstation/Clothing/Uniforms/Jumpsuit/positivityforce.rsi
+  - type: Clothing
+    sprite: _Impstation/Clothing/Uniforms/Jumpsuit/positivityforce.rsi
+
+- type: entity
+  parent: ClothingUniformBase
+  id: ClothingUniformJumpsuitMimeCropped
+  name: cropped mime suit
+  description: ...?
+  components:
+  - type: Sprite
+    sprite: _Impstation/Clothing/Uniforms/Jumpsuit/mimecropped.rsi
+  - type: Clothing
+    sprite: _Impstation/Clothing/Uniforms/Jumpsuit/mimecropped.rsi
+
+- type: entity
+  parent: [ClothingUniformBase, ClothingUniformFoldableBase]
+  id: ClothingUniformJumpsuitCargoLong
+  name: cargo tech jumpsuit (pants)
+  description: A sturdy jumpsuit, issued to members of the Cargo department. It took Nanotrasen years to finally give in to the pressure and provide a version with long pants.
+  components:
+  - type: Sprite
+    sprite: _Impstation/Clothing/Uniforms/Jumpsuit/cargotech_long.rsi
+
+- type: entity
+  parent: [ClothingUniformBase, ClothingUniformFoldableBase]
+  id: ClothingUniformJumpsuitCargoSenior
+  name: senior cargo cable knit sweater
+  description: A comfortable sweater with a pair of rugged but classy cargo pants, issued only to experienced cargo technicians.
+  components:
+  - type: Sprite
+    sprite: _Impstation/Clothing/Uniforms/Jumpsuit/cargo_cableknit.rsi
+  - type: Clothing
+    sprite: _Impstation/Clothing/Uniforms/Jumpsuit/cargo_cableknit.rsi
+
+- type: entity
+  parent: [ClothingUniformBase]
+  id: ClothingUniformSpaceJumpsuitCasualBrown
+  name: casual space jumpsuit
+  description: An outfit reflecting the current trends of the deep spacefaring citizens of Nanotrasen near and far!
+  components:
+  - type: Sprite
+    sprite: _Impstation/Clothing/Uniforms/Jumpsuit/spacecasualbrown.rsi
+  - type: Clothing
+    sprite: _Impstation/Clothing/Uniforms/Jumpsuit/spacecasualbrown.rsi
+
+- type: entity
+  parent: [ClothingUniformBase]
+  id: ClothingUniformSpaceJumpsuitCasualTriColor
+  name: casual space jumpsuit
+  description: An outfit reflecting the current trends of the deep spacefaring citizens of Nanotrasen near and far!
+  components:
+  - type: Sprite
+    sprite: _Impstation/Clothing/Uniforms/Jumpsuit/spacecasualtricolor.rsi
+  - type: Clothing
+    sprite: _Impstation/Clothing/Uniforms/Jumpsuit/spacecasualtricolor.rsi
+
+- type: entity
+  parent: [ClothingUniformBase]
+  id: ClothingUniformSpaceJumpsuitCasualMulti
+  name: casual space jumpsuit
+  description: An outfit reflecting the current trends of the deep spacefaring citizens of Nanotrasen near and far!
+  components:
+  - type: Sprite
+    sprite: _Impstation/Clothing/Uniforms/Jumpsuit/spacecasualmulti.rsi
+  - type: Clothing
+    sprite: _Impstation/Clothing/Uniforms/Jumpsuit/spacecasualmulti.rsi
+
+- type: entity
+  parent: [ClothingUniformBase]
+  id: ClothingUniformSpaceJumpsuitCasualBlue
+  name: casual space jumpsuit
+  description: An outfit reflecting the current trends of the deep spacefaring citizens of Nanotrasen near and far!
+  components:
+  - type: Sprite
+    sprite: _Impstation/Clothing/Uniforms/Jumpsuit/spacecasualblue.rsi
+  - type: Clothing
+    sprite: _Impstation/Clothing/Uniforms/Jumpsuit/spacecasualblue.rsi
+
+- type: entity
+  parent: [ClothingUniformBase]
+  id: ClothingUniformSpaceJumpsuitHospitalityDirectorProprietor
+  name: hospitality proprietor jumpsuit
+  description: The iconic Nanotrasen Hospitality Director jumpsuit accented with a trademark blazer, an outfit suited for any self respecting host of a fine establishment operating within legal parameters.
+  components:
+  - type: Sprite
+    sprite: _Impstation/Clothing/Uniforms/Jumpsuit/spacehd.rsi
+  - type: Clothing
+    sprite: _Impstation/Clothing/Uniforms/Jumpsuit/spacehd.rsi
+
+- type: entity
+  parent: [ClothingUniformBase]
+  id: ClothingUniformSpaceJumpsuitChef
+  name: space chef jumpsuit
+  description: A fine silken chefs coat with a purple lapel flair that's awarded to distinguished chef with Nanotrasen, the faint smell of aubergine stew can still be picked up off it.
+  components:
+  - type: Sprite
+    sprite: _Impstation/Clothing/Uniforms/Jumpsuit/spacechef.rsi
+  - type: Clothing
+    sprite: _Impstation/Clothing/Uniforms/Jumpsuit/spacechef.rsi
+
+- type: entity
+  parent: [ClothingUniformBase]
+  id: ClothingUniformSpaceJumpsuitSecurity
+  name: space security jumpsuit
+  description: The standard issue uniform for select Nanotrasen security personal assigned to deep space missions, perfect for patrols on the promenade and check ins at the bar.
+  components:
+  - type: Sprite
+    sprite: _Impstation/Clothing/Uniforms/Jumpsuit/spacesecurity.rsi
+  - type: Clothing
+    sprite: _Impstation/Clothing/Uniforms/Jumpsuit/spacesecurity.rsi
+
+- type: entity
+  parent: [ClothingUniformBase]
+  id: ClothingUniformJesterEvil
+  name: evil jester suit
+  description: Heeheehee...
+  components:
+  - type: Sprite
+    sprite: _Impstation/Clothing/Uniforms/Jumpsuit/jesterevil.rsi
+  - type: Clothing
+    sprite: _Impstation/Clothing/Uniforms/Jumpsuit/jesterevil.rsi
+  - type: Tag
+    tags:
+    - WhitelistChameleon
+    - ClothMade
+
+- type: entity
+  parent: [ClothingUniformBase]
+  id: ClothingUniformSailorSuit
+  name: sailor suit
+  description: Wrong kind of ship!
+  components:
+  - type: Sprite
+    sprite: _Impstation/Clothing/Uniforms/Jumpsuit/sailoruniform.rsi
+  - type: Clothing
+    sprite: _Impstation/Clothing/Uniforms/Jumpsuit/sailoruniform.rsi
+  - type: Tag
+    tags:
+    - WhitelistChameleon
+    - ClothMade
+
+- type: entity
+  parent: [ClothingUniformBase, Tier3Contraband]
+  id: ClothingUniformBurglarJumpsuit
+  name: suspicious crime jumpsuit
+  description: The wearer of this is one sneaky snitch...
+  components:
+  - type: Sprite
+    sprite: _Impstation/Clothing/Uniforms/Jumpsuit/burglarjumpsuit.rsi
+  - type: Clothing
+    sprite: _Impstation/Clothing/Uniforms/Jumpsuit/burglarjumpsuit.rsi
+  - type: Tag
+    tags:
+    - WhitelistChameleon
+    - ClothMade
+
+- type: entity
+  parent: [ClothingUniformBase, BaseCentcommContraband]
+  id: ClothingUniformImpishOutfit
+  name: impish outfit
+  description:
+  components:
+  - type: Sprite
+    sprite: _Impstation/Clothing/Uniforms/Other/impishoutfit.rsi
+  - type: Clothing
+    sprite: _Impstation/Clothing/Uniforms/Other/impishoutfit.rsi
+  - type: Tag
+    tags:
+    - ClothMade
+
+- type: entity
+  parent: [ClothingUniformBase, BaseCommandContraband]
+  id: ClothingUniformJumpsuitCMOCasual
+  name: chief medical officer's casual outfit
+  description: A comfy casual outfit for the CMO.
+  components:
+  - type: Sprite
+    sprite: _Impstation/Clothing/Uniforms/Jumpsuit/cmo_casual.rsi
+  - type: Clothing
+    sprite: _Impstation/Clothing/Uniforms/Jumpsuit/cmo_casual.rsi
+
+- type: entity
+  parent: [ClothingUniformBase, BaseCommandContraband]
+  id: ClothingUniformJumpsuitCMOFormal
+  name: chief medical officer's formal suit
+  description: The CMO's formal attire, perfect for meetings and hands-off work.
+  components:
+  - type: Sprite
+    sprite: _Impstation/Clothing/Uniforms/Jumpsuit/cmo_formal.rsi
+  - type: Clothing
+    sprite: _Impstation/Clothing/Uniforms/Jumpsuit/cmo_formal.rsi
+
+- type: entity
+  parent: [ClothingUniformBase, BaseCommandContraband]
+  id: ClothingUniformJumpsuitCMOScrubs
+  name: chief medical officer's scrubs
+  description: Comfortable scrubs that are easy to move in and even easier to stain.
+  components:
+  - type: Sprite
+    sprite: _Impstation/Clothing/Uniforms/Jumpsuit/cmo_scrubs.rsi
+  - type: Clothing
+    sprite: _Impstation/Clothing/Uniforms/Jumpsuit/cmo_scrubs.rsi
+
+- type: entity
+  parent: [ClothingUniformBase, BaseCommandContraband]
+  id: ClothingUniformJumpsuitMusicianMarchingBand
+  name: musician's marching uniform
+  description: For when you need to join the parade.
+  components:
+  - type: Sprite
+    sprite: _Impstation/Clothing/Uniforms/Jumpsuit/mus_marchingband.rsi
+  - type: Clothing
+    sprite: _Impstation/Clothing/Uniforms/Jumpsuit/mus_marchingband.rsi
+
+- type: entity
+  parent: [ClothingUniformBase, BaseCommandContraband]
+  id: ClothingUniformJumpsuitCEForeman
+  name: foreman's jumpsuit
+  description: A more relaxed uniform for the chief engineer while supervising a worksite. Construction blue jeans and a neon long-sleeve with retroreflective safety stripes, perfect for working on wires and ordering engineers to repair evac again.
+  components:
+  - type: Sprite
+    sprite: _Impstation/Clothing/Uniforms/Jumpsuit/ce_foremans.rsi
+    layers:
+    - state: icon
+    - state: icon-unshaded
+      shader: unshaded
+    - state: icon-unshaded
+      shader: shaded
+  - type: Clothing
+    sprite: _Impstation/Clothing/Uniforms/Jumpsuit/ce_foremans.rsi
+    clothingVisuals:
+      jumpsuit:
+      - state: equipped-INNERCLOTHING
+      - state: equipped-INNERCLOTHING-unshaded
+        shader: unshaded
+      - state: equipped-INNERCLOTHING-unshaded
+        shader: shaded
+  - type: Tag
+    tags:
+    - HiViz
+
+- type: entity
+  parent: [ClothingUniformBase, BaseCentcommContraband]
+  id: ClothingUniformJumpsuitCentcommIntern
+  name: CentComm intern's jumpsuit
+  description: It's a jumpsuit worn by those interning for CentComm. The top is styled after a polo shirt for easy identification.
+  components:
+  - type: Sprite
+    sprite: _Impstation/Clothing/Uniforms/Other/centcommintern.rsi
+    layers:
+    - state: icon
+  - type: Clothing
+    sprite: _Impstation/Clothing/Uniforms/Other/centcommintern.rsi
+    clothingVisuals:
+      jumpsuit:
+      - state: equipped-INNERCLOTHING

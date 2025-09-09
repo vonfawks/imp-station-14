@@ -45,7 +45,7 @@
     - map: ["foodSequenceLayers"]
   - type: FoodSequenceStartPoint
     key: Burger
-    maxLayers: 30
+    maxLayers: 100 # imp
     startPosition: 0, 0
     offset: 0, 0.07
     minLayerOffset: -0.05, 0
@@ -56,7 +56,7 @@
   - type: SolutionContainerManager
     solutions:
       food:
-        maxVol: 15
+        maxVol: 15 # imp
         canReact: true # fuck you wizden i need razorium burger assassination
         reagents:
         - ReagentId: Nutriment
@@ -95,8 +95,6 @@
     flavors:
       - bun
       - meaty
-  - type: Food
-    transferAmount: 5
   - type: Sprite
     sprite: Objects/Consumable/Food/burger.rsi
   - type: SolutionContainerManager
@@ -129,6 +127,17 @@
     - state: custburg-filling
       color: red
     - state: custburg-top
+  # imp edit start
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 25
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 13
+        - ReagentId: Amatoxin # its got POISON IN IT!!!
+          Quantity: 6
+  # imp edit end
 
 # Burger
 
@@ -150,11 +159,11 @@
         maxVol: 20
         reagents:
         - ReagentId: Nutriment
-          Quantity: 2
+          Quantity: 7 # imp
         - ReagentId: Protein
-          Quantity: 6
-        - ReagentId: Vitamin
-          Quantity: 6
+          Quantity: 5 # imp
+        # - ReagentId: Vitamin # imp
+        #  Quantity: 6
   - type: Tag
     tags:
     - Meat
@@ -175,12 +184,14 @@
   - type: SolutionContainerManager
     solutions:
       food:
-        maxVol: 30
+        maxVol: 20 # imp
         reagents:
         - ReagentId: Nutriment
-          Quantity: 19
-        - ReagentId: Vitamin
-          Quantity: 5
+          Quantity: 14.16 # imp
+        - ReagentId: Protein # imp
+          Quantity: 2
+        # - ReagentId: Vitamin
+        #  Quantity: 5
   - type: Tag
     tags:
     - Meat
@@ -201,14 +212,16 @@
   - type: SolutionContainerManager
     solutions:
       food:
-        maxVol: 15
+        maxVol: 20 # imp
         reagents:
         - ReagentId: Nutriment
-          Quantity: 3
-        - ReagentId: Protein
-          Quantity: 5
-        - ReagentId: Vitamin
-          Quantity: 2
+          Quantity: 7
+        - ReagentId: Fiber # imp
+          Quantity: 10
+        #- ReagentId: Protein
+        #  Quantity: 5
+        #- ReagentId: Vitamin
+        #  Quantity: 2
   - type: Tag
     tags:
     - Meat
@@ -228,14 +241,14 @@
   - type: SolutionContainerManager
     solutions:
       food:
-        maxVol: 15
+        maxVol: 20 # imp
         reagents:
         - ReagentId: Nutriment
-          Quantity: 3
+          Quantity: 7 # imp
         - ReagentId: Protein
-          Quantity: 6
-        - ReagentId: Vitamin
-          Quantity: 5
+          Quantity: 9 # imp
+        # - ReagentId: Vitamin
+        #  Quantity: 5
   - type: Tag
     tags:
     - Meat
@@ -251,15 +264,20 @@
       - meaty
       - oily
       - cheesy
+      - tomato # imp
   - type: SolutionContainerManager
     solutions:
       food:
-        maxVol: 33
+        maxVol: 55 # imp
         reagents:
         - ReagentId: Nutriment
-          Quantity: 17
-        - ReagentId: Vitamin
-          Quantity: 9
+          Quantity: 22 # imp
+        - ReagentId: Protein # imp
+          Quantity: 18
+        - ReagentId: Allicin # imp
+          Quantity: 2
+        - ReagentId: Vitamin # imp
+          Quantity: 5
   - type: Sprite
     state: bigbite
   - type: Tag
@@ -282,14 +300,14 @@
   - type: SolutionContainerManager
     solutions:
       food:
-        maxVol: 20
+        maxVol: 15 # imp
         reagents:
         - ReagentId: Nutriment
-          Quantity: 6
-        - ReagentId: Protein
-          Quantity: 6
-        - ReagentId: Vitamin
+          Quantity: 7 # imp
+        - ReagentId: GreyMatter # imp
           Quantity: 5
+        # - ReagentId: Vitamin
+        #  Quantity: 5
   - type: Tag
     tags:
     - Meat
@@ -311,14 +329,16 @@
   - type: SolutionContainerManager
     solutions:
       food:
-        maxVol: 15
+        maxVol: 25 # imp
         reagents:
         - ReagentId: Nutriment
-          Quantity: 6
+          Quantity: 7 # imp
         - ReagentId: Protein
-          Quantity: 3
-        - ReagentId: Vitamin
-          Quantity: 2
+          Quantity: 9 # imp
+        #- ReagentId: Vitamin # imp
+        #  Quantity: 2
+        - ReagentId: MouseBites # imp - mq's request
+          Quantity: 5
   - type: Tag
     tags:
     - Meat
@@ -339,14 +359,14 @@
   - type: SolutionContainerManager
     solutions:
       food:
-        maxVol: 15
+        maxVol: 30 # imp
         reagents:
         - ReagentId: Nutriment
-          Quantity: 3
+          Quantity: 11 # imp
         - ReagentId: Vitamin
           Quantity: 7
         - ReagentId: Protein
-          Quantity: 1
+          Quantity: 9 # imp
   - type: Tag
     tags:
     - Meat
@@ -370,57 +390,26 @@
     flavors:
       - bun
       - chicken
+      - mayonnaise # imp - mayo
   - type: Sprite
     state: chicken
   - type: SolutionContainerManager
     solutions:
       food:
-        maxVol: 15
+        maxVol: 20
         reagents:
         - ReagentId: Nutriment
-          Quantity: 3
+          Quantity: 6.66 # imp
         - ReagentId: Protein
-          Quantity: 7
-        - ReagentId: Vitamin
-          Quantity: 1
-        - ReagentId: Mayo
-          Quantity: 3
+          Quantity: 9 # imp
+        # - ReagentId: Vitamin # imp
+        #  Quantity: 1
+        #- ReagentId: Mayo
+        #  Quantity: 3
   - type: Tag
     tags:
     - Meat
 # Tastes like bun, chicken.
-
-- type: entity
-  name: finfin sandwich
-  parent: FoodBurgerBase
-  id: FoodBurgerFinfin
-  description: Why
-  components:
-  - type: FlavorProfile
-    flavors:
-      - bun
-      - finfin
-      - chicken
-      - duck
-      - fishy
-  - type: Sprite
-    state: chicken
-  - type: SolutionContainerManager
-    solutions:
-      food:
-        maxVol: 15
-        reagents:
-        - ReagentId: Nutriment
-          Quantity: 3
-        - ReagentId: Protein
-          Quantity: 7
-        - ReagentId: Vitamin
-          Quantity: 1
-        - ReagentId: Mayo
-          Quantity: 3
-  - type: Tag
-    tags:
-    - Meat
 
 - type: entity
   name: clown burger
@@ -437,14 +426,16 @@
   - type: SolutionContainerManager
     solutions:
       food:
-        maxVol: 20
+        maxVol: 15 # imp
         reagents:
         - ReagentId: Nutriment
-          Quantity: 4
-        - ReagentId: Protein
-          Quantity: 6
-        - ReagentId: Vitamin
-          Quantity: 6
+          Quantity: 7 # imp
+        - ReagentId: Laughter # imp
+          Quantity: 3
+        # - ReagentId: Protein # imp
+        #  Quantity: 6
+        # - ReagentId: Vitamin
+        #  Quantity: 6
   - type: Tag
     tags:
     - Meat
@@ -464,12 +455,14 @@
   - type: SolutionContainerManager
     solutions:
       food:
-        maxVol: 25
+        maxVol: 30 # imp
         reagents:
         - ReagentId: Bicaridine #keeping it somewhat consistent with the meat itself
+          Quantity: 20 # imp
+        - ReagentId: Nutriment # imp
           Quantity: 7
-        - ReagentId: Vitamin
-          Quantity: 12
+        # - ReagentId: Vitamin # imp
+        #  Quantity: 12
   - type: Tag
     tags:
     - Meat
@@ -489,14 +482,14 @@
   - type: SolutionContainerManager
     solutions:
       food:
-        maxVol: 15
+        maxVol: 10 # imp
         reagents:
         - ReagentId: Nutriment
-          Quantity: 4
+          Quantity: 7 # imp
         - ReagentId: Protein
-          Quantity: 5
-        - ReagentId: Vitamin
-          Quantity: 4
+          Quantity: 2 # imp
+        # - ReagentId: Vitamin # imp
+        #  Quantity: 4
   - type: Tag
     tags:
     - Meat
@@ -518,16 +511,20 @@
   - type: SolutionContainerManager
     solutions:
       food:
-        maxVol: 25
+        maxVol: 95 # imp
         reagents:
         - ReagentId: Nutriment
-          Quantity: 4
+          Quantity: 43 # imp
         - ReagentId: Protein
-          Quantity: 6
+          Quantity: 18 # imp
         - ReagentId: CapsaicinOil
-          Quantity: 3
+          Quantity: 10
         - ReagentId: Vitamin
-          Quantity: 6
+          Quantity: 8 # imp
+        - ReagentId: Sulfur # imp - What you get for eating something with a flare in it
+          Quantity: 5
+        - ReagentId: MindbreakerToxin # imp
+          Quantity: 2
   - type: Tag
     tags:
     - Meat
@@ -547,14 +544,14 @@
   - type: SolutionContainerManager
     solutions:
       food:
-        maxVol: 15
+        maxVol: 25 # imp
         reagents:
         - ReagentId: Nutriment
-          Quantity: 3
+          Quantity: 11 # imp
         - ReagentId: Protein
-          Quantity: 7
-        - ReagentId: Vitamin
-          Quantity: 1
+          Quantity: 9 # imp
+        #- ReagentId: Vitamin # imp
+        #  Quantity: 1
   - type: Tag
     tags:
     - Meat
@@ -575,12 +572,12 @@
   - type: SolutionContainerManager
     solutions:
       food:
-        maxVol: 15
+        maxVol: 20 # imp
         reagents:
         - ReagentId: Nutriment
-          Quantity: 8
+          Quantity: 7 # imp
         - ReagentId: Licoxide
-          Quantity: 5
+          Quantity: 10 # imp - it takes 10u plasma but licoxide is the more interesting reagent
 # Tastes like bun, pure electricity.
 
 - type: entity
@@ -592,13 +589,24 @@
   - type: FlavorProfile
     flavors:
       - bun
-      - fishy
+      #- fishy #imp
   - type: Sprite
     state: fish
   - type: Tag
     tags:
     - Meat
 # Tastes like bun, fish.
+  # imp edit start
+  - type: SolutionContainerManager # imp
+    solutions:
+      food:
+        maxVol: 20
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 11
+        - ReagentId: CarpoToxin # WHY WASNT THIS POISONOUS!!!!!!!!!!!
+          Quantity: 5
+  # imp edit end
 
 - type: entity
   name: five alarm burger
@@ -615,16 +623,16 @@
   - type: SolutionContainerManager
     solutions:
       food:
-        maxVol: 20
+        maxVol: 80 # imp
         reagents:
         - ReagentId: Nutriment
-          Quantity: 6
+          Quantity: 19 # imp
+        - ReagentId: Protein # imp
+          Quantity: 9
         - ReagentId: CapsaicinOil
-          Quantity: 5
-        - ReagentId: Blackpepper
-          Quantity: 5
+          Quantity: 30 # imp
         - ReagentId: Vitamin
-          Quantity: 1
+          Quantity: 12 # imp
   - type: Tag
     tags:
     - Meat
@@ -641,28 +649,32 @@
     flavors:
       - bun
       - spooky
+      - chalky # imp
   - type: Sprite
     state: ghost
   - type: SolutionContainerManager
     solutions:
       food:
-        maxVol: 25
+        maxVol: 40 # imp
         reagents:
         - ReagentId: Nutriment
           Quantity: 7
-        - ReagentId: Vitamin
-          Quantity: 12
+        # - ReagentId: Vitamin # imp
+        #  Quantity: 12
+        - ReagentId: Necrosol # imp
+          Quantity: 25
   - type: Tag
     tags:
       - ClothMade
       - Meat
+      - ClothFood # imp
 # Tastes like bun, ectoplasm.
 
 - type: entity
   name: human burger
   parent: FoodBurgerBase
   id: FoodBurgerHuman
-  description: You cant tell who this is made of...
+  description: You can't tell who this is made of... # imp
   components:
   - type: FlavorProfile
     flavors:
@@ -673,14 +685,14 @@
   - type: SolutionContainerManager
     solutions:
       food:
-        maxVol: 15
+        maxVol: 20 # imp
         reagents:
         - ReagentId: Nutriment
-          Quantity: 2
+          Quantity: 7 # imp
         - ReagentId: Protein
-          Quantity: 6
-        - ReagentId: Vitamin
-          Quantity: 5
+          Quantity: 9 # imp
+        # - ReagentId: Vitamin # imp
+        #  Quantity: 5
   - type: Tag
     tags:
     - Meat
@@ -700,14 +712,16 @@
   - type: SolutionContainerManager
     solutions:
       food:
-        maxVol: 15
+        maxVol: 30 # imp
         reagents:
         - ReagentId: Nutriment
-          Quantity: 2
-        - ReagentId: Protein
-          Quantity: 7
-        - ReagentId: Vitamin
-          Quantity: 1
+          Quantity: 11 # imp
+        - ReagentId: EggCooked # imp
+          Quantity: 12
+        #- ReagentId: Protein # imp
+        #  Quantity: 7
+        #- ReagentId: Vitamin
+        #  Quantity: 1
   - type: Tag
     tags:
     - Meat
@@ -725,20 +739,23 @@
     flavors:
       - bun
       - bacon
+      - sweet # imp - bbq sauce
   - type: Sprite
     state: mcrib
   - type: SolutionContainerManager
     solutions:
       food:
-        maxVol: 15
+        maxVol: 35 # imp
         reagents:
         - ReagentId: Nutriment
-          Quantity: 2
+          Quantity: 9 # imp
         - ReagentId: Protein
-          Quantity: 7
+          Quantity: 18 # imp
         - ReagentId: Vitamin
-          Quantity: 4
-        - ReagentId: BbqSauce
+          Quantity: 1 # imp
+        #- ReagentId: BbqSauce # imp
+        #  Quantity: 1
+        - ReagentId: Allicin # imp
           Quantity: 1
   - type: Tag
     tags:
@@ -760,16 +777,16 @@
   - type: SolutionContainerManager
     solutions:
       food:
-        maxVol: 25
+        maxVol: 15 # imp
         reagents:
         - ReagentId: Nutriment
-          Quantity: 6
-        - ReagentId: Protein
-          Quantity: 9
-        - ReagentId: Vitamin
-          Quantity: 4
+          Quantity: 7 # imp
+        #- ReagentId: Protein # imp
+        #  Quantity: 9
+        #- ReagentId: Vitamin
+        #  Quantity: 4
         - ReagentId: Nothing
-          Quantity: 1
+          Quantity: 5 # imp
 # Tastes like  .
 
 - type: entity
@@ -787,14 +804,14 @@
   - type: SolutionContainerManager
     solutions:
       food:
-        maxVol: 25
+        maxVol: 20 # imp
         reagents:
         - ReagentId: Nutriment
-          Quantity: 2
+          Quantity: 7 # imp
         - ReagentId: Protein
-          Quantity: 6
-        - ReagentId: Vitamin
-          Quantity: 3
+          Quantity: 9 # imp
+        #- ReagentId: Vitamin # imp
+        #  Quantity: 3
   - type: Tag
     tags:
     - Meat
@@ -814,14 +831,14 @@
   - type: SolutionContainerManager
     solutions:
       food:
-        maxVol: 15
+        maxVol: 15 # imp
         reagents:
         - ReagentId: Nutriment
-          Quantity: 3
+          Quantity: 7 # imp
         - ReagentId: Protein
-          Quantity: 6
-        - ReagentId: Vitamin
-          Quantity: 2
+          Quantity: 3 # imp
+        #- ReagentId: Vitamin # imp
+        #  Quantity: 2
   - type: Tag
     tags:
     - Meat
@@ -846,7 +863,7 @@
         maxVol: 15
         reagents:
         - ReagentId: Nutriment
-          Quantity: 5
+          Quantity: 7 # imp
         - ReagentId: SulfuricAcid
           Quantity: 5
   - type: Tag
@@ -869,14 +886,14 @@
   - type: SolutionContainerManager
     solutions:
       food:
-        maxVol: 15
+        maxVol: 30 # imp
         reagents:
         - ReagentId: Nutriment
-          Quantity: 4
-        - ReagentId: Protein
-          Quantity: 6
-        - ReagentId: Vitamin
-          Quantity: 4
+          Quantity: 23 # imp
+        #- ReagentId: Protein # imp
+        #  Quantity: 6
+        #- ReagentId: Vitamin
+        # Quantity: 4
 # Tastes like bun, redditors.
 
 - type: entity
@@ -897,11 +914,15 @@
         maxVol: 20
         reagents:
         - ReagentId: Nutriment
-          Quantity: 4
-        - ReagentId: Protein
+          Quantity: 7 # imp
+        - ReagentId: Milk # imp - idk someone said this is in a wizard hat
           Quantity: 5
-        - ReagentId: Vitamin
-          Quantity: 10
+        - ReagentId: Carpetium # imp
+          Quantity: 5
+        #- ReagentId: Protein # imp
+        #  Quantity: 5
+        #- ReagentId: Vitamin
+        #  Quantity: 10
 # Tastes like bun, silver.
 
 - type: entity
@@ -915,19 +936,24 @@
       - meaty
       - oily
       - cheesy
+      - tomato # imp
   - type: SolutionContainerManager
     solutions:
       food:
-        maxVol: 90
+        maxVol: 70 # imp
         reagents:
         - ReagentId: Nutriment
-          Quantity: 44
+          Quantity: 31 # imp
+        - ReagentId: Protein # imp
+          Quantity: 9
         - ReagentId: Vitamin
-          Quantity: 24
+          Quantity: 3 # imp
         - ReagentId: TableSalt
           Quantity: 5
-        - ReagentId: Blackpepper
-          Quantity: 5
+        - ReagentId: EggCooked # imp
+          Quantity: 12
+        # - ReagentId: Blackpepper # imp
+        #  Quantity: 5
   - type: Sprite
     state: superbite
   - type: Tag
@@ -953,11 +979,11 @@
         maxVol: 15
         reagents:
         - ReagentId: Nutriment
-          Quantity: 3
+          Quantity: 9 # imp
         - ReagentId: Protein
-          Quantity: 6
-        - ReagentId: Vitamin
-          Quantity: 3
+          Quantity: 3 # imp
+        #- ReagentId: Vitamin # imp
+        #  Quantity: 3
 # Tastes like bun, tofu.
 
 - type: entity
@@ -979,11 +1005,11 @@
         maxVol: 15
         reagents:
         - ReagentId: Nutriment
-          Quantity: 3
+          Quantity: 10 # imp
         - ReagentId: Protein
-          Quantity: 6
-        - ReagentId: Vitamin
-          Quantity: 5
+          Quantity: 3 # imp
+        #- ReagentId: Vitamin # imp
+        #  Quantity: 5
   - type: Tag
     tags:
     - Meat
@@ -1008,14 +1034,17 @@
   - type: SolutionContainerManager
     solutions:
       food:
-        maxVol: 15
+        maxVol: 30 # imp
         reagents:
         - ReagentId: Nutriment
-          Quantity: 3
-        - ReagentId: Protein
-          Quantity: 4
-        - ReagentId: Vitamin
-          Quantity: 7
+          Quantity: 7 # imp
+        - ReagentId: Slime # imp - yeah mothroaches butcher into slime for some reason
+          Quantity: 20
+        #- ReagentId: Protein # imp
+        #  Quantity: 4
+        #- ReagentId: Vitamin
+        #  Quantity: 7
   - type: Tag
     tags:
     - Meat
+

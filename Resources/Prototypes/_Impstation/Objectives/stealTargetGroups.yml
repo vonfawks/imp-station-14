@@ -1,9 +1,34 @@
+# pets
+
 - type: stealTargetGroup
   id: AnimalFinFin
   name: steal-target-groups-finfin
   sprite:
     sprite: _Impstation/Mobs/Pets/finfin.rsi
     state: finfin
+
+- type: stealTargetGroup
+  id: AnimalPoly
+  name: steal-target-groups-animal-poly
+  sprite:
+    sprite: _NF/Mobs/NPC/Animals/parrot.rsi
+    state: sit
+
+- type: stealTargetGroup
+  id: PetSuppy
+  name: steal-target-groups-suppy
+  sprite:
+    sprite: Objects/Consumable/Food/Baked/cake.rsi
+    state: suppermatter
+
+- type: stealTargetGroup
+  id: AnimalOswald
+  name: steal-target-groups-animal-oswald
+  sprite:
+    sprite: _Impstation/Mobs/Pets/oswald.rsi
+    state: oswald
+
+# critical infrastructure
 
 - type: stealTargetGroup
   id: Generator #singulo or tesla generator
@@ -13,20 +38,6 @@
     state: icon
 
 - type: stealTargetGroup
-  id: Cigarettes
-  name: steal-target-groups-cigarettes
-  sprite:
-    sprite: _Impstation/Objects/Consumable/Smokeables/Cigarettes/Packs/newport.rsi
-    state: closed
-
-- type: stealTargetGroup
-  id: PositronicBrains
-  name: steal-target-groups-positronicbrains
-  sprite:
-    sprite: Objects/Specific/Robotics/mmi.rsi
-    state: posibrain
-
-- type: stealTargetGroup
   id: AILawBoard
   name: steal-target-groups-ailawboard
   sprite:
@@ -34,18 +45,11 @@
     state: std_mod
 
 - type: stealTargetGroup
-  id: CommandHeadset
-  name: steal-target-groups-commandheadset
-  sprite:
-    sprite: Clothing/Ears/Headsets/medical.rsi
-    state: icon_alt
-
-- type: stealTargetGroup
   id: AICore
   name: steal-target-groups-aicore
   sprite:
-    sprite: Mobs/Silicon/station_ai.rsi
-    state: ai
+    sprite: _Impstation/Mobs/Silicon/station_ai.rsi
+    state: icon
 
 - type: stealTargetGroup
   id: ParticleAccelerator
@@ -55,18 +59,66 @@
     state: unwired
 
 - type: stealTargetGroup
-  id: FireSuit
-  name: steal-target-groups-firesuit
+  id: ShipyardComputerCircuitboard
+  name: steal-target-groups-shipyardcomputercircuitboard
   sprite:
-    sprite: Clothing/OuterClothing/Suits/atmos_firesuit.rsi
+    sprite: Objects/Misc/module.rsi
+    state: cpu_supply
+
+# annoying command
+
+- type: stealTargetGroup
+  id: CommandHeadset
+  name: steal-target-groups-commandheadset
+  sprite:
+    sprite: Clothing/Ears/Headsets/medical.rsi
+    state: icon_alt
+
+- type: stealTargetGroup
+  id: HDCutterMachine
+  name: steal-target-groups-hdcuttermachine
+  sprite:
+    sprite: _Impstation/Objects/Tools/Toolboxes/toolbox_hd.rsi
     state: icon
 
 - type: stealTargetGroup
-  id: StealMopBucket
-  name: steal-target-groups-mopbucket
+  id: SecPillCanister
+  name: steal-target-groups-secpillcanister
   sprite:
-    sprite: Objects/Specific/Janitorial/janitorial.rsi
-    state: mopbucket
+    sprite: _Impstation/Objects/Specific/Chemistry/pills_canister.rsi
+    state: pill_canister-hos
+
+- type: stealTargetGroup
+  id: ClothingNeckBureaucracyMedal
+  name: steal-target-groups-clothing-neck-bureaucracymedal
+  sprite:
+    sprite: _Impstation/Clothing/Neck/Medals/bureaucracymedal.rsi
+    state: icon
+
+- type: stealTargetGroup
+  id: AntiqueDisabler
+  name: steal-target-groups-antiquedisabler
+  sprite:
+    sprite: _Impstation/Objects/Weapons/Guns/Battery/hopdisabler.rsi
+    state: icon
+
+# rare but otherwise not notable
+
+- type: stealTargetGroup
+  id: ShiningSpring
+  name: steal-target-groups-shiningspring
+  sprite:
+    sprite: _Impstation/Objects/Weapons/Guns/Launchers/cleaner_lake.rsi
+    state: icon
+
+- type: stealTargetGroup
+  id: EvilSkullArtifactItem
+  name: steal-target-groups-evil-skull
+  sprite:
+    sprite: Mobs/Species/Skeleton/parts.rsi
+    state: skull_icon
+
+# pda cartridges
 
 - type: stealTargetGroup
   id: MedTekCartridge
@@ -88,6 +140,8 @@
   sprite:
     sprite: Objects/Devices/cartridge.rsi
     state: cart-nav
+
+# vending machines
 
 - type: stealTargetGroup
   id: PTech
@@ -143,6 +197,13 @@
   name: steal-target-groups-cargodrobe
   sprite:
     sprite: Structures/Machines/VendingMachines/cargodrobe.rsi
+    state: broken
+
+- type: stealTargetGroup
+  id: SalvDrobe
+  name: steal-target-groups-salvdrobe
+  sprite:
+    sprite: _Impstation/Structures/Machines/VendingMachines/salvdrobe.rsi
     state: broken
 
 - type: stealTargetGroup
@@ -236,26 +297,35 @@
     sprite: Objects/Misc/module.rsi
     state: service
 
+# species specific and/or joke targets
+
 - type: stealTargetGroup
-  id: ShiningSpring
-  name: steal-target-groups-shiningspring
+  id: Cigarettes
+  name: steal-target-groups-cigarettes
   sprite:
-    sprite: _Impstation/Objects/Weapons/Guns/Launchers/cleaner_lake.rsi
+    sprite: _Impstation/Objects/Consumable/Smokeables/Cigarettes/Packs/newport.rsi
+    state: closed
+
+- type: stealTargetGroup
+  id: PositronicBrains
+  name: steal-target-groups-positronicbrains
+  sprite:
+    sprite: Objects/Specific/Robotics/mmi.rsi
+    state: posibrain
+
+- type: stealTargetGroup
+  id: FireSuit
+  name: steal-target-groups-firesuit
+  sprite:
+    sprite: Clothing/OuterClothing/Suits/atmos_firesuit.rsi
     state: icon
 
 - type: stealTargetGroup
-  id: ShipyardComputerCircuitboard
-  name: steal-target-groups-shipyardcomputercircuitboard
+  id: StealMopBucket
+  name: steal-target-groups-mopbucket
   sprite:
-    sprite: Objects/Misc/module.rsi
-    state: cpu_supply
-
-- type: stealTargetGroup
-  id: Plushie
-  name: steal-target-groups-plushie
-  sprite:
-    sprite: Objects/Fun/toys.rsi
-    state: plushie_bug
+    sprite: Objects/Specific/Janitorial/janitorial.rsi
+    state: mopbucket
 
 - type: stealTargetGroup
   id: SeedExtractor
@@ -265,22 +335,8 @@
     state: seedextractor
 
 - type: stealTargetGroup
-  id: SecPillCanister
-  name: steal-target-groups-secpillcanister
+  id: Plushie
+  name: steal-target-groups-plushie
   sprite:
-    sprite: _Impstation/Objects/Specific/Chemistry/pills_canister.rsi
-    state: pill_canister-hos
-    
-- type: stealTargetGroup
-  id: EvilSkullArtifactItem
-  name: steal-target-groups-evil-skull
-  sprite:
-    sprite: Mobs/Species/Skeleton/parts.rsi
-    state: skull_icon
-
-- type: stealTargetGroup
-  id: StockTradingCartridge
-  name: steal-target-groups-stocktradingcartridge
-  sprite:
-    sprite: _DV/Objects/Devices/cartridge.rsi
-    state: cart-stonk
+    sprite: _Impstation/Objects/Fun/toys.rsi
+    state: plushie_bug

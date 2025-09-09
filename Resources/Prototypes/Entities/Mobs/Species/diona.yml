@@ -12,7 +12,7 @@
     - DoorBumpOpener
     - AnomalyHost
     - DionaMinded
-  - type: Absorbable
+  - type: GoobAbsorbable
   - type: HumanoidAppearance
     species: Diona
   - type: Hunger
@@ -100,6 +100,8 @@
       Male: MaleDiona
       Female: FemaleDiona
       Unsexed: UnisexDiona
+  - type: TypingIndicator
+    proto: diona
   - type: BodyEmotes
     soundsId: DionaBodyEmotes
   - type: IgnoreKudzu
@@ -112,12 +114,15 @@
     - Dead
   - type: Inventory
     templateId: diona
+    speciesId: diona #imp
     femaleDisplacements:
       jumpsuit:
         sizeMaps:
           32:
             sprite: Mobs/Species/Human/displacement.rsi
             state: jumpsuit-female
+  - type: Rootable
+  - type: Carriable # Carrying system from nyanotrasen.
 
 - type: entity
   parent: BaseSpeciesDummy
@@ -128,6 +133,7 @@
     species: Diona
   - type: Inventory
     templateId: diona
+    speciesId: diona #imp
     femaleDisplacements:
       jumpsuit:
         sizeMaps:
