@@ -1,14 +1,6 @@
 ﻿Entries:
 - author: Stonylogray
   changes:
-  - message: The Space Wizard's Federation has given additional directives to its
-      magisters of mayhem.
-    type: Tweak
-  id: 1846
-  time: '2025-06-17T00:37:21.0000000+00:00'
-  url: https://github.com/impstation/imp-station-14/pull/2736
-- author: Stonylogray
-  changes:
   - message: Slime people are now more susceptible to bloodloss, but can restore most
       of their lost slime by slurping it back up.
     type: Tweak
@@ -4214,3 +4206,12 @@
   id: 2345
   time: '2025-10-22T11:09:09.0000000+00:00'
   url: https://github.com/impstation/imp-station-14/pull/3600
+- author: VeeNomine
+  changes:
+  - message: Tck'Tck is no longer permanently slowed when anchoring.
+    type: Fix
+  - message: Tck'Tck is now able to properly supply power to the station.
+    type: Fix
+  id: 2346
+  time: '2025-10-24T08:48:02.0000000+00:00'
+  url: https://github.com/impstation/imp-station-14/pull/3610
