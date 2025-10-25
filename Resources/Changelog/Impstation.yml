@@ -1,19 +1,4 @@
 ﻿Entries:
-- author: widgetbeck
-  changes:
-  - message: Replicator nests now count items in stacks properly. One stack of 30
-      is worth (equivalent to) 3 points.
-    type: Add
-  - message: It is now harder for Replicators to make sexual innuendo. Sorry, folks.
-    type: Tweak
-  - message: Replicator Stun Projectors now do no damage, and are back to their old
-      firing rate.
-    type: Tweak
-  - message: Replicator Nests now preserve mechs.
-    type: Tweak
-  id: 1852
-  time: '2025-06-17T00:49:45.0000000+00:00'
-  url: https://github.com/impstation/imp-station-14/pull/2751
 - author: jtfg-dev
   changes:
   - message: The Intergalactic Standards Organization has ordered Nanotrasen's lathe
@@ -4214,3 +4199,11 @@
   id: 2351
   time: '2025-10-25T02:33:50.0000000+00:00'
   url: https://github.com/impstation/imp-station-14/pull/3584
+- author: mousesweater
+  changes:
+  - message: magnum disabler and disabler carbine have been pacifism approved to match
+      various developments in the disabler field.
+    type: Tweak
+  id: 2352
+  time: '2025-10-25T03:02:01.0000000+00:00'
+  url: https://github.com/impstation/imp-station-14/pull/3616
