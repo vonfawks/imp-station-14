@@ -1,11 +1,4 @@
 ﻿Entries:
-- author: starlighthowls
-  changes:
-  - message: Added a new ai display and hologram.
-    type: Add
-  id: 1851
-  time: '2025-06-17T00:49:01.0000000+00:00'
-  url: https://github.com/impstation/imp-station-14/pull/2787
 - author: widgetbeck
   changes:
   - message: Replicator nests now count items in stacks properly. One stack of 30
@@ -4210,3 +4203,14 @@
   id: 2350
   time: '2025-10-25T02:32:16.0000000+00:00'
   url: https://github.com/impstation/imp-station-14/pull/3580
+- author: Smugman
+  changes:
+  - message: The Codex Cicatrix now very rarely finds its way into public libraries.
+    type: Add
+  - message: You can now write your evil heretic secrets into an opened Codex Cicatrix
+    type: Tweak
+  - message: The Codex Cicatrix is now a book instead of a book style tribute act.
+    type: Fix
+  id: 2351
+  time: '2025-10-25T02:33:50.0000000+00:00'
+  url: https://github.com/impstation/imp-station-14/pull/3584
