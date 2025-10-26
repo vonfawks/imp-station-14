@@ -1,12 +1,4 @@
 ﻿Entries:
-- author: jtfg-dev
-  changes:
-  - message: The Intergalactic Standards Organization has ordered Nanotrasen's lathe
-      compendium updated. All materials now have unique descriptions.
-    type: Add
-  id: 1853
-  time: '2025-06-17T00:53:17.0000000+00:00'
-  url: https://github.com/impstation/imp-station-14/pull/2624
 - author: DinnerCalzone
   changes:
   - message: Water tanks, fuel tanks, water coolers, wall dispensers, and the nuke
@@ -4207,3 +4199,11 @@
   id: 2352
   time: '2025-10-25T03:02:01.0000000+00:00'
   url: https://github.com/impstation/imp-station-14/pull/3616
+- author: msTheowo
+  changes:
+  - message: Janitor trolleys and mop buckets now have a radial menu for taking things
+      out of them.
+    type: Add
+  id: 2353
+  time: '2025-10-26T00:42:37.0000000+00:00'
+  url: https://github.com/impstation/imp-station-14/pull/3585
