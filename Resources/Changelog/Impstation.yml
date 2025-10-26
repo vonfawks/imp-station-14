@@ -1,12 +1,4 @@
 ﻿Entries:
-- author: maelines
-  changes:
-  - message: scorned user maenyas added 28 hairstyles for humanoids (thavens eventually
-      when she figures that out)
-    type: Add
-  id: 1859
-  time: '2025-06-17T08:31:47.0000000+00:00'
-  url: https://github.com/impstation/imp-station-14/pull/2778
 - author: Mousetrinity
   changes:
   - message: chefs now have a variety of animals to fight and butcher, check your
@@ -4206,3 +4198,10 @@
   id: 2358
   time: '2025-10-26T03:15:14.0000000+00:00'
   url: https://github.com/impstation/imp-station-14/pull/3595
+- author: starlighthowls
+  changes:
+  - message: Those Eeep were rabid sorry here's some normal ones.
+    type: Tweak
+  id: 2359
+  time: '2025-10-26T06:30:49.0000000+00:00'
+  url: https://github.com/impstation/imp-station-14/pull/3620
