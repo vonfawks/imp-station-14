@@ -1,13 +1,6 @@
 ﻿Entries:
 - author: DinnerCalzone
   changes:
-  - message: Fixed genpop closets using wrong sprites.
-    type: Fix
-  id: 1857
-  time: '2025-06-17T08:23:22.0000000+00:00'
-  url: https://github.com/impstation/imp-station-14/pull/2794
-- author: DinnerCalzone
-  changes:
   - message: The salvage chemical barrels have been given new sprites and their material
       composition has been changed to plastic to match.
     type: Add
@@ -4206,3 +4199,11 @@
   id: 2356
   time: '2025-10-26T01:01:21.0000000+00:00'
   url: https://github.com/impstation/imp-station-14/pull/3360
+- author: soup4food
+  changes:
+  - message: All syndicate duffle bag bundles can now have their name and description
+      obscured by using soap on them, much like implanters.,
+    type: Tweak
+  id: 2357
+  time: '2025-10-26T03:04:46.0000000+00:00'
+  url: https://github.com/impstation/imp-station-14/pull/3568
