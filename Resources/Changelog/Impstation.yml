@@ -1,15 +1,4 @@
 ﻿Entries:
-- author: DinnerCalzone
-  changes:
-  - message: Water tanks, fuel tanks, water coolers, wall dispensers, and the nuke
-      keg can now be refilled by either click and dragging a reagent container on
-      to them or by using a right-click verb.
-    type: Add
-  - message: Reagents can now be added to ChemMasters using a right-click verb.
-    type: Add
-  id: 1854
-  time: '2025-06-17T00:58:42.0000000+00:00'
-  url: https://github.com/impstation/imp-station-14/pull/2743
 - author: EpicToast
   changes:
   - message: Core Station now supports genpop.
@@ -4207,3 +4196,13 @@
   id: 2353
   time: '2025-10-26T00:42:37.0000000+00:00'
   url: https://github.com/impstation/imp-station-14/pull/3585
+- author: eviltori
+  changes:
+  - message: security roles can now pick their glasses in the loadout.
+    type: Tweak
+  - message: added a wicked security visor that you can now select in your security
+      loadout.
+    type: Add
+  id: 2354
+  time: '2025-10-26T00:50:08.0000000+00:00'
+  url: https://github.com/impstation/imp-station-14/pull/3613
