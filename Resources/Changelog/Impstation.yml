@@ -1,11 +1,4 @@
 ﻿Entries:
-- author: EpicToast
-  changes:
-  - message: Core Station now supports genpop.
-    type: Add
-  id: 1855
-  time: '2025-06-17T07:34:30.0000000+00:00'
-  url: https://github.com/impstation/imp-station-14/pull/2792
 - author: ScarKy0
   changes:
   - message: Reinforced plasma windows no longer block laser shots.
@@ -4206,3 +4199,10 @@
   id: 2354
   time: '2025-10-26T00:50:08.0000000+00:00'
   url: https://github.com/impstation/imp-station-14/pull/3613
+- author: DVDPlayerOfDiscordFame
+  changes:
+  - message: Grenades might look a little different
+    type: Tweak
+  id: 2355
+  time: '2025-10-26T00:54:00.0000000+00:00'
+  url: https://github.com/impstation/imp-station-14/pull/3612
