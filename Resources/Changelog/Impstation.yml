@@ -1,12 +1,4 @@
 ﻿Entries:
-- author: DinnerCalzone
-  changes:
-  - message: The salvage chemical barrels have been given new sprites and their material
-      composition has been changed to plastic to match.
-    type: Add
-  id: 1858
-  time: '2025-06-17T08:24:36.0000000+00:00'
-  url: https://github.com/impstation/imp-station-14/pull/2791
 - author: maelines
   changes:
   - message: scorned user maenyas added 28 hairstyles for humanoids (thavens eventually
@@ -4207,3 +4199,10 @@
   id: 2357
   time: '2025-10-26T03:04:46.0000000+00:00'
   url: https://github.com/impstation/imp-station-14/pull/3568
+- author: starlighthowls
+  changes:
+  - message: Migrating Electric sheep have been drawn in by the stations power.
+    type: Add
+  id: 2358
+  time: '2025-10-26T03:15:14.0000000+00:00'
+  url: https://github.com/impstation/imp-station-14/pull/3595
