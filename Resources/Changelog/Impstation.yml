@@ -1,13 +1,4 @@
 ﻿Entries:
-- author: TuttlePants
-  changes:
-  - message: Bounty hunters don't target other bounty hunters
-    type: Tweak
-  - message: Bounty hunter targeting isn't fucked anymore
-    type: Fix
-  id: 1862
-  time: '2025-06-17T14:23:59.0000000+00:00'
-  url: https://github.com/impstation/imp-station-14/pull/2750
 - author: DVDPlayerOfDiscordFame
   changes:
   - message: You can now purchase a box of .25 Caseless bullets for 2 telecrystals.
@@ -4194,3 +4185,10 @@
   id: 2361
   time: '2025-10-27T05:54:44.0000000+00:00'
   url: https://github.com/impstation/imp-station-14/pull/3627
+- author: kipdotnet
+  changes:
+  - message: Banana has been un-reverted.
+    type: Fix
+  id: 2362
+  time: '2025-10-27T06:05:01.0000000+00:00'
+  url: https://github.com/impstation/imp-station-14/pull/3628
