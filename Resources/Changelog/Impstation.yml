@@ -1,13 +1,4 @@
 ﻿Entries:
-- author: DVDPlayerOfDiscordFame
-  changes:
-  - message: You can now purchase a box of .25 Caseless bullets for 2 telecrystals.
-    type: Add
-  - message: You can now print .25 Caseless magazines and bullets from emagged autolathes.
-    type: Add
-  id: 1863
-  time: '2025-06-17T21:11:14.0000000+00:00'
-  url: https://github.com/impstation/imp-station-14/pull/2801
 - author: DinnerCalzone
   changes:
   - message: Saltern now supports Pyschologist and Reporter.
@@ -4192,3 +4183,12 @@
   id: 2362
   time: '2025-10-27T06:05:01.0000000+00:00'
   url: https://github.com/impstation/imp-station-14/pull/3628
+- author: Squamatic
+  changes:
+  - message: W-wait, you called the red phone for a CBURN team? Don't you know that
+      Central barely even funds those guys? That whole romerol thing is just a myth,
+      anyway...
+    type: Add
+  id: 2363
+  time: '2025-10-27T09:34:01.0000000+00:00'
+  url: https://github.com/impstation/imp-station-14/pull/3614
