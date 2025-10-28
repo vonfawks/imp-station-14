@@ -1,13 +1,6 @@
 ﻿Entries:
 - author: DinnerCalzone
   changes:
-  - message: Saltern now supports Pyschologist and Reporter.
-    type: Add
-  id: 1864
-  time: '2025-06-18T07:35:50.0000000+00:00'
-  url: https://github.com/impstation/imp-station-14/pull/2810
-- author: DinnerCalzone
-  changes:
   - message: Boxer, Chaplain, Librarian, Reporter, and Zookeeper are once again part
       of the Service department.
     type: Tweak
@@ -4192,3 +4185,14 @@
   id: 2363
   time: '2025-10-27T09:34:01.0000000+00:00'
   url: https://github.com/impstation/imp-station-14/pull/3614
+- author: EpicToast
+  changes:
+  - message: Disabilities and quirks have been combined into one section.
+    type: Tweak
+  - message: Traits can now cost or grant points in your trait budget.
+    type: Tweak
+  - message: Some traits are no longer compatible with each other.
+    type: Tweak
+  id: 2364
+  time: '2025-10-28T02:22:56.0000000+00:00'
+  url: https://github.com/impstation/imp-station-14/pull/3538
