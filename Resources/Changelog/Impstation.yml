@@ -1,11 +1,4 @@
 ﻿Entries:
-- author: meridiadottxt
-  changes:
-  - message: Submarine now in rotation!
-    type: Add
-  id: 1866
-  time: '2025-06-18T07:45:26.0000000+00:00'
-  url: https://github.com/impstation/imp-station-14/pull/2807
 - author: DinnerCalzone
   changes:
   - message: The janitor's closet is now secured by janitor access and the Shining
@@ -4200,3 +4193,10 @@
   id: 2365
   time: '2025-10-28T07:49:24.0000000+00:00'
   url: https://github.com/impstation/imp-station-14/pull/3532
+- author: msTheowo
+  changes:
+  - message: Donut boxes have received a makeover.
+    type: Tweak
+  id: 2366
+  time: '2025-10-28T07:50:38.0000000+00:00'
+  url: https://github.com/impstation/imp-station-14/pull/3630
