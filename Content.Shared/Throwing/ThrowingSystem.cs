@@ -2,12 +2,9 @@ using System.Numerics;
 using Content.Shared.Administration.Logs;
 using Content.Shared.Camera;
 using Content.Shared.CCVar;
-using Content.Shared.Damage.Components; // imp
-using Content.Shared.Damage.Systems; // imp
 using Content.Shared.Construction.Components;
 using Content.Shared.Database;
 using Content.Shared.Friction;
-using Content.Shared.Gravity;
 using Content.Shared.Projectiles;
 using Robust.Shared.Configuration;
 using Robust.Shared.Map;
@@ -15,6 +12,8 @@ using Robust.Shared.Physics;
 using Robust.Shared.Physics.Components;
 using Robust.Shared.Physics.Systems;
 using Robust.Shared.Timing;
+using Content.Shared.Damage.Components; // imp
+using Content.Shared.Damage.Systems; // imp
 
 namespace Content.Shared.Throwing;
 
@@ -32,14 +31,12 @@ public sealed class ThrowingSystem : EntitySystem
     private float _airDamping;
 
     [Dependency] private readonly IGameTiming _gameTiming = default!;
-    [Dependency] private readonly SharedGravitySystem _gravity = default!;
     [Dependency] private readonly SharedPhysicsSystem _physics = default!;
     [Dependency] private readonly SharedTransformSystem _transform = default!;
     [Dependency] private readonly ThrownItemSystem _thrownSystem = default!;
     [Dependency] private readonly SharedCameraRecoilSystem _recoil = default!;
     [Dependency] private readonly ISharedAdminLogManager _adminLogger = default!;
     [Dependency] private readonly IConfigurationManager _configManager = default!;
-
     [Dependency] private readonly SharedStaminaSystem _stamina = default!; // imp
 
     public override void Initialize()
@@ -246,7 +243,7 @@ public sealed class ThrowingSystem : EntitySystem
         RaiseLocalEvent(user.Value, ref pushEv);
         const float massLimit = 5f;
 
-        if (pushEv.Push || _gravity.IsWeightless(user.Value))
+        if (pushEv.Push)
             _physics.ApplyLinearImpulse(user.Value, -impulseVector / physics.Mass * pushbackRatio * MathF.Min(massLimit, physics.Mass), body: userPhysics);
 
         if (TryComp<DamageOtherOnHitComponent>(uid, out var damage) && TryComp<StaminaComponent>(user, out var stamina)) // imp

@@ -236,6 +236,7 @@
     damageProtection:
       flatReductions:
         Heat: 10 # capable of touching light bulbs and stoves without feeling pain!
+        Cold: 10 # for cold lightbulbs
   - type: BorgChassis
     maxModules: 3
     hasMindState: tcktck_e
@@ -275,7 +276,7 @@
     switchText: power-switchable-generator-switched
     cables:
     - voltage: LV
-      node: Apc
+      node: output_lv
     - voltage: MV
       node: output_mv
   - type: UseDelay
